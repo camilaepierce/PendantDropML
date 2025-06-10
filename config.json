@@ -1,0 +1,14 @@
+{
+    "input" : {
+        "data_path" : "example_data_input.txt",
+        "img_path" : "example_image_input.txt",
+        "DROP_OUTLINE_RATE" : 250,
+        "NUM_DATA" : 100,
+        "IMG_HEIGHT" : 250,
+        "IMG_WIDTH" : 250
+    },
+    "output" : {
+        "TENSION_RANGE_LOWER" : 22.1,
+        "TENSION_RANGE_UPPER" : 72.6
+    }
+}
