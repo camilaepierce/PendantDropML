@@ -20,24 +20,43 @@ def extract_data_frame_single(file):
     """
     Extracts rz data from test_data_rz files
 
-    Parameters
-        file (str) : path to file
+    Parameters:
+        file (str) : Path to file. Absolute or relative
 
-    Returns
-        numpy 
+    Returns:
+        numpy tensor of drop frame
     """
     # Option for unpack=True, allows r, z = np.loadtxt(...)
     return np.loadtxt(file, delimiter=",")
 
 def extract_data_frame_directory(dir_path):
+    """
+    Applies data extraction to every file in directory.
+
+    Parameters:
+        dir_path (str) : Path to directory. Absolute or relative.
+
+    Returns:
+        Dictionary of {sample_id (str): surface tension (float)}
+    """
     return create_dictionary_per_file(dir_path, extract_data_frame_single)
 
 
 def extract_surface_tension_single(file):
+    """
+    Extracts surface tension from parameter file
+
+    Parameters:
+        file (str) : Path to file. Absolute or relative
+
+    Returns:
+        Float of sample's sigma value.
+    """
     return json.load(file)["sigma"]
 
 def extract_surface_tension_directory(dir_path):
-    """Extracts surface tension from every folder in given path.
+    """
+    Extracts surface tension from every folder in given path.
     
     Paramters:
         dir_path (folder path)
@@ -50,6 +69,16 @@ def extract_surface_tension_directory(dir_path):
     return create_dictionary_per_file(dir_path, for_filelike_object)
 
 def create_dictionary_per_file(dir_path, each_fxn):
+    """
+    Extracts information from each file in a directory.
+    
+    Parameters:
+        dir_path (str) : Path (absolute or relative) to requested directory.
+        each_fxn (function(str -> T)) : Function to apply to each file in order to extract desired information.
+
+    Returns:
+        Dictionary of {sample_id (str): each_fxn result (T)}
+    """
     file_iter = os.scandir(dir_path)
 
     surf_dir = {}
@@ -62,6 +91,7 @@ def create_dictionary_per_file(dir_path, each_fxn):
 
     return surf_dir
 
+
 def get_digits_from_filename(filename):
     """ Extracts the digits from the filename of a file path or standalone name."""
     filename = filename.split('/')[-1]
@@ -70,56 +100,56 @@ def get_digits_from_filename(filename):
     return digits[0]
 
 def show_image_with_outline(img, rz_frame):
+    """Plots image on already created pyplot figure"""
     plt.imshow(img)
     plt.scatter(rz_frame[:, 0], rz_frame[:, 1], s=10, marker='.', c='r')
     # plt.pause(0.001)
 
 class PendantDropDataset(Dataset):
-    """Pendant Drop Dataset"""
+    """Pendant Drop Dataset, inherits from torch.utils.data.Dataset Class."""
 
-    def __init__(self, params_dir, rz_dir, img_dir, img_sigfigs=4, transform=None):
+    def __init__(self, params_dir, rz_dir, img_dir, transform=None):
         """
-        Some good initialization documentation
+        Some good documentation.
 
-        Parameters
-        * params_dir (str)
-        * rz_dir (str)
-        * img_dir (str)
-        * img_sigfigs (num)
-        * transform (bool)
+        Parameters:
+            params_dir (str) : Path (absolute or relative) towards directory with parameter (json) files
+            rz_dir (str) : Path (absolute or relative) towards directory with rz coordinate (txt) files
+            img_dir (str) : Path (absolute or relative) towards directory with image (png) files
+            transform (bool) : Preprocessing data. NOTE Not implemented
 
 
-        Returns
+        Returns:
             New Dataset Object
+
+        TODO Need to construct a custom sampler (Dataset relies on integer indexing)
         """
 
         self.coord_outline_dict = extract_data_frame_directory(rz_dir)
         self.surf_tens_dict = extract_surface_tension_directory(params_dir)
         self.img_dir = img_dir
         self.transform = transform
-        self.img_sigfigs = img_sigfigs
+        # self.img_sigfigs = img_sigfigs
         self.available_samples = set(self.coord_outline_dict.keys())
 
     def __len__(self):
+        """ Returns size of dataset """
         return np.size(self.coord_outline_dict)
     
     def __getitem__(self, idx):
-        # if torch.is_tensor(idx):
-        #     idx = idx.tolist() ### Unecessary?
+        """
+        Gets specified sample from dataset.
 
-        # if (self.img_sigfigs == 3) :
-        #     sample_id = f"{idx:03d}"
-        # elif (self.img_sigfigs == 4):
-        #     sample_id = f"{idx:04d}"
-        # else:
-        #     raise Exception("Please update code to reflect number of images")
-        
-        ## NEED TO CATCH if the sample does not exist
+        Parameters:
+            idx (str) : Index / name of sample, requires idx to in the given directory
+
+        Returns:
+            Dictionary of requested sample, or Warning if idx not in the dataset. Dictionary has the keys {'image', 'coordinates', and 'surface_tension'}.
+        """
         if (idx not in self.surf_tens_dict):
-            return Warning(f"The requested sample_id {idx} does not exist. Did you define the Dataset with the correct number of sigfigs?")
+            return Warning(f"The requested sample_id {idx} does not exist. Did you match the name of a sample exactly?")
         img_name = os.path.join(self.img_dir, f"{idx}.png")
-        print(img_name)
-        print(idx)
+
         image = io.imread(img_name)
 
         coords = self.coord_outline_dict[idx]
@@ -129,6 +159,9 @@ class PendantDropDataset(Dataset):
 
         return sample
 
+###################################################
+### Test Case for evaluating single image
+###################################################
 
 # n=2467
 
@@ -145,7 +178,9 @@ class PendantDropDataset(Dataset):
 # show_image_with_outline(io.imread(img_name), outline_frame)
 
 # plt.show()
-
+##################################################
+### Test Case for Dataset Class
+##################################################
 
 # drop_dataset = PendantDropDataset("data/test_data_params", "data/test_data_rz","data/test_images", img_sigfigs=4)
 
