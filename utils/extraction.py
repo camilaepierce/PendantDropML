@@ -182,7 +182,7 @@ class PendantDropDataset(Dataset):
 ### Test Case for Dataset Class
 ##################################################
 
-# drop_dataset = PendantDropDataset("data/test_data_params", "data/test_data_rz","data/test_images", img_sigfigs=4)
+# drop_dataset = PendantDropDataset("data/test_data_params", "data/test_data_rz","data/test_images")
 
 # fig = plt.figure()
 
