@@ -12,6 +12,8 @@ from torch.utils.data import DataLoader, Dataset
 from torchvision import datasets
 from torchvision.transforms import ToTensor
 
+import random
+
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -105,10 +107,13 @@ def show_image_with_outline(img, rz_frame):
     plt.scatter(rz_frame[:, 0], rz_frame[:, 1], s=10, marker='.', c='r')
     # plt.pause(0.001)
 
+
+
+
 class PendantDropDataset(Dataset):
     """Pendant Drop Dataset, inherits from torch.utils.data.Dataset Class."""
 
-    def __init__(self, params_dir, rz_dir, img_dir, transform=None):
+    def __init__(self, params_dir, rz_dir, img_dir, transform=None, select_samples=None):
         """
         Some good documentation.
 
@@ -124,17 +129,22 @@ class PendantDropDataset(Dataset):
 
         TODO Need to construct a custom sampler (Dataset relies on integer indexing)
         """
-
+        self.params_dir = params_dir
+        self.rz_dir = rz_dir
+        self.img_dir = img_dir
         self.coord_outline_dict = extract_data_frame_directory(rz_dir)
         self.surf_tens_dict = extract_surface_tension_directory(params_dir)
         self.img_dir = img_dir
         self.transform = transform
         # self.img_sigfigs = img_sigfigs
-        self.available_samples = set(self.coord_outline_dict.keys())
+        if select_samples is None:
+            self.available_samples = set(self.coord_outline_dict.keys())
+        else:
+            self.available_samples = select_samples
 
     def __len__(self):
         """ Returns size of dataset """
-        return np.size(self.coord_outline_dict)
+        return np.size(self.surf_tens_dict)
     
     def __getitem__(self, idx):
         """
@@ -158,6 +168,24 @@ class PendantDropDataset(Dataset):
         ## Could choose whether or not to include rz coordinates vs image (?)
 
         return sample
+    
+    def split_dataset(self, k, random_seed=None):
+        """
+        Splits the dataset into two datasets of size {k} and size {len(this) - k}
+
+        Parameters:
+            k (int) : size of future testing set
+
+        Returns:
+            (TrainingDataset, TestingDataset) both of type PendantDropDataset
+        """
+        seeded_random = random.Random(random_seed)
+        order = seeded_random.sample(list(self.available_samples), len(self.available_samples))
+        testingset = PendantDropDataset(self.params_dir, self.rz_dir, self.img_dir, select_samples=order[:k])
+        trainingset = PendantDropDataset(self.params_dir, self.rz_dir, self.img_dir, select_samples=order[k:])
+        return (trainingset, testingset)
+
+
 
 ###################################################
 ### Test Case for evaluating single image

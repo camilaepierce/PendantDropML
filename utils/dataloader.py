@@ -1,10 +1,10 @@
-from torch.utils.data import DataLoader
-from extraction import PendantDropDataset
+# from torch.utils.data import DataLoader
+# from extraction import PendantDropDataset
 import matplotlib.pyplot as plt
 import numpy as np
 import random
+from torch import from_numpy
 
-training_data = PendantDropDataset("data/test_data_params", "data/test_data_rz","data/test_images")
 
 
 class PendantDataLoader():
@@ -21,6 +21,7 @@ class PendantDataLoader():
         self.feat_fxn = feat_fxn
         self.lab_fxn = lab_fxn
         self.iter_idx = 0
+        # self.size = len(data)
     
     def __iter__(self):
         """
@@ -34,12 +35,14 @@ class PendantDataLoader():
                 features_batch.append(self.feat_fxn(sample))
                 labels_batch.append(self.lab_fxn(sample))
             self.iter_idx += 1
-            yield (np.array(features_batch), np.array(labels_batch))
+            yield (from_numpy(np.array(features_batch)), from_numpy(np.array(labels_batch)))
     
 
 ###################################
 ### Testing Torch DataLoader Use Case
 ###################################
+# training_data = PendantDropDataset("data/test_data_params", "data/test_data_rz","data/test_images")
+
 # train_dataloader = PendantDataLoader(training_data, num_batches=10, shuffle=True)
 
 # shuffled_order = train_dataloader.order
