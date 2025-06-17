@@ -15,18 +15,24 @@ class FiveLayerCNN(nn.Module):
     def __init__(self):
         super().__init__()
         self.linear_relu_stack = nn.Sequential(
-            nn.Conv3d(in_channels=3, out_channels=2, kernel_size=(3, 3, 3)),
+            nn.Conv3d(in_channels=3, out_channels=1, kernel_size=(1, 3, 3)),
+            # torch.squeeze(),
             nn.ReLU(),
-            nn.Conv2d(in_channels=2, out_channels=2, kernel_size=9),
-            nn.MaxPool2d(kernel_size=15, stride=10),
+            nn.Conv3d(in_channels=1, out_channels=1, kernel_size=(1, 9, 9)),
+            nn.MaxPool3d(kernel_size=(1, 15, 15), stride=3),
             nn.ReLU(),
             nn.Flatten(),
-            nn.Linear(86 * 65, 10),
-            nn.Linear(10, 1),
+            nn.Linear(59924, 5000),
+            nn.Linear(5000, 500),
+            nn.Linear(500, 300),
+            nn.Linear(300, 1)
         )
 
     def forward(self, x):
+        x = x.permute(0, 3, 1, 2).unsqueeze(2)
+        # print("Forward x shape", x.shape)
         logits = self.linear_relu_stack(x)
+        logits = logits.squeeze()
         return logits
     
 

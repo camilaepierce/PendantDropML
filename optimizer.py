@@ -9,14 +9,16 @@ from torch.utils.data import DataLoader
 from torchvision import datasets
 from torchvision.transforms import ToTensor
 from utils.extraction import PendantDropDataset
+import math
 
 from five_layer import FiveLayerCNN
+from single_layer import SingleLayerCNN
 
 
 
-learning_rate = 1e-3
-batch_size = 4
-epochs = 10
+learning_rate = 1e-5
+batch_size = 10
+epochs = 1
 testing_size = 20
 
 ##############################################################
@@ -27,10 +29,10 @@ drop_dataset = PendantDropDataset("data/test_data_params", "data/test_data_rz","
 training_data, testing_data = drop_dataset.split_dataset(testing_size, 4)
 
 train_dataloader = PendantDataLoader(training_data, batch_size)
-test_dataloader = PendantDataLoader(testing_data, batch_size)
+test_dataloader = PendantDataLoader(testing_data, 1)
 
 
-model = FiveLayerCNN()
+model = SingleLayerCNN()
 
 ###############################################################
 ### MNIST Fashion Dataset
@@ -79,11 +81,11 @@ model = FiveLayerCNN()
 # model = NeuralNetwork()
 ########################################################################
 
-loss_fxn = nn.CrossEntropyLoss()
+loss_fxn = nn.MSELoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
 
 
-def train_loop(dataloader, model, loss_fxn, optimiser):
+def train_loop(dataloader, model, loss_fxn, optimizer):
     ## Uncomment for MNIST Fashion dataset
     # size = len(dataloader.dataset) 
     ## Uncomment for custom dataset
@@ -92,7 +94,12 @@ def train_loop(dataloader, model, loss_fxn, optimiser):
 
     model.train()
     for batch, (X, y) in enumerate(dataloader):
+        # print(X.dtype)
+        # print("Input Shape", X.shape)
+        # print(y.dtype)
+        # print("Expected output shape", y.shape)
         pred = model(X)
+        # print("Prediction Shape", pred.shape)
         loss = loss_fxn(pred, y)
 
         loss.backward()
@@ -112,14 +119,18 @@ def test_loop(dataloader, model, loss_fxn):
     # num_batches = len(dataloader)
     ## Uncomment for custom dataset
     size = len(dataloader.data)
-    num_batches = dataloader.num_batches
+    num_batches = 1 #math.floor(size / batch_size)
     test_loss, correct = 0, 0
 
     with torch.no_grad():
         for X, y in dataloader:
             pred = model(X)
             test_loss += loss_fxn(pred, y).item()
-            correct += (pred.argmax(1) == y).type(torch.float).sum().item()
+            print("prediction shape", pred.shape)
+            print("prediction value", pred)
+            print("y shape", y.shape)
+            print("y value", y)
+            correct += (torch.isclose(pred, y, rtol=0, atol=0.3)).type(torch.float).sum().item()
     
     test_loss /= num_batches
     correct /= size
@@ -128,6 +139,8 @@ def test_loop(dataloader, model, loss_fxn):
 
 for t in range(epochs):
     print(f"Epoch {t+1}\n-------------------------------")
+    print("Entering training")
     train_loop(train_dataloader, model, loss_fxn, optimizer)
+    print("Entering testing")
     test_loop(test_dataloader, model, loss_fxn)
 print("Done!")

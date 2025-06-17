@@ -3,7 +3,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import random
-from torch import from_numpy
+from torch import from_numpy, Tensor
 
 
 
@@ -35,7 +35,7 @@ class PendantDataLoader():
                 features_batch.append(self.feat_fxn(sample))
                 labels_batch.append(self.lab_fxn(sample))
             self.iter_idx += 1
-            yield (from_numpy(np.array(features_batch)), from_numpy(np.array(labels_batch)))
+            yield (Tensor.float(from_numpy(np.array(features_batch))), Tensor.float(from_numpy(np.array(labels_batch))))
     
 
 ###################################
