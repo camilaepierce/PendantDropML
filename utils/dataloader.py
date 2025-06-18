@@ -45,6 +45,10 @@ class PendantDataLoader():
 
 # train_dataloader = PendantDataLoader(training_data, num_batches=10, shuffle=True)
 
+# # print("dataloader length", len(train_dataloader))
+# print("data from dataloader length", len(train_dataloader.data))
+# print("data length", len(training_data))
+
 # shuffled_order = train_dataloader.order
 
 # # print(shuffled_order[0])

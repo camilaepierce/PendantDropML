@@ -144,7 +144,7 @@ class PendantDropDataset(Dataset):
 
     def __len__(self):
         """ Returns size of dataset """
-        return np.size(self.surf_tens_dict)
+        return len(self.surf_tens_dict)
     
     def __getitem__(self, idx):
         """

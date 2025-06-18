@@ -9,6 +9,7 @@ from torch.utils.data import DataLoader
 from torchvision import datasets
 from torchvision.transforms import ToTensor
 from utils.extraction import PendantDropDataset
+import torchvision.models as models
 import math
 
 from five_layer import FiveLayerCNN
@@ -17,8 +18,8 @@ from single_layer import SingleLayerCNN
 
 
 learning_rate = 1e-5
-batch_size = 10
-epochs = 1
+num_batches = 10
+epochs = 2
 testing_size = 20
 
 ##############################################################
@@ -28,11 +29,13 @@ testing_size = 20
 drop_dataset = PendantDropDataset("data/test_data_params", "data/test_data_rz","data/test_images")
 training_data, testing_data = drop_dataset.split_dataset(testing_size, 4)
 
-train_dataloader = PendantDataLoader(training_data, batch_size)
+batch_size = int(len(training_data)/ num_batches)
+
+train_dataloader = PendantDataLoader(training_data, num_batches=num_batches)
 test_dataloader = PendantDataLoader(testing_data, 1)
 
 
-model = SingleLayerCNN()
+model = FiveLayerCNN()
 
 ###############################################################
 ### MNIST Fashion Dataset
@@ -89,7 +92,6 @@ def train_loop(dataloader, model, loss_fxn, optimizer):
     ## Uncomment for MNIST Fashion dataset
     # size = len(dataloader.dataset) 
     ## Uncomment for custom dataset
-    print(dataloader.data)
     size = len(dataloader.data)
 
     model.train()
@@ -118,7 +120,7 @@ def test_loop(dataloader, model, loss_fxn):
     # size = len(dataloader.dataset)
     # num_batches = len(dataloader)
     ## Uncomment for custom dataset
-    size = len(dataloader.data)
+    size = testing_size
     num_batches = 1 #math.floor(size / batch_size)
     test_loss, correct = 0, 0
 
@@ -144,3 +146,9 @@ for t in range(epochs):
     print("Entering testing")
     test_loop(test_dataloader, model, loss_fxn)
 print("Done!")
+
+####################################
+### Save Model
+####################################
+
+torch.save(model.state_dict(), 'fiveLayerModelWeights.pth')
