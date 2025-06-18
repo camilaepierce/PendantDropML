@@ -40,3 +40,4 @@ Working on a more streamlined method of running models, but currently can be run
   $ python optimizer.py
 ```
 or by opening the folder in Visual Studio Code and running `optimzer.py`. Configurations can be specified at the top of `optimizer.py`, such as which model to run, learning rate, data folders, and number of batches.
+**IMPORTANT** If you start running the optimizer and need to end it, you can just hit Ctrl+C (Keyboard Interrupt) to end the script midway
