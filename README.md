@@ -82,14 +82,14 @@ Working on a more streamlined method of running models, but currently can be run
 
 **Linux**
 ```
-  > python optimizer.py
+  > python model.py
 ```
 
 **Windows**
 ```
-  > py optimizer.py
+  > py model.py
 ```
-or by opening the folder in Visual Studio Code and running `optimzer.py`. Configurations can be specified at the top of `optimizer.py`, such as which model to run, learning rate, data folders, and number of batches.
+or by opening the folder in Visual Studio Code and running `model.py`. Configurations can be specified at the top of `model.py`, such as which model to run, learning rate, data folders, and number of batches.
 
 
 
