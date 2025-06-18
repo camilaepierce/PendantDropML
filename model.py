@@ -8,22 +8,21 @@ from torch.nn import functional as F
 from torch.utils.data import DataLoader
 from torch.utils.data import Dataset
 from torchvision import transforms
+from optimizer import run_optimizer
+from five_layer import FiveLayerCNN
 
-device = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
-print(f"Using {device} device")
-
-
-class PendantNetwork(nn.Module):
-
-    def __init__(self):
-        super().__init__()
 
 if __name__ == "main":
 
 
-    # Defining input structure
-    config = "./config.json"
-    with open(config, "r") as f:
-        config = load(f) # config now json object with configuration details
+    # Run the optimzer
 
-    
+
+    config = {
+        "save_info" : {"modelName" : "/model_weights/fiveLayerModelSecondRun.pth", "save_model" : True},
+        "data_paths" : {"params" : "data/test_data_params", "rz" : "data/test_data_rz", "images" : "data/test_images"},
+        "training_parameters" : {"learning_rate" : 1e-5, "num_batches" : 10, "epochs" : 2, "testing_size" : 20, "random_seed" : 4},
+        "testing_parameters" : {"num_batches": 1, "absolute_tolerance" : 0.3}
+    }
+
+    run_optimizer(config, FiveLayerCNN)

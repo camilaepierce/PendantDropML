@@ -17,78 +17,7 @@ from single_layer import SingleLayerCNN
 
 
 
-learning_rate = 1e-5
-num_batches = 10
-epochs = 2
-testing_size = 20
-
-##############################################################
-### Custom Modules
-##############################################################
-
-drop_dataset = PendantDropDataset("data/test_data_params", "data/test_data_rz","data/test_images")
-training_data, testing_data = drop_dataset.split_dataset(testing_size, 4)
-
-batch_size = int(len(training_data)/ num_batches)
-
-train_dataloader = PendantDataLoader(training_data, num_batches=num_batches)
-test_dataloader = PendantDataLoader(testing_data, 1)
-
-
-model = FiveLayerCNN()
-
-###############################################################
-### MNIST Fashion Dataset
-###############################################################
-
-# import torch
-# from torch import nn
-# from torch.utils.data import DataLoader
-# from torchvision import datasets
-# from torchvision.transforms import ToTensor
-
-# training_data = datasets.FashionMNIST(
-#     root="data",
-#     train=True,
-#     download=True,
-#     transform=ToTensor()
-# )
-
-# test_data = datasets.FashionMNIST(
-#     root="data",
-#     train=False,
-#     download=True,
-#     transform=ToTensor()
-# )
-
-# train_dataloader = DataLoader(training_data, batch_size=64)
-# test_dataloader = DataLoader(test_data, batch_size=64)
-
-# class NeuralNetwork(nn.Module):
-#     def __init__(self):
-#         super().__init__()
-#         self.flatten = nn.Flatten()
-#         self.linear_relu_stack = nn.Sequential(
-#             nn.Linear(28*28, 512),
-#             nn.ReLU(),
-#             nn.Linear(512, 512),
-#             nn.ReLU(),
-#             nn.Linear(512, 10),
-#         )
-
-#     def forward(self, x):
-#         x = self.flatten(x)
-#         logits = self.linear_relu_stack(x)
-#         return logits
-
-# model = NeuralNetwork()
-########################################################################
-
-loss_fxn = nn.MSELoss()
-optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
-
-
-def train_loop(dataloader, model, loss_fxn, optimizer):
+def train_loop(dataloader, model, loss_fxn, optimizer, batch_size):
     ## Uncomment for MNIST Fashion dataset
     # size = len(dataloader.dataset) 
     ## Uncomment for custom dataset
@@ -113,15 +42,9 @@ def train_loop(dataloader, model, loss_fxn, optimizer):
             print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
 
 
-def test_loop(dataloader, model, loss_fxn):
+def test_loop(dataloader, model, loss_fxn, testing_size, num_batches, tolerance):
     model.eval()
 
-    ## Uncomment for MNIST Fashion dataset
-    # size = len(dataloader.dataset)
-    # num_batches = len(dataloader)
-    ## Uncomment for custom dataset
-    size = testing_size
-    num_batches = 1 #math.floor(size / batch_size)
     test_loss, correct = 0, 0
 
     with torch.no_grad():
@@ -132,23 +55,64 @@ def test_loop(dataloader, model, loss_fxn):
             print("prediction value", pred)
             print("y shape", y.shape)
             print("y value", y)
-            correct += (torch.isclose(pred, y, rtol=0, atol=0.3)).type(torch.float).sum().item()
+            correct += (torch.isclose(pred, y, rtol=0, atol=tolerance)).type(torch.float).sum().item()
     
     test_loss /= num_batches
-    correct /= size
+    correct /= testing_size
     print(f"Test Error: \n Accuracy: {(100*correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
 
 
-for t in range(epochs):
-    print(f"Epoch {t+1}\n-------------------------------")
-    print("Entering training")
-    train_loop(train_dataloader, model, loss_fxn, optimizer)
-    print("Entering testing")
-    test_loop(test_dataloader, model, loss_fxn)
-print("Done!")
 
-####################################
-### Save Model
-####################################
 
-torch.save(model.state_dict(), 'fiveLayerModelWeights.pth')
+def run_optimizer(config_object, CNNModel):
+
+    # Extracting information from config file (currently config object)
+    data_paths = config_object["data_paths"]
+
+    training_params = config_object["training_parameters"]
+
+    learning_rate = training_params["learning_rate"]
+    num_batches = training_params["num_batches"]
+    epochs = training_params["epochs"]
+    testing_size = training_params["testing_size"]
+    random_seed = training_params["random_seed"]
+
+    testing_params = config_object["testing_parameters"]
+
+    test_num_batches = testing_params["num_batches"]
+
+    ##############################################################
+    ### Custom Modules
+    ##############################################################
+
+    drop_dataset = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"])
+    training_data, testing_data = drop_dataset.split_dataset(testing_size, random_seed)
+
+    batch_size = int(len(training_data)/ num_batches)
+
+    train_dataloader = PendantDataLoader(training_data, num_batches=num_batches)
+    test_dataloader = PendantDataLoader(testing_data, test_num_batches)
+
+
+    model = CNNModel()
+
+    loss_fxn = nn.MSELoss()
+    optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
+
+    print("Training Model\n===============================")
+    print([n for n, _ in model.named_children()])
+
+    for t in range(epochs):
+        print(f"Epoch {t+1}\n-------------------------------")
+        train_loop(train_dataloader, model, loss_fxn, optimizer, batch_size)
+        test_loop(test_dataloader, model, loss_fxn, testing_size, test_num_batches, config["testing_parameters"]["absolute_tolerance"])
+    print("Done!")
+
+    ### Save Model
+    if config["save_info"]["save_model"]:
+        torch.save(model.state_dict(), config_object["save_info"]["model_name"])
+        print(f"Model weights saved to {config_object["save_info"]["save_model"]}")
+    else:
+        print(f"Model weights not saved")
+
+

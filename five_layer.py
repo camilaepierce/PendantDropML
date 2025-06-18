@@ -27,6 +27,7 @@ class FiveLayerCNN(nn.Module):
             nn.Linear(500, 300),
             nn.Linear(300, 1)
         )
+        self.name = "Five Layer CNN"
 
     def forward(self, x):
         x = x.permute(0, 3, 1, 2).unsqueeze(2)
