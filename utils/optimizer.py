@@ -107,7 +107,7 @@ def run_optimizer(config_object, CNNModel):
 
     ### Save Model
     if config_object["save_info"]["save_model"]:
-        torch.save(model.state_dict(), config_object["save_info"]["model_name"])
+        torch.save(model.state_dict(), config_object["save_info"]["modelName"])
         print(f"Model weights saved to {config_object["save_info"]["save_model"]}")
     else:
         print(f"Model weights not saved")
