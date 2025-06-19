@@ -9,11 +9,11 @@
             "images" : "data/test_images"
         },
         "training_parameters" : {
-            "learning_rate" : 1e-5, 
+            "learning_rate" : 1e-4, 
             "num_batches" : 100, 
-            "epochs" : 3, 
-            "testing_size" : 20, 
-            "random_seed" : 4
+            "epochs" : 20, 
+            "testing_size" : 50, 
+            "random_seed" : null
         },
         "testing_parameters" : {
             "num_batches": 1, 
