@@ -3,7 +3,6 @@
 
 import torch
 from utils.dataloader import PendantDataLoader
-from model import PendantNetwork
 from torch import nn
 from torch.utils.data import DataLoader
 from torchvision import datasets
@@ -12,8 +11,8 @@ from utils.extraction import PendantDropDataset
 import torchvision.models as models
 import math
 
-from five_layer import FiveLayerCNN
-from single_layer import SingleLayerCNN
+from models.five_layer import FiveLayerCNN
+from models.single_layer import SingleLayerCNN
 
 
 
@@ -37,7 +36,7 @@ def train_loop(dataloader, model, loss_fxn, optimizer, batch_size):
         optimizer.step()
         optimizer.zero_grad()
 
-        if batch % 2 == 0:
+        if batch % 20 == 0:
             loss, current = loss.item(), batch * batch_size + len(X)
             print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
 
@@ -51,10 +50,8 @@ def test_loop(dataloader, model, loss_fxn, testing_size, num_batches, tolerance)
         for X, y in dataloader:
             pred = model(X)
             test_loss += loss_fxn(pred, y).item()
-            print("prediction shape", pred.shape)
-            print("prediction value", pred)
-            print("y shape", y.shape)
-            print("y value", y)
+            for (y_val, pred_val) in zip(pred, y):
+                print(f"Acutal: {y_val} Estimate: {pred_val} Difference: {pred_val - y_val}")
             correct += (torch.isclose(pred, y, rtol=0, atol=tolerance)).type(torch.float).sum().item()
     
     test_loss /= num_batches
@@ -105,14 +102,14 @@ def run_optimizer(config_object, CNNModel):
     for t in range(epochs):
         print(f"Epoch {t+1}\n-------------------------------")
         train_loop(train_dataloader, model, loss_fxn, optimizer, batch_size)
-        test_loop(test_dataloader, model, loss_fxn, testing_size, test_num_batches, config["testing_parameters"]["absolute_tolerance"])
+        test_loop(test_dataloader, model, loss_fxn, testing_size, test_num_batches, config_object["testing_parameters"]["absolute_tolerance"])
     print("Done!")
 
     ### Save Model
-    if config["save_info"]["save_model"]:
+    if config_object["save_info"]["save_model"]:
         torch.save(model.state_dict(), config_object["save_info"]["model_name"])
         print(f"Model weights saved to {config_object["save_info"]["save_model"]}")
     else:
         print(f"Model weights not saved")
 
-
+    return model

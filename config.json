@@ -1,10 +1,22 @@
-{   
-    "input" : {
-        "data_path" : "example_data_input.txt",
-        "img_path" : "example_image_input.txt"
-    },
-    "output_bounds" : {
-        "TENSION_RANGE_LOWER" : 22.1,
-        "TENSION_RANGE_UPPER" : 72.6
+{
+        "save_info" : {
+            "modelName" : "/model_weights/grayscaleTransformSmall.pth", 
+            "save_model" : true
+        },
+        "data_paths" : {
+            "params" : "data/test_data_params", 
+            "rz" : "data/test_data_rz", 
+            "images" : "data/test_images"
+        },
+        "training_parameters" : {
+            "learning_rate" : 1e-5, 
+            "num_batches" : 100, 
+            "epochs" : 3, 
+            "testing_size" : 20, 
+            "random_seed" : 4
+        },
+        "testing_parameters" : {
+            "num_batches": 1, 
+            "absolute_tolerance" : 0.3
+        }
     }
-}

@@ -6,8 +6,6 @@ from torchvision import datasets, transforms
 from utils.dataloader import PendantDataLoader
 from utils.extraction import PendantDropDataset
 
-device = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
-print(f"Using {device} device")
 
 
 class FiveLayerCNN(nn.Module):

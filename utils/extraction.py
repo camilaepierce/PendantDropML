@@ -101,11 +101,6 @@ def get_digits_from_filename(filename):
 
     return digits[0]
 
-def show_image_with_outline(img, rz_frame):
-    """Plots image on already created pyplot figure"""
-    plt.imshow(img)
-    plt.scatter(rz_frame[:, 0], rz_frame[:, 1], s=10, marker='.', c='r')
-    # plt.pause(0.001)
 
 
 
