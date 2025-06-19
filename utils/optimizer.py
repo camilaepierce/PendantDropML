@@ -41,6 +41,7 @@ def train_loop(dataloader, model, loss_fxn, optimizer, batch_size):
             print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
 
 
+
 def test_loop(dataloader, model, loss_fxn, testing_size, num_batches, tolerance):
     model.eval()
 
