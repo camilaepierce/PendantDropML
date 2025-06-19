@@ -51,7 +51,7 @@ def test_loop(dataloader, model, loss_fxn, testing_size, num_batches, tolerance)
             pred = model(X)
             test_loss += loss_fxn(pred, y).item()
             for (y_val, pred_val) in zip(pred, y):
-                print(f"Acutal: {y_val} Estimate: {pred_val} Difference: {pred_val - y_val}")
+                print(f"Acutal: {y_val:3.3f} Estimate: {pred_val:3.3f} Difference: {(pred_val - y_val):3.3f}")
             correct += (torch.isclose(pred, y, rtol=0, atol=tolerance)).type(torch.float).sum().item()
     
     test_loss /= num_batches
