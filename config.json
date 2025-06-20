@@ -13,10 +13,14 @@
             "num_batches" : 100, 
             "epochs" : 20, 
             "testing_size" : 50, 
-            "random_seed" : null
+            "random_seed" : null,
+            "visualize_training" : true
         },
         "testing_parameters" : {
             "num_batches": 1, 
             "absolute_tolerance" : 0.3
+        },
+        "eval_config" : {
+            "eval_data_path" : "data/test_images"
         }
     }

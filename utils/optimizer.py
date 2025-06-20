@@ -10,17 +10,20 @@ from torchvision.transforms import ToTensor
 from utils.extraction import PendantDropDataset
 import torchvision.models as models
 import math
+from visualize import plot_loss_evolution
 
 from models.five_layer import FiveLayerCNN
 from models.single_layer import SingleLayerCNN
 
 
 
-def train_loop(dataloader, model, loss_fxn, optimizer, batch_size):
+def train_loop(dataloader, model, loss_fxn, optimizer, batch_size, train_losses):
     ## Uncomment for MNIST Fashion dataset
     # size = len(dataloader.dataset) 
     ## Uncomment for custom dataset
     size = len(dataloader.data)
+
+    train_loss_avg = 0
 
     model.train()
     for batch, (X, y) in enumerate(dataloader):
@@ -39,10 +42,12 @@ def train_loop(dataloader, model, loss_fxn, optimizer, batch_size):
         if batch % 20 == 0:
             loss, current = loss.item(), batch * batch_size + len(X)
             print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
+        train_loss_avg += loss
+    train_losses.append(train_loss_avg / (batch + 1))
 
 
 
-def test_loop(dataloader, model, loss_fxn, testing_size, num_batches, tolerance):
+def test_loop(dataloader, model, loss_fxn, testing_size, num_batches, tolerance, test_losses):
     model.eval()
 
     test_loss, correct = 0, 0
@@ -58,6 +63,7 @@ def test_loop(dataloader, model, loss_fxn, testing_size, num_batches, tolerance)
     test_loss /= num_batches
     correct /= testing_size
     print(f"Test Error: \n Accuracy: {(100*correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
+    test_losses.append(test_loss)
 
 
 
@@ -79,6 +85,9 @@ def run_optimizer(config_object, CNNModel):
 
     test_num_batches = testing_params["num_batches"]
 
+    train_losses = []
+    test_losses = []
+
     ##############################################################
     ### Custom Modules
     ##############################################################
@@ -91,7 +100,6 @@ def run_optimizer(config_object, CNNModel):
     train_dataloader = PendantDataLoader(training_data, num_batches=num_batches)
     test_dataloader = PendantDataLoader(testing_data, test_num_batches)
 
-
     model = CNNModel()
 
     loss_fxn = nn.MSELoss()
@@ -102,10 +110,12 @@ def run_optimizer(config_object, CNNModel):
 
     for t in range(epochs):
         print(f"Epoch {t+1}\n-------------------------------")
-        train_loop(train_dataloader, model, loss_fxn, optimizer, batch_size)
-        test_loop(test_dataloader, model, loss_fxn, testing_size, test_num_batches, config_object["testing_parameters"]["absolute_tolerance"])
+        train_loop(train_dataloader, model, loss_fxn, optimizer, batch_size, train_losses)
+        test_loop(test_dataloader, model, loss_fxn, testing_size, test_num_batches, config_object["testing_parameters"]["absolute_tolerance"], test_losses)
     print("Done!")
 
+    plot_loss_evolution(epochs, train_losses, test_losses, config_object["save_info"]["modelName"], "MSE", save=True)
+    
     ### Save Model
     if config_object["save_info"]["save_model"]:
         torch.save(model.state_dict(), config_object["save_info"]["modelName"])
