@@ -10,7 +10,7 @@ from torchvision.transforms import ToTensor
 from utils.extraction import PendantDropDataset
 import torchvision.models as models
 import math
-from visualize import plot_loss_evolution
+from utils.visualize import plot_loss_evolution
 
 from models.five_layer import FiveLayerCNN
 from models.single_layer import SingleLayerCNN
