@@ -1,4 +1,3 @@
-# from torch.utils.data import DataLoader
 # from extraction import PendantDropDataset
 import matplotlib.pyplot as plt
 import numpy as np
@@ -41,35 +40,41 @@ class PendantDataLoader():
 ###################################
 ### Testing Torch DataLoader Use Case
 ###################################
-# training_data = PendantDropDataset("data/test_data_params", "data/test_data_rz","data/test_images")
+if __name__ == "__main__":
 
-# train_dataloader = PendantDataLoader(training_data, num_batches=10, shuffle=True)
+    training_data = PendantDropDataset("../data/test_data_params", "../data/test_data_rz","../data/test_images")
 
-# # print("dataloader length", len(train_dataloader))
-# print("data from dataloader length", len(train_dataloader.data))
-# print("data length", len(training_data))
+    train_dataloader = PendantDataLoader(training_data, num_batches=10, shuffle=True)
 
-# shuffled_order = train_dataloader.order
+    # print("dataloader length", len(train_dataloader))
+    print("data from dataloader length", len(train_dataloader.data))
+    print("data length", len(training_data))
 
-# # print(shuffled_order[0])
-# # print(len(shuffled_order))
-# # print(training_data[shuffled_order[0]])
 
-# # Display image and label.
-# dataLoader_iter = iter(train_dataloader)
+    for (X, y) in iter(train_dataloader):
+        print(X[:1])
+        print(y[:5])
+    shuffled_order = train_dataloader.order
 
-# # print(dataLoader_iter)
-# next_iter, iter2 = next(dataLoader_iter)
-# # print(next_iter)
-# print(len(next_iter))
-# next_iter, iter2 = next(dataLoader_iter)
-# print(len(next_iter))
-# # print(train_features)
-# # print(train_labels)
-# # print(f"Feature batch shape: {train_features.shape}")
-# # print(f"Labels batch shape: {train_labels.shape}")
-# # img = train_features[0].squeeze()
-# # label = train_labels[0]
-# # plt.imshow(img, cmap="gray")
-# # plt.show()
-# # print(f"Label: {label}")
+    # print(shuffled_order[0])
+    # print(len(shuffled_order))
+    # print(training_data[shuffled_order[0]])
+
+    # Display image and label.
+    dataLoader_iter = iter(train_dataloader)
+
+    # print(dataLoader_iter)
+    next_iter, iter2 = next(dataLoader_iter)
+    # print(next_iter)
+    print(len(next_iter))
+    next_iter, iter2 = next(dataLoader_iter)
+    print(len(next_iter))
+    # print(train_features)
+    # print(train_labels)
+    # print(f"Feature batch shape: {train_features.shape}")
+    # print(f"Labels batch shape: {train_labels.shape}")
+    # img = train_features[0].squeeze()
+    # label = train_labels[0]
+    # plt.imshow(img, cmap="gray")
+    # plt.show()
+    # print(f"Label: {label}")

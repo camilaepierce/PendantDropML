@@ -24,13 +24,8 @@ def train_loop(dataloader, model, loss_fxn, optimizer, batch_size, train_losses)
     size = len(dataloader.data)
 
     train_loss_avg = 0
-
     model.train()
     for batch, (X, y) in enumerate(dataloader):
-        # print(X.dtype)
-        # print("Input Shape", X.shape)
-        # print(y.dtype)
-        # print("Expected output shape", y.shape)
         pred = model(X)
         # print("Prediction Shape", pred.shape)
         loss = loss_fxn(pred, y)
@@ -38,11 +33,11 @@ def train_loop(dataloader, model, loss_fxn, optimizer, batch_size, train_losses)
         loss.backward()
         optimizer.step()
         optimizer.zero_grad()
-
         if batch % 20 == 0:
             loss, current = loss.item(), batch * batch_size + len(X)
             print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
         train_loss_avg += loss
+    # print(Tensor.float())
     train_losses.append(train_loss_avg / (batch + 1))
 
 
@@ -56,10 +51,11 @@ def test_loop(dataloader, model, loss_fxn, testing_size, num_batches, tolerance,
         for X, y in dataloader:
             pred = model(X)
             test_loss += loss_fxn(pred, y).item()
-            for (y_val, pred_val) in zip(pred, y):
+            for (pred_val, y_val) in zip(pred, y):
                 print(f"Acutal: {y_val:3.3f} Estimate: {pred_val:3.3f} Difference: {(pred_val - y_val):3.3f}")
             correct += (torch.isclose(pred, y, rtol=0, atol=tolerance)).type(torch.float).sum().item()
-    
+            print(f"Actual Mean: {torch.mean(y)} Actual Std Dev: {torch.std(y)}")
+            print(f"Prediction Mean: {torch.mean(pred)} Prediction Std Dev: {torch.std(pred)}")
     test_loss /= num_batches
     correct /= testing_size
     print(f"Test Error: \n Accuracy: {(100*correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
@@ -100,6 +96,7 @@ def run_optimizer(config_object, CNNModel):
     train_dataloader = PendantDataLoader(training_data, num_batches=num_batches)
     test_dataloader = PendantDataLoader(testing_data, test_num_batches)
 
+
     model = CNNModel()
 
     loss_fxn = nn.MSELoss()
@@ -114,13 +111,18 @@ def run_optimizer(config_object, CNNModel):
         test_loop(test_dataloader, model, loss_fxn, testing_size, test_num_batches, config_object["testing_parameters"]["absolute_tolerance"], test_losses)
     print("Done!")
 
+    # print(train_losses)
+    # print(type(train_losses))
+    # print(type(test_losses))
+    # print(len(train_losses))
     plot_loss_evolution(epochs, train_losses, test_losses, config_object["save_info"]["modelName"], "MSE", save=True)
     
     ### Save Model
     if config_object["save_info"]["save_model"]:
         torch.save(model.state_dict(), config_object["save_info"]["modelName"])
-        print(f"Model weights saved to {config_object["save_info"]["save_model"]}")
+        print(f"Model weights saved to {config_object["save_info"]["modelName"]}")
     else:
         print(f"Model weights not saved")
-
+    print(train_losses)
+    print(test_losses)
     return model
