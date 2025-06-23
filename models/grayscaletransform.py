@@ -17,6 +17,7 @@ class GrayscaleTransform(nn.Module):
     def __init__(self):
         super().__init__()
         self.linear_relu_stack = nn.Sequential(
+	    nn.LayerNorm([656, 875]),
             nn.Conv3d(in_channels=1, out_channels=4, kernel_size=(1, 3, 3)),
             # torch.squeeze(),
             nn.ReLU(),

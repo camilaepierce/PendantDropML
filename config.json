@@ -1,6 +1,6 @@
 {
         "save_info" : {
-            "modelName" : "/model_weights/grayscaleTransformSmall.pth", 
+            "modelName" : "model_weights/grayscaleFirst.pth", 
             "save_model" : true
         },
         "data_paths" : {
@@ -9,8 +9,8 @@
             "images" : "data/test_images"
         },
         "training_parameters" : {
-            "learning_rate" : 1e-4, 
-            "num_batches" : 100, 
+            "learning_rate" : 1e-3, 
+            "num_batches" : 1, 
             "epochs" : 20, 
             "testing_size" : 50, 
             "random_seed" : null,
