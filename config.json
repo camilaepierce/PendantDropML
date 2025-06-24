@@ -1,18 +1,20 @@
 {
         "save_info" : {
-            "modelName" : "model_weights/grayscaleFirst.pth", 
-            "save_model" : true
+            "modelName" : "model_weights/grayscaleFirstMini.pth", 
+            "save_model" : true,
+            "results" : "results/grayscaleFirstMini",
+            "eval_results" : "results/evaluation/grayscaleFirstMini"
         },
         "data_paths" : {
-            "params" : "data/test_data_params", 
-            "rz" : "data/test_data_rz", 
-            "images" : "data/test_images"
+            "params" : "mini/test_data_params", 
+            "rz" : "mini/test_data_rz", 
+            "images" : "mini/test_images"
         },
         "training_parameters" : {
-            "learning_rate" : 1e-3, 
-            "num_batches" : 1, 
-            "epochs" : 20, 
-            "testing_size" : 50, 
+            "learning_rate" : 1e-4, 
+            "num_batches" : 2, 
+            "epochs" : 50, 
+            "testing_size" : 2, 
             "random_seed" : null,
             "visualize_training" : true
         },
@@ -21,6 +23,6 @@
             "absolute_tolerance" : 0.3
         },
         "eval_config" : {
-            "eval_data_path" : "data/test_images"
+            "eval_data_path" : "mini/test_images"
         }
     }

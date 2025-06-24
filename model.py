@@ -10,7 +10,7 @@ import utils
 from utils.optimizer import run_optimizer
 # from models.five_layer import FiveLayerCNN
 from models.grayscaletransform import GrayscaleTransform
-from evaluation import evaluate_single, evaluate_directory
+from utils.evaluation import evaluate_directory
 
 
 if __name__ == "__main__":
@@ -20,15 +20,13 @@ if __name__ == "__main__":
         config = load(jsonFile)
     
     # # Run the optimzer
-    model = run_optimizer(config, GrayscaleTransform)
+    # model = run_optimizer(config, GrayscaleTransform)
 
-    # with open(config["save_info"]["modelName"] + ".txt", "a") as f:
-    #     f.write(str(config))
-    #     f.write([print(f"Layer: {name} | Size: {param.size()} | Values : {param[:2]} \n") for name, param in model.named_parameters()])
 
-    # model = FiveLayerCNN()
-    # model.load_state_dict(torch.load('model_weights/fiveLayerModelWeights.pth', weights_only=True))
+    model = GrayscaleTransform()
+    model.load_state_dict(torch.load('model_weights/grayscaleFirstMini.pth', weights_only=True))
 
+    evaluate_directory(model, config)
     # prediction = evaluate_single(model, "data/test_images/2083.png")
     # print(prediction)
 

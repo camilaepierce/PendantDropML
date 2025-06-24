@@ -1,4 +1,3 @@
-# from extraction import PendantDropDataset
 import matplotlib.pyplot as plt
 import numpy as np
 import random
@@ -41,6 +40,7 @@ class PendantDataLoader():
 ### Testing Torch DataLoader Use Case
 ###################################
 if __name__ == "__main__":
+    from extraction import PendantDropDataset
 
     training_data = PendantDropDataset("../data/test_data_params", "../data/test_data_rz","../data/test_images")
 

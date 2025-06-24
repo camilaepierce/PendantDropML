@@ -70,6 +70,15 @@ def extract_surface_tension_directory(dir_path):
         return extract_surface_tension_single(open(filename))
     return create_dictionary_per_file(dir_path, for_filelike_object)
 
+def extract_Wo_Ar_single(file):
+    params = json.load(file)
+    return {"Wo": params["Wo_paper"], "Ar" : params["Ar_paper"]}
+
+def extract_Wo_Ar_directory(dir_path):
+    def for_filelike_object(filename):
+        return extract_Wo_Ar_single(open(filename))
+    return create_dictionary_per_file(dir_path, for_filelike_object)
+
 def create_dictionary_per_file(dir_path, each_fxn):
     """
     Extracts information from each file in a directory.
@@ -129,6 +138,7 @@ class PendantDropDataset(Dataset):
         self.img_dir = img_dir
         self.coord_outline_dict = extract_data_frame_directory(rz_dir)
         self.surf_tens_dict = extract_surface_tension_directory(params_dir)
+        self.Wo_Ar_dict = extract_Wo_Ar_directory(params_dir)
         self.img_dir = img_dir
         self.transform = transform
         # self.img_sigfigs = img_sigfigs
@@ -159,7 +169,7 @@ class PendantDropDataset(Dataset):
 
         coords = self.coord_outline_dict[idx]
 
-        sample = {'image': image, 'coordinates': self.coord_outline_dict[idx], 'surface_tension': self.surf_tens_dict[idx]} #
+        sample = {'image': image, 'coordinates': self.coord_outline_dict[idx], 'surface_tension': self.surf_tens_dict[idx], 'Wo_Ar' : self.Wo_Ar_dict[idx]} #
         ## Could choose whether or not to include rz coordinates vs image (?)
 
         return sample

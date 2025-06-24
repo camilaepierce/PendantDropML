@@ -39,11 +39,11 @@ def plot_loss_evolution(num_epochs, training_loss, testing_loss, model_name, los
     plt.xticks(x_axes)
     plt.title(model_name)
     plt.legend()
-    plt.show()
 
     if save:
         plt.savefig(model_name.replace(" ", "_") + ".png")
-
+    
+    plt.show()
 # writer = SummaryWriter("model_weights")
 # dataiter = iter(trainloader)
 # images, labels = next(dataiter)
