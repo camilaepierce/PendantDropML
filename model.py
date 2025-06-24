@@ -20,11 +20,11 @@ if __name__ == "__main__":
         config = load(jsonFile)
     
     # # Run the optimzer
-    # model = run_optimizer(config, GrayscaleTransform)
+    model = run_optimizer(config, GrayscaleTransform)
 
 
-    model = GrayscaleTransform()
-    model.load_state_dict(torch.load('model_weights/grayscaleFirstMini.pth', weights_only=True))
+    # model = GrayscaleTransform()
+    # model.load_state_dict(torch.load('model_weights/grayscaleFirstMini.pth', weights_only=True))
 
     evaluate_directory(model, config)
     # prediction = evaluate_single(model, "data/test_images/2083.png")

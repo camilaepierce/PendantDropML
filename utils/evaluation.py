@@ -69,8 +69,9 @@ def evaluate_directory(model, config_object, visualize=True):
 
     #save data info to file
     evaluation_info = np.asarray(evaluation_info)
-    np.savetxt(config_object["save_info"]["eval_results"] + ".txt", evaluation_info, delimiter=",")
 
+    np.savetxt(config_object["save_info"]["eval_results"] + "Evaluation.txt", evaluation_info, delimiter=",",
+               header="Wo,Ar,sample_sigma,prediction,abs_error,rel_error")
     #save prediction info to file
 
     if visualize:
@@ -83,6 +84,15 @@ def evaluate_directory(model, config_object, visualize=True):
         all_true = evaluation_info[:, 4]
         all_rel = evaluation_info[:, 5]
 
+        with open(config_object["save_info"]["eval_results"] + "Distribution.txt", "a") as f:
+            f.write("Sample Distribution\n")
+            f.write(f"Worthington Number:: Mean: {np.mean(all_Wo)} Std Dev: {np.std(all_Wo)}\n")
+            f.write(f"Aspect Ratio:: Mean: {np.mean(all_Ar)} Std Dev: {np.std(all_Ar)}\n")
+            f.write(f"Surface Tension:: Mean: {np.mean(all_sigma)} Std Dev: {np.std(all_sigma)}\n")
+            f.write("Prediction Distribution\n")
+            f.write(f"Surface Tension:: Mean: {np.mean(all_pred)} Std Dev: {np.std(all_pred)}\n")
+
+            
         #plot data info, Wo vs Ar vs Surface Tension distribution
         norm_all_sigma = Normalize()(all_sigma) #(all_sigma - np.min(all_sigma)) / (np.max(all_sigma) - np.min(all_sigma))
         plt.scatter(all_Wo, all_Ar, c=norm_all_sigma, cmap="viridis")

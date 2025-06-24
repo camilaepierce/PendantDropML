@@ -1,28 +1,28 @@
 {
         "save_info" : {
-            "modelName" : "model_weights/grayscaleFirstMini.pth", 
+            "modelName" : "model_weights/Valentino.pth", 
             "save_model" : true,
-            "results" : "results/grayscaleFirstMini",
-            "eval_results" : "results/evaluation/grayscaleFirstMini"
+            "results" : "results/Valentino",
+            "eval_results" : "results/evaluation/Valentino"
         },
         "data_paths" : {
-            "params" : "mini/test_data_params", 
-            "rz" : "mini/test_data_rz", 
-            "images" : "mini/test_images"
+            "params" : "data/test_data_params", 
+            "rz" : "data/test_data_rz", 
+            "images" : "data/test_images"
         },
         "training_parameters" : {
             "learning_rate" : 1e-4, 
-            "num_batches" : 2, 
+            "num_batches" : 100, 
             "epochs" : 50, 
-            "testing_size" : 2, 
+            "testing_size" : 50, 
             "random_seed" : null,
             "visualize_training" : true
         },
         "testing_parameters" : {
-            "num_batches": 1, 
+            "num_batches": 5, 
             "absolute_tolerance" : 0.3
         },
         "eval_config" : {
-            "eval_data_path" : "mini/test_images"
+            "eval_data_path" : "data/test_images"
         }
     }
