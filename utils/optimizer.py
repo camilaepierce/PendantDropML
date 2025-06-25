@@ -56,8 +56,8 @@ def test_loop(dataloader, model, loss_fxn, testing_size, num_batches, tolerance,
             pred = model(X)
             test_loss += loss_fxn(pred, y).item()
             with open(filename, "a") as f:
-                for (pred_val, y_val) in zip(pred, y):
-                    f.write(f"Acutal: {y_val:3.3f} Estimate: {pred_val:3.3f} Difference: {(pred_val - y_val):3.3f}\n")
+                # for (pred_val, y_val) in zip(pred, y):
+                #     f.write(f"Acutal: {y_val:3.3f} Estimate: {pred_val:3.3f} Difference: {(pred_val - y_val):3.3f}\n")
                 correct += (torch.isclose(pred, y, rtol=0, atol=tolerance)).type(torch.float).sum().item()
                 f.write(f"Actual Mean: {torch.mean(y)} Actual Std Dev: {torch.std(y)}\n")
                 f.write(f"Prediction Mean: {torch.mean(pred)} Prediction Std Dev: {torch.std(pred)}\n")
