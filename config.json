@@ -11,9 +11,9 @@
             "images" : "data/test_images"
         },
         "training_parameters" : {
-            "learning_rate" : 1e-7, 
+            "learning_rate" : 0.01,
             "num_batches" : 100, 
-            "epochs" : 30, 
+            "epochs" : 30,
             "testing_size" : 100, 
             "random_seed" : null,
             "visualize_training" : true
