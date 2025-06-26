@@ -1,12 +1,10 @@
-import os
+"""
+NN Model, focusing on rz coordinates, series of linear and ReLU activations.
+
+Last modified: 6.26.2025
+"""
 import torch
 from torch import nn
-from torch.utils.data import DataLoader
-from torchvision import datasets, transforms
-from utils.dataloader import PendantDataLoader
-from utils.extraction import PendantDropDataset
-from skimage.color import rgb2gray
-from torchvision import transforms
 
 device = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
 print(f"Using {device} device")
@@ -30,6 +28,7 @@ class Xanathor(nn.Module):
         self.name = "Five Layer CNN"
 
     def forward(self, x):
+        x = torch.nn.functional.normalize(x)
         x = x.squeeze()
         logits = self.linear_relu_stack(x)
         logits = logits.squeeze()

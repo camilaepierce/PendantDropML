@@ -1,3 +1,8 @@
+"""
+Main file for running and training models.
+
+Last modified: 6.26.2025
+"""
 from json import load
 import torch
 from torch import nn
@@ -19,12 +24,13 @@ if __name__ == "__main__":
     with open("config.json") as jsonFile:
         config = load(jsonFile)
     
-    # # Run the optimzer
-    model = run_optimizer(config, Xanathor)
+    model = Xanathor()
+    model.load_state_dict(torch.load('model_weights/XanathorFull.pth', weights_only=True))
+
+    # Run the optimzer
+    model = run_optimizer(config, Xanathor, model=model)
 
 
-    # model = GrayscaleTransform()
-    # model.load_state_dict(torch.load('model_weights/Valentino.pth', weights_only=True))
 
     # evaluate_directory(model, config)
     # prediction = evaluate_single(model, "data/test_images/2083.png")

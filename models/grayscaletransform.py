@@ -1,11 +1,6 @@
-import os
 import torch
 from torch import nn
-from torch.utils.data import DataLoader
-from torchvision import datasets, transforms
-from utils.dataloader import PendantDataLoader
-from utils.extraction import PendantDropDataset
-from skimage.color import rgb2gray
+from torchvision import transforms
 from torchvision import transforms
 
 device = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"

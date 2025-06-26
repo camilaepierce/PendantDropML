@@ -1,20 +1,18 @@
+"""
+Custom Dataset class and utility functions for dataset processing from local files.
+
+Last modified: 6.26.2025
+"""
 import os
-import torch
 import json
-import pandas as pd
 import re
-from skimage import io, transform
+from skimage import io
 import numpy as np
-import matplotlib.pyplot as plt
-
-from torch import nn
-from torch.utils.data import DataLoader, Dataset
-from torchvision import datasets
-from torchvision.transforms import ToTensor
-
+from torch.utils.data import  Dataset
 import random
-
 import warnings
+
+
 warnings.filterwarnings("ignore")
 
 
@@ -71,10 +69,12 @@ def extract_surface_tension_directory(dir_path):
     return create_dictionary_per_file(dir_path, for_filelike_object)
 
 def extract_Wo_Ar_single(file):
+    """Extracts Wo and Ar information from file object"""
     params = json.load(file)
     return {"Wo": params["Wo_paper"], "Ar" : params["Ar_paper"]}
 
 def extract_Wo_Ar_directory(dir_path):
+    """Extracts Wo and Ar information from dictionary path"""
     def for_filelike_object(filename):
         return extract_Wo_Ar_single(open(filename))
     return create_dictionary_per_file(dir_path, for_filelike_object)
@@ -190,47 +190,35 @@ class PendantDropDataset(Dataset):
         trainingset = PendantDropDataset(self.params_dir, self.rz_dir, self.img_dir, select_samples=order[k:])
         return (trainingset, testingset)
 
+if __name__ == "__main__":
+
+    ###################################################
+    ### Test Case for evaluating single image
+    ###################################################
+
+    # n=2467
+
+    # outline_frame = extract_data_frame_single(f"data/test_data_rz/rz{n:04d}.txt") #data/test_data_rz/rz2024.txt
+
+    # img_name = f"data/test_images/{n:04d}.png"
 
 
-###################################################
-### Test Case for evaluating single image
-###################################################
+    # print('Image name: {}'.format(img_name))
+    # print('Coordinates shape: {}'.format(outline_frame.shape))
+    # print('First 4 Coordinates: {}'.format(outline_frame[:4]))
 
-# n=2467
+    # plt.figure()
+    # show_image_with_outline(io.imread(img_name), outline_frame)
 
-# outline_frame = extract_data_frame_single(f"data/test_data_rz/rz{n:04d}.txt") #data/test_data_rz/rz2024.txt
+    # plt.show()
+    ##################################################
+    ### Test Case for Dataset Class
+    ##################################################
 
-# img_name = f"data/test_images/{n:04d}.png"
-
-
-# print('Image name: {}'.format(img_name))
-# print('Coordinates shape: {}'.format(outline_frame.shape))
-# print('First 4 Coordinates: {}'.format(outline_frame[:4]))
-
-# plt.figure()
-# show_image_with_outline(io.imread(img_name), outline_frame)
-
-# plt.show()
-##################################################
-### Test Case for Dataset Class
-##################################################
-
-# drop_dataset = PendantDropDataset("data/test_data_params", "data/test_data_rz","data/test_images")
-
-# fig = plt.figure()
+    drop_dataset = PendantDropDataset("data/test_data_params", "data/test_data_rz","data/test_images")
 
 
-# for i, sample_id in enumerate(drop_dataset.available_samples):
-#     sample = drop_dataset[sample_id]
+    for i, sample_id in enumerate(drop_dataset.available_samples):
+        sample = drop_dataset[sample_id]
 
-#     print(i, sample['image'].shape, sample['surface_tension'], sample["coordinates"].shape)
-
-#     ax = plt.subplot(1, 4, i+1)
-#     plt.tight_layout()
-#     ax.set_title('Sample #{}'.format(i))
-#     ax.axis('off')
-#     show_image_with_outline(sample["image"], sample["coordinates"])
-
-#     if i == 3:
-#         plt.show()
-#         break
+        print(i, sample['image'].shape, sample['surface_tension'], sample["coordinates"].shape)

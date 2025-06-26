@@ -1,15 +1,10 @@
+"""
+Visualization utilities for model training.
+
+Last modified: 6.26.2025
+"""
 import matplotlib.pyplot as plt
 import numpy as np
-import torch
-from torch import nn
-from torch.utils.tensorboard import SummaryWriter
-import torchvision
-
-
-
-def compare_to_params():
-    pass
-
 
 
 def show_image_with_outline(img, rz_frame):
@@ -31,6 +26,9 @@ def matplotlib_imshow(img, one_channel=False):
         plt.imshow(np.transpose(npimg, (1, 2, 0)))
 
 def plot_loss_evolution(num_epochs, training_loss, testing_loss, model_name, loss_fxn, save=False):
+    """
+    Plots loss evolution throughout training.
+    """
     x_axes = range(1, num_epochs+1)
     plt.plot(x_axes, training_loss, c="darkorchid", label="Training Loss")
     plt.plot(x_axes, testing_loss, c="slateblue", label="Testing Loss")
@@ -42,16 +40,8 @@ def plot_loss_evolution(num_epochs, training_loss, testing_loss, model_name, los
 
     if save:
         plt.savefig(model_name.replace(" ", "_") + ".png")
-    
     plt.show()
-# writer = SummaryWriter("model_weights")
-# dataiter = iter(trainloader)
-# images, labels = next(dataiter)
 
-# img_grid = torchvision.utils.make_grid(images)
-# matplotlib_imshow(img_grid, one_channel=True)
-
-# writer.add_image('four_pendant_drop_images', img_grid)
 
 if __name__ == "__main__":
     num_epochs = 20

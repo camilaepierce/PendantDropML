@@ -1,13 +1,16 @@
-import torch
-from torch import nn
-from torchvision.transforms import ToTensor
-from utils.extraction import PendantDropDataset
+"""
+Evaluation of model predictions.
+NOTE catered to image as an input feature. Not yet able to process rz-coordinates.
+
+Last modified: 6.26.2025
+"""
 from torch import Tensor, from_numpy
-import torchvision.models as models
 from skimage import io
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.colors import Colormap, Normalize
+from matplotlib.colors import Normalize
+
+from utils.extraction import PendantDropDataset
 from models.five_layer import FiveLayerCNN
 from models.single_layer import SingleLayerCNN
 
@@ -59,7 +62,8 @@ def evaluate_directory(model, config_object, visualize=True):
         Ar = features["Wo_Ar"]["Ar"]
         sample_sigma = features["surface_tension"]
         #predict sample
-        image_input = Tensor.float(from_numpy(np.array(features['image']))).unsqueeze(0)
+        image_input = Tensor.float(from_numpy(np.array(features['coordinates']).flatten())).unsqueeze(0)
+        print(image_input.shape)
         prediction = model(image_input).detach().numpy()     
         #calculate differences
         true_diff = features["surface_tension"] - prediction
