@@ -101,8 +101,8 @@ def run_optimizer(config_object, CNNModel):
 
     batch_size = int(len(training_data)/ num_batches)
 
-    train_dataloader = PendantDataLoader(training_data, num_batches=num_batches)
-    test_dataloader = PendantDataLoader(testing_data, test_num_batches)
+    train_dataloader = PendantDataLoader(training_data, num_batches=num_batches, feat_fxn=lambda x: x["coordinates"])
+    test_dataloader = PendantDataLoader(testing_data, test_num_batches, feat_fxn=lambda x: x["coordinates"])
 
 
     model = CNNModel()
@@ -112,7 +112,7 @@ def run_optimizer(config_object, CNNModel):
 
     with open(results_file, "a") as f:
         f.write("Training Model\n===============================\n")
-        f.write(str(summary(model, input_size=(batch_size, 656, 875, 3))) + "\n")
+        # f.write(str(summary(model, input_size=(batch_size, 656, 875, 3))) + "\n")
 
     for t in range(epochs):
         with open(results_file, "a") as f:

@@ -9,9 +9,9 @@ from torchvision import transforms
 import utils
 from utils.optimizer import run_optimizer
 # from models.five_layer import FiveLayerCNN
-from models.grayscaletransform import GrayscaleTransform
+# from models.grayscaletransform import GrayscaleTransform
 from utils.evaluation import evaluate_directory
-
+from models.Xanathor import Xanathor
 
 if __name__ == "__main__":
 
@@ -20,13 +20,13 @@ if __name__ == "__main__":
         config = load(jsonFile)
     
     # # Run the optimzer
-    model = run_optimizer(config, GrayscaleTransform)
+    model = run_optimizer(config, Xanathor)
 
 
     # model = GrayscaleTransform()
-    # model.load_state_dict(torch.load('model_weights/grayscaleFirstMini.pth', weights_only=True))
+    # model.load_state_dict(torch.load('model_weights/Valentino.pth', weights_only=True))
 
-    evaluate_directory(model, config)
+    # evaluate_directory(model, config)
     # prediction = evaluate_single(model, "data/test_images/2083.png")
     # print(prediction)
 

@@ -43,6 +43,7 @@ def evaluate_directory(model, config_object, visualize=True):
         Pytorch tensor of predictions.
     """
     # Set model mode to eval
+    plt.clf()
     model.eval()
     data_paths = config_object["data_paths"]
 
@@ -95,7 +96,7 @@ def evaluate_directory(model, config_object, visualize=True):
             
         #plot data info, Wo vs Ar vs Surface Tension distribution
         norm_all_sigma = Normalize()(all_sigma) #(all_sigma - np.min(all_sigma)) / (np.max(all_sigma) - np.min(all_sigma))
-        plt.scatter(all_Wo, all_Ar, c=norm_all_sigma, cmap="viridis")
+        plt.scatter(all_Wo, all_Ar, c=norm_all_sigma, cmap="viridis", marker=".")
         plt.xlabel("Worthington Number (Wo)")
         plt.ylabel("Aspect Ratio (Ar)")
         plt.title("Training Data Wo vs Ar vs Surface Tension")
@@ -106,7 +107,7 @@ def evaluate_directory(model, config_object, visualize=True):
         plt.clf()
         #plot Wo vs Ar vs accuracy
         norm_all_true = Normalize()(all_true)
-        plt.scatter(all_Wo, all_Ar, c=norm_all_true, cmap="plasma")
+        plt.scatter(all_Wo, all_Ar, c=norm_all_true, cmap="plasma", marker=".")
         plt.xlabel("Worthington Number (Wo)")
         plt.ylabel("Aspect Ratio (Ar)")
         plt.title("Training Data Wo vs Ar vs AbsoluteError")
@@ -117,7 +118,7 @@ def evaluate_directory(model, config_object, visualize=True):
         plt.clf()
 
         norm_all_rel = Normalize()(all_rel)
-        plt.scatter(all_Wo, all_Ar, c=norm_all_rel, cmap="plasma")
+        plt.scatter(all_Wo, all_Ar, c=norm_all_rel, cmap="plasma", marker=".")
         plt.xlabel("Worthington Number (Wo)")
         plt.ylabel("Aspect Ratio (Ar)")
         plt.title("Training Data Wo vs Ar vs RelativeError")
@@ -129,7 +130,7 @@ def evaluate_directory(model, config_object, visualize=True):
  
 
         #plot Surface tension vs accuracy
-        plt.scatter(all_sigma, all_true, c='forestgreen')
+        plt.scatter(all_sigma, all_true, c='forestgreen', marker=".")
         plt.xlabel("Surface Tension")
         plt.ylabel("Absolute Error")
         plt.title("Surface Tension vs Absolute Error")
@@ -138,7 +139,7 @@ def evaluate_directory(model, config_object, visualize=True):
         plt.show(block=False)
         plt.clf()
 
-        plt.scatter(all_sigma, all_rel, c="slateblue")
+        plt.scatter(all_sigma, all_rel, c="slateblue", marker=".")
         plt.xlabel("Surface Tension")
         plt.ylabel("Relative Error")
         plt.title("Surface Tension vs Relative Error")

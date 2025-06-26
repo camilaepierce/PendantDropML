@@ -1,9 +1,9 @@
 {
         "save_info" : {
-            "modelName" : "model_weights/Valentino.pth", 
+            "modelName" : "model_weights/XanathorFull.pth", 
             "save_model" : true,
-            "results" : "results/Valentino",
-            "eval_results" : "results/evaluation/Valentino"
+            "results" : "results/XanathorFull",
+            "eval_results" : "results/evaluation/XanathorFull"
         },
         "data_paths" : {
             "params" : "data/test_data_params", 
@@ -11,15 +11,15 @@
             "images" : "data/test_images"
         },
         "training_parameters" : {
-            "learning_rate" : 1e-4, 
+            "learning_rate" : 1e-7, 
             "num_batches" : 100, 
-            "epochs" : 50, 
-            "testing_size" : 50, 
+            "epochs" : 30, 
+            "testing_size" : 100, 
             "random_seed" : null,
             "visualize_training" : true
         },
         "testing_parameters" : {
-            "num_batches": 5, 
+            "num_batches": 2, 
             "absolute_tolerance" : 0.3
         },
         "eval_config" : {
