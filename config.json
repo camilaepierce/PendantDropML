@@ -1,9 +1,9 @@
 {
         "save_info" : {
-            "modelName" : "model_weights/micro_rz_input_only.pth", 
+            "modelName" : "model_weights/fiveLayerModelWeights.pth", 
             "save_model" : true,
-            "results" : "results/micro_all_input",
-            "eval_results" : "results/evaluation/micro_all_input"
+            "results" : "results/fiveLayerEval",
+            "eval_results" : "results/evaluation/fiveLayerEval"
         },
         "data_paths" : {
             "params" : "data/test_data_params", 

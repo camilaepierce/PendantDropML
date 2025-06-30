@@ -13,7 +13,7 @@ from torchvision import transforms
 # import torchvision.models as models
 import utils
 from utils.optimizer import run_optimizer
-# from models.five_layer import FiveLayerCNN
+from models.five_layer import FiveLayerCNN
 from models.grayscaletransform import GrayscaleTransform
 from utils.evaluation import evaluate_directory
 from models.Xanathor import Xanathor
@@ -24,15 +24,15 @@ if __name__ == "__main__":
     with open("config.json") as jsonFile:
         config = load(jsonFile)
     
-    model = Xanathor()
-    model.load_state_dict(torch.load('model_weights/XanathorFull.pth', weights_only=True))
+    model = FiveLayerCNN()
+    model.load_state_dict(torch.load('model_weights/fiveLayerModelWeights.pth', weights_only=True))
 
     # Run the optimzer
     # model = run_optimizer(config, Xanathor, model=None)
 
 
 
-    evaluate_directory(model, config, input_type="coordinates")
+    evaluate_directory(model, config, input_type="image")
     # prediction = evaluate_single(model, "data/test_images/2083.png")
     # print(prediction)
 
