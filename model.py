@@ -24,8 +24,8 @@ if __name__ == "__main__":
     with open("config.json") as jsonFile:
         config = load(jsonFile)
     
-    model = FiveLayerCNN()
-    model.load_state_dict(torch.load('model_weights/fiveLayerModelWeights.pth', weights_only=True))
+    model = GrayscaleTransform()
+    model.load_state_dict(torch.load('model_weights/Valentino.pth', weights_only=True))
 
     # Run the optimzer
     # model = run_optimizer(config, Xanathor, model=None)

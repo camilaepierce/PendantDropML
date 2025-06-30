@@ -1,9 +1,9 @@
 {
         "save_info" : {
-            "modelName" : "model_weights/fiveLayerModelWeights.pth", 
+            "modelName" : "model_weights/Valentino.pth", 
             "save_model" : true,
-            "results" : "results/fiveLayerEval",
-            "eval_results" : "results/evaluation/fiveLayerEval"
+            "results" : "results/Valentino",
+            "eval_results" : "results/evaluation/Valentino"
         },
         "data_paths" : {
             "params" : "data/test_data_params", 
