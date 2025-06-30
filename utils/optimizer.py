@@ -128,7 +128,7 @@ def run_optimizer(config_object, CNNModel, model=None):
 
     with open(results_file, "a", encoding="utf-8") as f:
         f.write("Training Model\n===============================\n")
-        # f.write(str(summary(model, input_size=(batch_size, 656, 875, 3))) + "\n")
+        f.write(str(summary(model, input_size=train_dataloader.feature_shape)) + "\n")
 
     for t in range(epochs):
         with open(results_file, "a", encoding="utf-8") as f:

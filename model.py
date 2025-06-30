@@ -17,6 +17,7 @@ from models.five_layer import FiveLayerCNN
 from models.grayscaletransform import GrayscaleTransform
 from utils.evaluation import evaluate_directory
 from models.Xanathor import Xanathor
+from torchinfo import summary
 
 if __name__ == "__main__":
 
@@ -24,15 +25,15 @@ if __name__ == "__main__":
     with open("config.json") as jsonFile:
         config = load(jsonFile)
     
-    model = GrayscaleTransform()
-    model.load_state_dict(torch.load('model_weights/Valentino.pth', weights_only=True))
+    model = Xanathor()
+    model.load_state_dict(torch.load('model_weights/XanathorFull.pth', weights_only=True))
 
     # Run the optimzer
-    # model = run_optimizer(config, Xanathor, model=None)
+    model = run_optimizer(config, Xanathor, model=None)
 
 
-
-    evaluate_directory(model, config, input_type="image")
+    # print(str(summary(model, input_size=(100, 40, 2))))
+    evaluate_directory(model, config, input_type="coordinates")
     # prediction = evaluate_single(model, "data/test_images/2083.png")
     # print(prediction)
 
