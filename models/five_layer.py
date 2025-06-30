@@ -28,37 +28,39 @@ class FiveLayerCNN(nn.Module):
         logits = logits.squeeze()
         return logits
     
+if __name__ == "__main__":
+    from utils.dataloader import PendantDataLoader
+    from utils.extraction import PendantDropDataset
+    # model = FiveLayerCNN().to(device)
+    # print(model)
 
-# model = FiveLayerCNN().to(device)
-# print(model)
+    # X = torch.rand(1, 28*28, device=device)
+    # logits = model(X)
+    # pred_probab = nn.Softmax(dim=1)(logits)
+    # y_pred = pred_probab.argmax(1)
+    # print(f"Predicted class: {y_pred}")
 
-# X = torch.rand(1, 28*28, device=device)
-# logits = model(X)
-# pred_probab = nn.Softmax(dim=1)(logits)
-# y_pred = pred_probab.argmax(1)
-# print(f"Predicted class: {y_pred}")
+    # print(f"Model structure: {model}\n\n")
 
-# print(f"Model structure: {model}\n\n")
-
-# for name, param in model.named_parameters():
-#     print(f"Layer: {name} | Size: {param.size()} | Values : {param[:2]} \n")
+    # for name, param in model.named_parameters():
+    #     print(f"Layer: {name} | Size: {param.size()} | Values : {param[:2]} \n")
 
 
 
 
 
-# learning_rate = 1e-3
-# batch_size = 64
-# epochs = 10
-# testing_size = 20
+    learning_rate = 1e-3
+    batch_size = 64
+    epochs = 10
+    testing_size = 20
 
-# ##############################################################
-# ### Custom Modules
-# ##############################################################
+    # ##############################################################
+    # ### Custom Modules
+    # ##############################################################
 
-# drop_dataset = PendantDropDataset("data/test_data_params", "data/test_data_rz","data/test_images")
-# training_data, testing_data = drop_dataset.split_dataset(testing_size, 4)
+    drop_dataset = PendantDropDataset("data/test_data_params", "data/test_data_rz","data/test_images")
+    training_data, testing_data = drop_dataset.split_dataset(testing_size, 4)
 
-# train_dataloader = PendantDataLoader(training_data, batch_size)
-# test_dataloader = PendantDataLoader(testing_data, batch_size)
+    train_dataloader = PendantDataLoader(training_data, batch_size)
+    test_dataloader = PendantDataLoader(testing_data, batch_size)
 

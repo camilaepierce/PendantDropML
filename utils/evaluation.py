@@ -34,7 +34,7 @@ def evaluate_single(model, image_path):
     return prediction
 
 
-def evaluate_directory(model, config_object, visualize=True):
+def evaluate_directory(model, config_object, visualize=True, input_type="image"):
     """
     Gets surface tension prediction of all images in a directory.
 

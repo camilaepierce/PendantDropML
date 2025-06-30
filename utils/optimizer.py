@@ -111,7 +111,7 @@ def run_optimizer(config_object, CNNModel, model=None):
     ### Custom Modules
     ##############################################################
 
-    drop_dataset = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"])
+    drop_dataset = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"], ignore_images=True)
     training_data, testing_data = drop_dataset.split_dataset(testing_size, random_seed)
 
     batch_size = int(len(training_data)/ num_batches)

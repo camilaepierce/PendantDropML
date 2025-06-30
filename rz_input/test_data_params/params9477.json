@@ -1,0 +1,16 @@
+{
+    "sigma_dimal": 5.0,
+    "grav_dimal": 9807.0,
+    "rneedle_dimal": 0.6157051327307768,
+    "volume0_dimal": 2.8328096379603913,
+    "deltarho_dimal": 0.001,
+    "sigma": 1.344894696458893,
+    "grav": 1.0,
+    "rneedle": 1.0,
+    "volume0": 12.136656746376714,
+    "deltarho": 1.0,
+    "Wo": 1.4362529043213412,
+    "Wo_paper": 9.024243145825858,
+    "Ar_paper": 12.136656746376714,
+    "area0": NaN
+}

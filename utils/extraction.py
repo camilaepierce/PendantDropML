@@ -117,7 +117,7 @@ def get_digits_from_filename(filename):
 class PendantDropDataset(Dataset):
     """Pendant Drop Dataset, inherits from torch.utils.data.Dataset Class."""
 
-    def __init__(self, params_dir, rz_dir, img_dir, transform=None, select_samples=None):
+    def __init__(self, params_dir, rz_dir, img_dir, transform=None, select_samples=None, ignore_images=False):
         """
         Some good documentation.
 
@@ -141,6 +141,7 @@ class PendantDropDataset(Dataset):
         self.Wo_Ar_dict = extract_Wo_Ar_directory(params_dir)
         self.img_dir = img_dir
         self.transform = transform
+        self.ignore_images = ignore_images
         # self.img_sigfigs = img_sigfigs
         if select_samples is None:
             self.available_samples = set(self.coord_outline_dict.keys())
@@ -165,11 +166,14 @@ class PendantDropDataset(Dataset):
             return Warning(f"The requested sample_id {idx} does not exist. Did you match the name of a sample exactly?")
         img_name = os.path.join(self.img_dir, f"{idx}.png")
 
-        image = io.imread(img_name)
+        if self.ignore_images:
+            image = None
+        else:
+            image = io.imread(img_name)
 
         coords = self.coord_outline_dict[idx]
 
-        sample = {'image': image, 'coordinates': self.coord_outline_dict[idx], 'surface_tension': self.surf_tens_dict[idx], 'Wo_Ar' : self.Wo_Ar_dict[idx]} #
+        sample = {'image': image, 'coordinates': coords, 'surface_tension': self.surf_tens_dict[idx], 'Wo_Ar' : self.Wo_Ar_dict[idx]} #
         ## Could choose whether or not to include rz coordinates vs image (?)
 
         return sample
@@ -186,8 +190,8 @@ class PendantDropDataset(Dataset):
         """
         seeded_random = random.Random(random_seed)
         order = seeded_random.sample(list(self.available_samples), len(self.available_samples))
-        testingset = PendantDropDataset(self.params_dir, self.rz_dir, self.img_dir, select_samples=order[:k])
-        trainingset = PendantDropDataset(self.params_dir, self.rz_dir, self.img_dir, select_samples=order[k:])
+        testingset = PendantDropDataset(self.params_dir, self.rz_dir, self.img_dir, select_samples=order[:k], ignore_images=self.ignore_images)
+        trainingset = PendantDropDataset(self.params_dir, self.rz_dir, self.img_dir, select_samples=order[k:], ignore_images=self.ignore_images)
         return (trainingset, testingset)
 
 if __name__ == "__main__":

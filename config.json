@@ -2,18 +2,18 @@
         "save_info" : {
             "modelName" : "model_weights/XanathorFull.pth", 
             "save_model" : true,
-            "results" : "results/XanathorFull",
-            "eval_results" : "results/evaluation/XanathorFull"
+            "results" : "results/XanathorFullAddedData",
+            "eval_results" : "results/evaluation/XanathorFullAddedData"
         },
         "data_paths" : {
-            "params" : "data/test_data_params", 
-            "rz" : "data/test_data_rz", 
-            "images" : "data/test_images"
+            "params" : "rz_input/test_data_params", 
+            "rz" : "rz_input/test_data_rz", 
+            "images" : "rz_input/test_images"
         },
         "training_parameters" : {
             "learning_rate" : 0.01,
             "num_batches" : 100, 
-            "epochs" : 30,
+            "epochs" : 100,
             "testing_size" : 100, 
             "random_seed" : null,
             "visualize_training" : true
@@ -23,6 +23,6 @@
             "absolute_tolerance" : 0.3
         },
         "eval_config" : {
-            "eval_data_path" : "data/test_images"
+            "eval_data_path" : "rz_input/test_images"
         }
     }
