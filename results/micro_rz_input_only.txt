@@ -1,0 +1,752 @@
+Training Model
+===============================
+Epoch 1
+-------------------------------
+loss: 142.596146  [  124/12499]loss: 151.560333  [ 2604/12499]loss: 171.080887  [ 5084/12499]loss: 234.409943  [ 7564/12499]loss: 68.536385  [10044/12499]
+Actual Mean: 6.434770107269287 Actual Std Dev: 5.6259026527404785
+Prediction Mean: 0.7878830432891846 Prediction Std Dev: 0.001474991673603654
+Actual Mean: 8.037578582763672 Actual Std Dev: 9.199349403381348
+Prediction Mean: 0.7877382636070251 Prediction Std Dev: 0.0013445931253954768
+Test Error: 
+ Accuracy: 9.0%, Avg loss: 99.192434 
+Epoch 2
+-------------------------------
+loss: 130.857620  [  124/12499]loss: 138.211472  [ 2604/12499]loss: 157.249069  [ 5084/12499]loss: 217.399567  [ 7564/12499]loss: 56.903118  [10044/12499]
+Actual Mean: 6.434770107269287 Actual Std Dev: 5.6259026527404785
+Prediction Mean: 2.0177533626556396 Prediction Std Dev: 0.005125090014189482
+Actual Mean: 8.037578582763672 Actual Std Dev: 9.199349403381348
+Prediction Mean: 2.017251968383789 Prediction Std Dev: 0.004671610426157713
+Test Error: 
+ Accuracy: 3.0%, Avg loss: 84.827358 
+Epoch 3
+-------------------------------
+loss: 115.374718  [  124/12499]loss: 119.307999  [ 2604/12499]loss: 136.982376  [ 5084/12499]loss: 191.297226  [ 7564/12499]loss: 41.461079  [10044/12499]
+Actual Mean: 6.434770107269287 Actual Std Dev: 5.6259026527404785
+Prediction Mean: 4.397200107574463 Prediction Std Dev: 0.015207787044346333
+Actual Mean: 8.037578582763672 Actual Std Dev: 9.199349403381348
+Prediction Mean: 4.395787715911865 Prediction Std Dev: 0.0138828931376338
+Test Error: 
+ Accuracy: 9.0%, Avg loss: 65.605265 
+Epoch 4
+-------------------------------
+loss: 93.999207  [  124/12499]loss: 93.535934  [ 2604/12499]loss: 111.830246  [ 5084/12499]loss: 159.271439  [ 7564/12499]loss: 35.438473  [10044/12499]
+Actual Mean: 6.434770107269287 Actual Std Dev: 5.6259026527404785
+Prediction Mean: 8.264260292053223 Prediction Std Dev: 0.043100543320178986
+Actual Mean: 8.037578582763672 Actual Std Dev: 9.199349403381348
+Prediction Mean: 8.259866714477539 Prediction Std Dev: 0.04007651284337044
+Test Error: 
+ Accuracy: 5.0%, Avg loss: 58.436687 
+Epoch 5
+-------------------------------
+loss: 83.351273  [  124/12499]loss: 82.173592  [ 2604/12499]loss: 105.535713  [ 5084/12499]loss: 152.839890  [ 7564/12499]loss: 38.705112  [10044/12499]
+Actual Mean: 6.434770107269287 Actual Std Dev: 5.6259026527404785
+Prediction Mean: 8.47089672088623 Prediction Std Dev: 0.07984380424022675
+Actual Mean: 8.037578582763672 Actual Std Dev: 9.199349403381348
+Prediction Mean: 8.461348533630371 Prediction Std Dev: 0.07570485025644302
+Test Error: 
+ Accuracy: 7.0%, Avg loss: 58.694448 
+Epoch 6
+-------------------------------
+loss: 83.465309  [  124/12499]loss: 82.025826  [ 2604/12499]loss: 105.393219  [ 5084/12499]loss: 152.672913  [ 7564/12499]loss: 38.659245  [10044/12499]
+Actual Mean: 6.434770107269287 Actual Std Dev: 5.6259026527404785
+Prediction Mean: 8.478737831115723 Prediction Std Dev: 0.11709834635257721
+Actual Mean: 8.037578582763672 Actual Std Dev: 9.199349403381348
+Prediction Mean: 8.463988304138184 Prediction Std Dev: 0.11176867038011551
+Test Error: 
+ Accuracy: 7.0%, Avg loss: 58.506319 
+Epoch 7
+-------------------------------
+loss: 83.313728  [  124/12499]loss: 81.901848  [ 2604/12499]loss: 105.247040  [ 5084/12499]loss: 152.506699  [ 7564/12499]loss: 38.609406  [10044/12499]
+Actual Mean: 6.434770107269287 Actual Std Dev: 5.6259026527404785
+Prediction Mean: 8.48595142364502 Prediction Std Dev: 0.15680964291095734
+Actual Mean: 8.037578582763672 Actual Std Dev: 9.199349403381348
+Prediction Mean: 8.465692520141602 Prediction Std Dev: 0.15016938745975494
+Test Error: 
+ Accuracy: 6.0%, Avg loss: 58.306303 
+Epoch 8
+-------------------------------
+loss: 83.153030  [  124/12499]loss: 81.771965  [ 2604/12499]loss: 105.092209  [ 5084/12499]loss: 152.332245  [ 7564/12499]loss: 38.559532  [10044/12499]
+Actual Mean: 6.434770107269287 Actual Std Dev: 5.6259026527404785
+Prediction Mean: 8.492048263549805 Prediction Std Dev: 0.19999021291732788
+Actual Mean: 8.037578582763672 Actual Std Dev: 9.199349403381348
+Prediction Mean: 8.465814590454102 Prediction Std Dev: 0.19190797209739685
+Test Error: 
+ Accuracy: 6.0%, Avg loss: 58.087715 
+Epoch 9
+-------------------------------
+loss: 82.977867  [  124/12499]loss: 81.632072  [ 2604/12499]loss: 104.924355  [ 5084/12499]loss: 152.145569  [ 7564/12499]loss: 38.499912  [10044/12499]
+Actual Mean: 6.434770107269287 Actual Std Dev: 5.6259026527404785
+Prediction Mean: 8.499070167541504 Prediction Std Dev: 0.24823594093322754
+Actual Mean: 8.037578582763672 Actual Std Dev: 9.199349403381348
+Prediction Mean: 8.466158866882324 Prediction Std Dev: 0.23855289816856384
+Test Error: 
+ Accuracy: 6.0%, Avg loss: 57.847733 
+Epoch 10
+-------------------------------
+loss: 82.785843  [  124/12499]loss: 81.478836  [ 2604/12499]loss: 104.739983  [ 5084/12499]loss: 151.940582  [ 7564/12499]loss: 38.435665  [10044/12499]
+Actual Mean: 6.434770107269287 Actual Std Dev: 5.6259026527404785
+Prediction Mean: 8.506250381469727 Prediction Std Dev: 0.30315834283828735
+Actual Mean: 8.037578582763672 Actual Std Dev: 9.199349403381348
+Prediction Mean: 8.465744972229004 Prediction Std Dev: 0.2916647791862488
+Test Error: 
+ Accuracy: 6.0%, Avg loss: 57.577049 
+Done!
+Model weights saved to model_weights/micro_rz_input_only.pth
+Training Model
+===============================
+Epoch 1
+-------------------------------
+loss: 127.456154  [  124/12499]loss: 77.551064  [ 2604/12499]loss: 165.170990  [ 5084/12499]loss: 127.942268  [ 7564/12499]loss: 162.919296  [10044/12499]
+Actual Mean: 7.230515956878662 Actual Std Dev: 6.903586387634277
+Prediction Mean: 0.806172788143158 Prediction Std Dev: 0.0008945673471316695
+Actual Mean: 6.404191970825195 Actual Std Dev: 6.0227837562561035
+Prediction Mean: 0.8062328100204468 Prediction Std Dev: 0.0008513278444297612
+Test Error: 
+ Accuracy: 10.0%, Avg loss: 77.431339 
+Epoch 2
+-------------------------------
+loss: 114.823181  [  124/12499]loss: 67.966125  [ 2604/12499]loss: 150.607697  [ 5084/12499]loss: 112.492645  [ 7564/12499]loss: 148.018936  [10044/12499]
+Actual Mean: 7.230515956878662 Actual Std Dev: 6.903586387634277
+Prediction Mean: 2.0794007778167725 Prediction Std Dev: 0.002476929919794202
+Actual Mean: 6.404191970825195 Actual Std Dev: 6.0227837562561035
+Prediction Mean: 2.0796396732330322 Prediction Std Dev: 0.0019829277880489826
+Test Error: 
+ Accuracy: 6.0%, Avg loss: 63.746607 
+Epoch 3
+-------------------------------
+loss: 97.804367  [  124/12499]loss: 55.310158  [ 2604/12499]loss: 129.173584  [ 5084/12499]loss: 89.567184  [ 7564/12499]loss: 126.891998  [10044/12499]
+Actual Mean: 7.230515956878662 Actual Std Dev: 6.903586387634277
+Prediction Mean: 4.529204845428467 Prediction Std Dev: 0.008498982526361942
+Actual Mean: 6.404191970825195 Actual Std Dev: 6.0227837562561035
+Prediction Mean: 4.5299177169799805 Prediction Std Dev: 0.00495497602969408
+Test Error: 
+ Accuracy: 8.0%, Avg loss: 46.539324 
+Epoch 4
+-------------------------------
+loss: 74.174316  [  124/12499]loss: 42.601692  [ 2604/12499]loss: 102.898781  [ 5084/12499]loss: 65.123070  [ 7564/12499]loss: 111.956024  [10044/12499]
+Actual Mean: 7.230515956878662 Actual Std Dev: 6.903586387634277
+Prediction Mean: 8.070916175842285 Prediction Std Dev: 0.025974532589316368
+Actual Mean: 6.404191970825195 Actual Std Dev: 6.0227837562561035
+Prediction Mean: 8.072784423828125 Prediction Std Dev: 0.02164771594107151
+Test Error: 
+ Accuracy: 8.0%, Avg loss: 42.833185 
+Epoch 5
+-------------------------------
+loss: 61.175724  [  124/12499]loss: 46.409008  [ 2604/12499]loss: 96.419441  [ 5084/12499]loss: 62.564438  [ 7564/12499]loss: 112.465080  [10044/12499]
+Actual Mean: 7.230515956878662 Actual Std Dev: 6.903586387634277
+Prediction Mean: 8.4719820022583 Prediction Std Dev: 0.05270584300160408
+Actual Mean: 6.404191970825195 Actual Std Dev: 6.0227837562561035
+Prediction Mean: 8.47503662109375 Prediction Std Dev: 0.0563417486846447
+Test Error: 
+ Accuracy: 2.0%, Avg loss: 43.882812 
+Epoch 6
+-------------------------------
+loss: 61.156822  [  124/12499]loss: 47.156429  [ 2604/12499]loss: 96.259628  [ 5084/12499]loss: 62.400425  [ 7564/12499]loss: 112.311066  [10044/12499]
+Actual Mean: 7.230515956878662 Actual Std Dev: 6.903586387634277
+Prediction Mean: 8.480195045471191 Prediction Std Dev: 0.08126100152730942
+Actual Mean: 6.404191970825195 Actual Std Dev: 6.0227837562561035
+Prediction Mean: 8.484305381774902 Prediction Std Dev: 0.09049007296562195
+Test Error: 
+ Accuracy: 2.0%, Avg loss: 43.798325 
+Epoch 7
+-------------------------------
+loss: 61.036293  [  124/12499]loss: 47.065254  [ 2604/12499]loss: 96.095985  [ 5084/12499]loss: 62.235233  [ 7564/12499]loss: 112.155716  [10044/12499]
+Actual Mean: 7.230515956878662 Actual Std Dev: 6.903586387634277
+Prediction Mean: 8.488548278808594 Prediction Std Dev: 0.1124640703201294
+Actual Mean: 6.404191970825195 Actual Std Dev: 6.0227837562561035
+Prediction Mean: 8.493782043457031 Prediction Std Dev: 0.12681366503238678
+Test Error: 
+ Accuracy: 2.0%, Avg loss: 43.710129 
+Epoch 8
+-------------------------------
+loss: 60.910606  [  124/12499]loss: 46.967587  [ 2604/12499]loss: 95.923615  [ 5084/12499]loss: 62.061203  [ 7564/12499]loss: 111.989281  [10044/12499]
+Actual Mean: 7.230515956878662 Actual Std Dev: 6.903586387634277
+Prediction Mean: 8.497254371643066 Prediction Std Dev: 0.14637233316898346
+Actual Mean: 6.404191970825195 Actual Std Dev: 6.0227837562561035
+Prediction Mean: 8.503686904907227 Prediction Std Dev: 0.1659015566110611
+Test Error: 
+ Accuracy: 2.0%, Avg loss: 43.617035 
+Epoch 9
+-------------------------------
+loss: 60.777573  [  124/12499]loss: 46.861595  [ 2604/12499]loss: 95.739265  [ 5084/12499]loss: 61.874706  [ 7564/12499]loss: 111.808296  [10044/12499]
+Actual Mean: 7.230515956878662 Actual Std Dev: 6.903586387634277
+Prediction Mean: 8.5035400390625 Prediction Std Dev: 0.1843632161617279
+Actual Mean: 6.404191970825195 Actual Std Dev: 6.0227837562561035
+Prediction Mean: 8.511395454406738 Prediction Std Dev: 0.20951786637306213
+Test Error: 
+ Accuracy: 2.0%, Avg loss: 43.506220 
+Epoch 10
+-------------------------------
+loss: 60.631100  [  124/12499]loss: 46.733597  [ 2604/12499]loss: 95.537064  [ 5084/12499]loss: 61.669731  [ 7564/12499]loss: 111.608620  [10044/12499]
+Actual Mean: 7.230515956878662 Actual Std Dev: 6.903586387634277
+Prediction Mean: 8.511246681213379 Prediction Std Dev: 0.22660015523433685
+Actual Mean: 6.404191970825195 Actual Std Dev: 6.0227837562561035
+Prediction Mean: 8.520605087280273 Prediction Std Dev: 0.2579061686992645
+Test Error: 
+ Accuracy: 2.0%, Avg loss: 43.387955 
+Done!
+Model weights saved to model_weights/micro_rz_input_only.pth
+Training Model
+===============================
+Epoch 1
+-------------------------------
+loss: 132.042206  [  124/12499]loss: 200.037628  [ 2604/12499]loss: 233.743683  [ 5084/12499]loss: 144.138504  [ 7564/12499]loss: 277.352386  [10044/12499]
+Actual Mean: 9.192890167236328 Actual Std Dev: 11.70351505279541
+Prediction Mean: 0.7288607954978943 Prediction Std Dev: 0.001363321440294385
+Actual Mean: 10.677092552185059 Actual Std Dev: 14.772791862487793
+Prediction Mean: 0.7285259366035461 Prediction Std Dev: 0.0013757712440565228
+Test Error: 
+ Accuracy: 6.0%, Avg loss: 259.350433 
+Epoch 2
+-------------------------------
+loss: 121.464890  [  124/12499]loss: 187.193436  [ 2604/12499]loss: 218.726059  [ 5084/12499]loss: 129.910767  [ 7564/12499]loss: 257.924133  [10044/12499]
+Actual Mean: 9.192890167236328 Actual Std Dev: 11.70351505279541
+Prediction Mean: 1.8884228467941284 Prediction Std Dev: 0.004465213045477867
+Actual Mean: 10.677092552185059 Actual Std Dev: 14.772791862487793
+Prediction Mean: 1.8877166509628296 Prediction Std Dev: 0.0034293197095394135
+Test Error: 
+ Accuracy: 5.0%, Avg loss: 239.336227 
+Epoch 3
+-------------------------------
+loss: 108.040825  [  124/12499]loss: 169.460129  [ 2604/12499]loss: 196.667053  [ 5084/12499]loss: 108.940018  [ 7564/12499]loss: 227.647293  [10044/12499]
+Actual Mean: 9.192890167236328 Actual Std Dev: 11.70351505279541
+Prediction Mean: 4.0884928703308105 Prediction Std Dev: 0.013227426446974277
+Actual Mean: 10.677092552185059 Actual Std Dev: 14.772791862487793
+Prediction Mean: 4.086920738220215 Prediction Std Dev: 0.008414605632424355
+Test Error: 
+ Accuracy: 10.0%, Avg loss: 208.743164 
+Epoch 4
+-------------------------------
+loss: 89.954651  [  124/12499]loss: 144.901581  [ 2604/12499]loss: 166.297867  [ 5084/12499]loss: 84.471245  [ 7564/12499]loss: 190.159470  [10044/12499]
+Actual Mean: 9.192890167236328 Actual Std Dev: 11.70351505279541
+Prediction Mean: 7.791504383087158 Prediction Std Dev: 0.03340430557727814
+Actual Mean: 10.677092552185059 Actual Std Dev: 14.772791862487793
+Prediction Mean: 7.786219596862793 Prediction Std Dev: 0.026430368423461914
+Test Error: 
+ Accuracy: 3.0%, Avg loss: 179.042343 
+Epoch 5
+-------------------------------
+loss: 81.298340  [  124/12499]loss: 131.683533  [ 2604/12499]loss: 152.214310  [ 5084/12499]loss: 79.929688  [ 7564/12499]loss: 183.575714  [10044/12499]
+Actual Mean: 9.192890167236328 Actual Std Dev: 11.70351505279541
+Prediction Mean: 8.176050186157227 Prediction Std Dev: 0.05087533965706825
+Actual Mean: 10.677092552185059 Actual Std Dev: 14.772791862487793
+Prediction Mean: 8.162364959716797 Prediction Std Dev: 0.058757130056619644
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 177.357224 
+Epoch 6
+-------------------------------
+loss: 81.801842  [  124/12499]loss: 131.527069  [ 2604/12499]loss: 151.927048  [ 5084/12499]loss: 79.836952  [ 7564/12499]loss: 183.284241  [10044/12499]
+Actual Mean: 9.192890167236328 Actual Std Dev: 11.70351505279541
+Prediction Mean: 8.189423561096191 Prediction Std Dev: 0.07193049043416977
+Actual Mean: 10.677092552185059 Actual Std Dev: 14.772791862487793
+Prediction Mean: 8.167476654052734 Prediction Std Dev: 0.09087062627077103
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 177.135643 
+Epoch 7
+-------------------------------
+loss: 81.661751  [  124/12499]loss: 131.382263  [ 2604/12499]loss: 151.728668  [ 5084/12499]loss: 79.741653  [ 7564/12499]loss: 183.001419  [10044/12499]
+Actual Mean: 9.192890167236328 Actual Std Dev: 11.70351505279541
+Prediction Mean: 8.200136184692383 Prediction Std Dev: 0.09568841755390167
+Actual Mean: 10.677092552185059 Actual Std Dev: 14.772791862487793
+Prediction Mean: 8.169605255126953 Prediction Std Dev: 0.12442407011985779
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 176.917938 
+Epoch 8
+-------------------------------
+loss: 81.511253  [  124/12499]loss: 131.234177  [ 2604/12499]loss: 151.523407  [ 5084/12499]loss: 79.644012  [ 7564/12499]loss: 182.710938  [10044/12499]
+Actual Mean: 9.192890167236328 Actual Std Dev: 11.70351505279541
+Prediction Mean: 8.20944881439209 Prediction Std Dev: 0.1217213124036789
+Actual Mean: 10.677092552185059 Actual Std Dev: 14.772791862487793
+Prediction Mean: 8.169815063476562 Prediction Std Dev: 0.16008421778678894
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 176.695541 
+Epoch 9
+-------------------------------
+loss: 81.348740  [  124/12499]loss: 131.077469  [ 2604/12499]loss: 151.307648  [ 5084/12499]loss: 79.540932  [ 7564/12499]loss: 182.399429  [10044/12499]
+Actual Mean: 9.192890167236328 Actual Std Dev: 11.70351505279541
+Prediction Mean: 8.219273567199707 Prediction Std Dev: 0.1502639502286911
+Actual Mean: 10.677092552185059 Actual Std Dev: 14.772791862487793
+Prediction Mean: 8.169819831848145 Prediction Std Dev: 0.1986522674560547
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 176.456581 
+Epoch 10
+-------------------------------
+loss: 81.173805  [  124/12499]loss: 130.909195  [ 2604/12499]loss: 151.075592  [ 5084/12499]loss: 79.429817  [ 7564/12499]loss: 182.068130  [10044/12499]
+Actual Mean: 9.192890167236328 Actual Std Dev: 11.70351505279541
+Prediction Mean: 8.227428436279297 Prediction Std Dev: 0.1818830668926239
+Actual Mean: 10.677092552185059 Actual Std Dev: 14.772791862487793
+Prediction Mean: 8.1671781539917 Prediction Std Dev: 0.24106551706790924
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 176.204842 
+Done!
+Model weights saved to model_weights/micro_rz_input_only.pth
+Training Model
+===============================
+Epoch 1
+-------------------------------
+loss: 94.360558  [  124/12499]loss: 100.030579  [ 2604/12499]loss: 124.728355  [ 5084/12499]loss: 116.170021  [ 7564/12499]loss: 133.897034  [10044/12499]
+Actual Mean: 8.622995376586914 Actual Std Dev: 14.570661544799805
+Prediction Mean: 0.8076933026313782 Prediction Std Dev: 0.0008722040220163763
+Actual Mean: 6.1036376953125 Actual Std Dev: 7.796209812164307
+Prediction Mean: 0.8076508045196533 Prediction Std Dev: 0.0007887929095886648
+Test Error: 
+ Accuracy: 6.0%, Avg loss: 178.367855 
+Epoch 2
+-------------------------------
+loss: 85.137650  [  124/12499]loss: 89.568893  [ 2604/12499]loss: 113.056213  [ 5084/12499]loss: 103.808800  [ 7564/12499]loss: 120.153503  [10044/12499]
+Actual Mean: 8.622995376586914 Actual Std Dev: 14.570661544799805
+Prediction Mean: 1.9425137042999268 Prediction Std Dev: 0.00325103010982275
+Actual Mean: 6.1036376953125 Actual Std Dev: 7.796209812164307
+Prediction Mean: 1.9420804977416992 Prediction Std Dev: 0.0030218514148145914
+Test Error: 
+ Accuracy: 4.0%, Avg loss: 164.759285 
+Epoch 3
+-------------------------------
+loss: 73.711975  [  124/12499]loss: 75.623932  [ 2604/12499]loss: 96.616417  [ 5084/12499]loss: 86.013260  [ 7564/12499]loss: 100.174812  [10044/12499]
+Actual Mean: 8.622995376586914 Actual Std Dev: 14.570661544799805
+Prediction Mean: 4.0996174812316895 Prediction Std Dev: 0.009036101400852203
+Actual Mean: 6.1036376953125 Actual Std Dev: 7.796209812164307
+Prediction Mean: 4.098373889923096 Prediction Std Dev: 0.008347947150468826
+Test Error: 
+ Accuracy: 7.0%, Avg loss: 145.981987 
+Epoch 4
+-------------------------------
+loss: 59.090370  [  124/12499]loss: 57.875374  [ 2604/12499]loss: 76.612129  [ 5084/12499]loss: 66.958633  [ 7564/12499]loss: 81.665878  [10044/12499]
+Actual Mean: 8.622995376586914 Actual Std Dev: 14.570661544799805
+Prediction Mean: 7.90957498550415 Prediction Std Dev: 0.02494656853377819
+Actual Mean: 6.1036376953125 Actual Std Dev: 7.796209812164307
+Prediction Mean: 7.904914379119873 Prediction Std Dev: 0.023779835551977158
+Test Error: 
+ Accuracy: 1.0%, Avg loss: 135.500238 
+Epoch 5
+-------------------------------
+loss: 55.942860  [  124/12499]loss: 53.405987  [ 2604/12499]loss: 72.594307  [ 5084/12499]loss: 65.615013  [ 7564/12499]loss: 81.460800  [10044/12499]
+Actual Mean: 8.622995376586914 Actual Std Dev: 14.570661544799805
+Prediction Mean: 8.545970916748047 Prediction Std Dev: 0.04920734465122223
+Actual Mean: 6.1036376953125 Actual Std Dev: 7.796209812164307
+Prediction Mean: 8.533785820007324 Prediction Std Dev: 0.04858778044581413
+Test Error: 
+ Accuracy: 3.0%, Avg loss: 136.434860 
+Epoch 6
+-------------------------------
+loss: 58.131031  [  124/12499]loss: 53.762341  [ 2604/12499]loss: 72.728630  [ 5084/12499]loss: 65.604179  [ 7564/12499]loss: 81.361107  [10044/12499]
+Actual Mean: 8.622995376586914 Actual Std Dev: 14.570661544799805
+Prediction Mean: 8.555085182189941 Prediction Std Dev: 0.07743825763463974
+Actual Mean: 6.1036376953125 Actual Std Dev: 7.796209812164307
+Prediction Mean: 8.534235000610352 Prediction Std Dev: 0.07704822719097137
+Test Error: 
+ Accuracy: 3.0%, Avg loss: 136.288876 
+Epoch 7
+-------------------------------
+loss: 58.041500  [  124/12499]loss: 53.640800  [ 2604/12499]loss: 72.605728  [ 5084/12499]loss: 65.534752  [ 7564/12499]loss: 81.251648  [10044/12499]
+Actual Mean: 8.622995376586914 Actual Std Dev: 14.570661544799805
+Prediction Mean: 8.565240859985352 Prediction Std Dev: 0.10729002207517624
+Actual Mean: 6.1036376953125 Actual Std Dev: 7.796209812164307
+Prediction Mean: 8.535412788391113 Prediction Std Dev: 0.10697828978300095
+Test Error: 
+ Accuracy: 3.0%, Avg loss: 136.140423 
+Epoch 8
+-------------------------------
+loss: 57.953304  [  124/12499]loss: 53.521122  [ 2604/12499]loss: 72.476173  [ 5084/12499]loss: 65.461548  [ 7564/12499]loss: 81.137016  [10044/12499]
+Actual Mean: 8.622995376586914 Actual Std Dev: 14.570661544799805
+Prediction Mean: 8.575254440307617 Prediction Std Dev: 0.13942784070968628
+Actual Mean: 6.1036376953125 Actual Std Dev: 7.796209812164307
+Prediction Mean: 8.535818099975586 Prediction Std Dev: 0.1391453742980957
+Test Error: 
+ Accuracy: 3.0%, Avg loss: 135.980385 
+Epoch 9
+-------------------------------
+loss: 57.856762  [  124/12499]loss: 53.388714  [ 2604/12499]loss: 72.335838  [ 5084/12499]loss: 65.382065  [ 7564/12499]loss: 81.011330  [10044/12499]
+Actual Mean: 8.622995376586914 Actual Std Dev: 14.570661544799805
+Prediction Mean: 8.585895538330078 Prediction Std Dev: 0.17423279583454132
+Actual Mean: 6.1036376953125 Actual Std Dev: 7.796209812164307
+Prediction Mean: 8.536080360412598 Prediction Std Dev: 0.17393897473812103
+Test Error: 
+ Accuracy: 2.0%, Avg loss: 135.808788 
+Epoch 10
+-------------------------------
+loss: 57.753883  [  124/12499]loss: 53.247601  [ 2604/12499]loss: 72.184517  [ 5084/12499]loss: 65.293472  [ 7564/12499]loss: 80.875153  [10044/12499]
+Actual Mean: 8.622995376586914 Actual Std Dev: 14.570661544799805
+Prediction Mean: 8.596741676330566 Prediction Std Dev: 0.21260051429271698
+Actual Mean: 6.1036376953125 Actual Std Dev: 7.796209812164307
+Prediction Mean: 8.535500526428223 Prediction Std Dev: 0.2122371792793274
+Test Error: 
+ Accuracy: 2.0%, Avg loss: 135.619102 
+Done!
+Model weights saved to model_weights/micro_rz_input_only.pth
+Training Model
+===============================
+Epoch 1
+-------------------------------
+loss: 207.874512  [  124/12499]loss: 190.558304  [ 2604/12499]loss: 139.950485  [ 5084/12499]loss: 307.483765  [ 7564/12499]loss: 190.833481  [10044/12499]
+Actual Mean: 5.928065776824951 Actual Std Dev: 5.803601264953613
+Prediction Mean: 0.7668306231498718 Prediction Std Dev: 0.0007216609083116055
+Actual Mean: 9.693907737731934 Actual Std Dev: 11.197235107421875
+Prediction Mean: 0.7668118476867676 Prediction Std Dev: 0.000785887474194169
+Test Error: 
+ Accuracy: 9.0%, Avg loss: 131.100037 
+Epoch 2
+-------------------------------
+loss: 193.704285  [  124/12499]loss: 177.406647  [ 2604/12499]loss: 127.633873  [ 5084/12499]loss: 291.272064  [ 7564/12499]loss: 173.364975  [10044/12499]
+Actual Mean: 5.928065776824951 Actual Std Dev: 5.803601264953613
+Prediction Mean: 2.0054800510406494 Prediction Std Dev: 0.0019883299246430397
+Actual Mean: 9.693907737731934 Actual Std Dev: 11.197235107421875
+Prediction Mean: 2.005366802215576 Prediction Std Dev: 0.0021398188546299934
+Test Error: 
+ Accuracy: 9.0%, Avg loss: 115.177998 
+Epoch 3
+-------------------------------
+loss: 174.326355  [  124/12499]loss: 158.678131  [ 2604/12499]loss: 109.878670  [ 5084/12499]loss: 266.430908  [ 7564/12499]loss: 146.691879  [10044/12499]
+Actual Mean: 5.928065776824951 Actual Std Dev: 5.803601264953613
+Prediction Mean: 4.426061630249023 Prediction Std Dev: 0.006005311384797096
+Actual Mean: 9.693907737731934 Actual Std Dev: 11.197235107421875
+Prediction Mean: 4.4257330894470215 Prediction Std Dev: 0.006496339105069637
+Test Error: 
+ Accuracy: 9.0%, Avg loss: 92.910461 
+Epoch 4
+-------------------------------
+loss: 145.302170  [  124/12499]loss: 133.299515  [ 2604/12499]loss: 89.916801  [ 5084/12499]loss: 237.286850  [ 7564/12499]loss: 121.169983  [10044/12499]
+Actual Mean: 5.928065776824951 Actual Std Dev: 5.803601264953613
+Prediction Mean: 8.212130546569824 Prediction Std Dev: 0.022738123312592506
+Actual Mean: 9.693907737731934 Actual Std Dev: 11.197235107421875
+Prediction Mean: 8.212617874145508 Prediction Std Dev: 0.024403460323810577
+Test Error: 
+ Accuracy: 3.0%, Avg loss: 81.524281 
+Epoch 5
+-------------------------------
+loss: 123.319130  [  124/12499]loss: 123.038879  [ 2604/12499]loss: 87.798347  [ 5084/12499]loss: 232.941559  [ 7564/12499]loss: 119.916412  [10044/12499]
+Actual Mean: 5.928065776824951 Actual Std Dev: 5.803601264953613
+Prediction Mean: 8.54322338104248 Prediction Std Dev: 0.049149129539728165
+Actual Mean: 9.693907737731934 Actual Std Dev: 11.197235107421875
+Prediction Mean: 8.546385765075684 Prediction Std Dev: 0.05202501639723778
+Test Error: 
+ Accuracy: 4.0%, Avg loss: 81.794167 
+Epoch 6
+-------------------------------
+loss: 122.610191  [  124/12499]loss: 122.898529  [ 2604/12499]loss: 87.726028  [ 5084/12499]loss: 232.722290  [ 7564/12499]loss: 119.787491  [10044/12499]
+Actual Mean: 5.928065776824951 Actual Std Dev: 5.803601264953613
+Prediction Mean: 8.551382064819336 Prediction Std Dev: 0.0758400484919548
+Actual Mean: 9.693907737731934 Actual Std Dev: 11.197235107421875
+Prediction Mean: 8.557292938232422 Prediction Std Dev: 0.07988818734884262
+Test Error: 
+ Accuracy: 4.0%, Avg loss: 81.701611 
+Epoch 7
+-------------------------------
+loss: 122.440315  [  124/12499]loss: 122.745827  [ 2604/12499]loss: 87.622070  [ 5084/12499]loss: 232.509995  [ 7564/12499]loss: 119.659035  [10044/12499]
+Actual Mean: 5.928065776824951 Actual Std Dev: 5.803601264953613
+Prediction Mean: 8.558703422546387 Prediction Std Dev: 0.1041361391544342
+Actual Mean: 9.693907737731934 Actual Std Dev: 11.197235107421875
+Prediction Mean: 8.56750202178955 Prediction Std Dev: 0.10941977798938751
+Test Error: 
+ Accuracy: 3.0%, Avg loss: 81.602715 
+Epoch 8
+-------------------------------
+loss: 122.263428  [  124/12499]loss: 122.584076  [ 2604/12499]loss: 87.514511  [ 5084/12499]loss: 232.283432  [ 7564/12499]loss: 119.519814  [10044/12499]
+Actual Mean: 5.928065776824951 Actual Std Dev: 5.803601264953613
+Prediction Mean: 8.566049575805664 Prediction Std Dev: 0.13474653661251068
+Actual Mean: 9.693907737731934 Actual Std Dev: 11.197235107421875
+Prediction Mean: 8.577964782714844 Prediction Std Dev: 0.1413722038269043
+Test Error: 
+ Accuracy: 3.0%, Avg loss: 81.497297 
+Epoch 9
+-------------------------------
+loss: 122.075249  [  124/12499]loss: 122.410873  [ 2604/12499]loss: 87.398361  [ 5084/12499]loss: 232.037277  [ 7564/12499]loss: 119.369339  [10044/12499]
+Actual Mean: 5.928065776824951 Actual Std Dev: 5.803601264953613
+Prediction Mean: 8.573604583740234 Prediction Std Dev: 0.16840088367462158
+Actual Mean: 9.693907737731934 Actual Std Dev: 11.197235107421875
+Prediction Mean: 8.588971138000488 Prediction Std Dev: 0.1764957308769226
+Test Error: 
+ Accuracy: 2.0%, Avg loss: 81.381659 
+Epoch 10
+-------------------------------
+loss: 121.869919  [  124/12499]loss: 122.219582  [ 2604/12499]loss: 87.268555  [ 5084/12499]loss: 231.767014  [ 7564/12499]loss: 119.204201  [10044/12499]
+Actual Mean: 5.928065776824951 Actual Std Dev: 5.803601264953613
+Prediction Mean: 8.581042289733887 Prediction Std Dev: 0.20599772036075592
+Actual Mean: 9.693907737731934 Actual Std Dev: 11.197235107421875
+Prediction Mean: 8.600257873535156 Prediction Std Dev: 0.2157464176416397
+Test Error: 
+ Accuracy: 2.0%, Avg loss: 81.252893 
+Done!
+Model weights saved to model_weights/micro_rz_input_only.pth
+Training Model
+===============================
+Epoch 1
+-------------------------------
+loss: 191.961884  [  124/12499]loss: 186.487015  [ 2604/12499]loss: 289.598175  [ 5084/12499]loss: 196.394623  [ 7564/12499]loss: 167.693832  [10044/12499]
+Actual Mean: 7.538356781005859 Actual Std Dev: 6.773721694946289
+Prediction Mean: 0.6926923990249634 Prediction Std Dev: 0.0005456863436847925
+Actual Mean: 7.9225239753723145 Actual Std Dev: 10.405961990356445
+Prediction Mean: 0.6926282644271851 Prediction Std Dev: 0.00040769902989268303
+Test Error: 
+ Accuracy: 4.0%, Avg loss: 125.108021 
+Epoch 2
+-------------------------------
+loss: 179.237030  [  124/12499]loss: 173.839188  [ 2604/12499]loss: 274.002777  [ 5084/12499]loss: 182.995300  [ 7564/12499]loss: 152.296585  [10044/12499]
+Actual Mean: 7.538356781005859 Actual Std Dev: 6.773721694946289
+Prediction Mean: 1.750645399093628 Prediction Std Dev: 0.002051055198535323
+Actual Mean: 7.9225239753723145 Actual Std Dev: 10.405961990356445
+Prediction Mean: 1.7504414319992065 Prediction Std Dev: 0.001331305131316185
+Test Error: 
+ Accuracy: 3.0%, Avg loss: 111.336136 
+Epoch 3
+-------------------------------
+loss: 163.347382  [  124/12499]loss: 157.213028  [ 2604/12499]loss: 252.054016  [ 5084/12499]loss: 164.117172  [ 7564/12499]loss: 129.880356  [10044/12499]
+Actual Mean: 7.538356781005859 Actual Std Dev: 6.773721694946289
+Prediction Mean: 3.6581921577453613 Prediction Std Dev: 0.007060788571834564
+Actual Mean: 7.9225239753723145 Actual Std Dev: 10.405961990356445
+Prediction Mean: 3.6574454307556152 Prediction Std Dev: 0.0048176562413573265
+Test Error: 
+ Accuracy: 7.0%, Avg loss: 92.156549 
+Epoch 4
+-------------------------------
+loss: 140.350189  [  124/12499]loss: 133.748993  [ 2604/12499]loss: 220.160675  [ 5084/12499]loss: 140.385712  [ 7564/12499]loss: 102.829338  [10044/12499]
+Actual Mean: 7.538356781005859 Actual Std Dev: 6.773721694946289
+Prediction Mean: 7.272816181182861 Prediction Std Dev: 0.02099957875907421
+Actual Mean: 7.9225239753723145 Actual Std Dev: 10.405961990356445
+Prediction Mean: 7.270371913909912 Prediction Std Dev: 0.016416415572166443
+Test Error: 
+ Accuracy: 3.0%, Avg loss: 75.746704 
+Epoch 5
+-------------------------------
+loss: 116.699913  [  124/12499]loss: 115.546371  [ 2604/12499]loss: 197.932190  [ 5084/12499]loss: 132.332886  [ 7564/12499]loss: 96.214432  [10044/12499]
+Actual Mean: 7.538356781005859 Actual Std Dev: 6.773721694946289
+Prediction Mean: 8.324542999267578 Prediction Std Dev: 0.04222879931330681
+Actual Mean: 7.9225239753723145 Actual Std Dev: 10.405961990356445
+Prediction Mean: 8.316329002380371 Prediction Std Dev: 0.05038203299045563
+Test Error: 
+ Accuracy: 6.0%, Avg loss: 75.732548 
+Epoch 6
+-------------------------------
+loss: 114.538269  [  124/12499]loss: 115.089172  [ 2604/12499]loss: 197.497971  [ 5084/12499]loss: 132.166733  [ 7564/12499]loss: 96.121048  [10044/12499]
+Actual Mean: 7.538356781005859 Actual Std Dev: 6.773721694946289
+Prediction Mean: 8.336341857910156 Prediction Std Dev: 0.06474807113409042
+Actual Mean: 7.9225239753723145 Actual Std Dev: 10.405961990356445
+Prediction Mean: 8.322936058044434 Prediction Std Dev: 0.08153343200683594
+Test Error: 
+ Accuracy: 6.0%, Avg loss: 75.607510 
+Epoch 7
+-------------------------------
+loss: 114.351151  [  124/12499]loss: 115.003494  [ 2604/12499]loss: 197.237213  [ 5084/12499]loss: 132.000671  [ 7564/12499]loss: 96.032494  [10044/12499]
+Actual Mean: 7.538356781005859 Actual Std Dev: 6.773721694946289
+Prediction Mean: 8.34475040435791 Prediction Std Dev: 0.08953458815813065
+Actual Mean: 7.9225239753723145 Actual Std Dev: 10.405961990356445
+Prediction Mean: 8.326004981994629 Prediction Std Dev: 0.11389970779418945
+Test Error: 
+ Accuracy: 6.0%, Avg loss: 75.475632 
+Epoch 8
+-------------------------------
+loss: 114.162674  [  124/12499]loss: 114.917274  [ 2604/12499]loss: 196.970215  [ 5084/12499]loss: 131.827515  [ 7564/12499]loss: 95.940079  [10044/12499]
+Actual Mean: 7.538356781005859 Actual Std Dev: 6.773721694946289
+Prediction Mean: 8.35299301147461 Prediction Std Dev: 0.11638490855693817
+Actual Mean: 7.9225239753723145 Actual Std Dev: 10.405961990356445
+Prediction Mean: 8.328615188598633 Prediction Std Dev: 0.14824515581130981
+Test Error: 
+ Accuracy: 6.0%, Avg loss: 75.336735 
+Epoch 9
+-------------------------------
+loss: 113.965111  [  124/12499]loss: 114.827286  [ 2604/12499]loss: 196.690125  [ 5084/12499]loss: 131.643616  [ 7564/12499]loss: 95.842377  [10044/12499]
+Actual Mean: 7.538356781005859 Actual Std Dev: 6.773721694946289
+Prediction Mean: 8.362135887145996 Prediction Std Dev: 0.1456427425146103
+Actual Mean: 7.9225239753723145 Actual Std Dev: 10.405961990356445
+Prediction Mean: 8.331694602966309 Prediction Std Dev: 0.18534377217292786
+Test Error: 
+ Accuracy: 6.0%, Avg loss: 75.189207 
+Epoch 10
+-------------------------------
+loss: 113.753410  [  124/12499]loss: 114.730759  [ 2604/12499]loss: 196.386246  [ 5084/12499]loss: 131.444962  [ 7564/12499]loss: 95.737679  [10044/12499]
+Actual Mean: 7.538356781005859 Actual Std Dev: 6.773721694946289
+Prediction Mean: 8.370194435119629 Prediction Std Dev: 0.1778489053249359
+Actual Mean: 7.9225239753723145 Actual Std Dev: 10.405961990356445
+Prediction Mean: 8.33313274383545 Prediction Std Dev: 0.22598610818386078
+Test Error: 
+ Accuracy: 6.0%, Avg loss: 75.027382 
+Done!
+Model weights saved to model_weights/micro_rz_input_only.pth
+Training Model
+===============================
+Epoch 1
+-------------------------------
+loss: 132.136337  [  124/12499]loss: 209.713303  [ 2604/12499]loss: 191.996216  [ 5084/12499]loss: 166.281738  [ 7564/12499]loss: 323.596283  [10044/12499]
+Actual Mean: 10.151949882507324 Actual Std Dev: 13.722134590148926
+Prediction Mean: 0.7736131548881531 Prediction Std Dev: 0.001998670632019639
+Actual Mean: 9.56893539428711 Actual Std Dev: 11.042301177978516
+Prediction Mean: 0.7736018896102905 Prediction Std Dev: 0.00236100354231894
+Test Error: 
+ Accuracy: 6.0%, Avg loss: 234.658676 
+Epoch 2
+-------------------------------
+loss: 120.180588  [  124/12499]loss: 195.795364  [ 2604/12499]loss: 177.261230  [ 5084/12499]loss: 151.461899  [ 7564/12499]loss: 303.694794  [10044/12499]
+Actual Mean: 10.151949882507324 Actual Std Dev: 13.722134590148926
+Prediction Mean: 2.0758655071258545 Prediction Std Dev: 0.007584488019347191
+Actual Mean: 9.56893539428711 Actual Std Dev: 11.042301177978516
+Prediction Mean: 2.075939893722534 Prediction Std Dev: 0.009113200940191746
+Test Error: 
+ Accuracy: 7.0%, Avg loss: 212.656914 
+Epoch 3
+-------------------------------
+loss: 104.198135  [  124/12499]loss: 175.857452  [ 2604/12499]loss: 155.520859  [ 5084/12499]loss: 129.785217  [ 7564/12499]loss: 273.275757  [10044/12499]
+Actual Mean: 10.151949882507324 Actual Std Dev: 13.722134590148926
+Prediction Mean: 4.589780807495117 Prediction Std Dev: 0.020603440701961517
+Actual Mean: 9.56893539428711 Actual Std Dev: 11.042301177978516
+Prediction Mean: 4.589273452758789 Prediction Std Dev: 0.025773702189326286
+Test Error: 
+ Accuracy: 1.0%, Avg loss: 179.767700 
+Epoch 4
+-------------------------------
+loss: 82.921478  [  124/12499]loss: 149.551910  [ 2604/12499]loss: 129.452316  [ 5084/12499]loss: 109.085121  [ 7564/12499]loss: 243.416931  [10044/12499]
+Actual Mean: 10.151949882507324 Actual Std Dev: 13.722134590148926
+Prediction Mean: 8.125667572021484 Prediction Std Dev: 0.050731781870126724
+Actual Mean: 9.56893539428711 Actual Std Dev: 11.042301177978516
+Prediction Mean: 8.12548542022705 Prediction Std Dev: 0.06325554102659225
+Test Error: 
+ Accuracy: 3.0%, Avg loss: 154.798103 
+Epoch 5
+-------------------------------
+loss: 74.316498  [  124/12499]loss: 139.808273  [ 2604/12499]loss: 124.211403  [ 5084/12499]loss: 107.865021  [ 7564/12499]loss: 241.003754  [10044/12499]
+Actual Mean: 10.151949882507324 Actual Std Dev: 13.722134590148926
+Prediction Mean: 8.435280799865723 Prediction Std Dev: 0.07311151921749115
+Actual Mean: 9.56893539428711 Actual Std Dev: 11.042301177978516
+Prediction Mean: 8.438092231750488 Prediction Std Dev: 0.08936385810375214
+Test Error: 
+ Accuracy: 4.0%, Avg loss: 153.632736 
+Epoch 6
+-------------------------------
+loss: 74.635246  [  124/12499]loss: 139.544968  [ 2604/12499]loss: 123.946793  [ 5084/12499]loss: 107.793877  [ 7564/12499]loss: 240.794571  [10044/12499]
+Actual Mean: 10.151949882507324 Actual Std Dev: 13.722134590148926
+Prediction Mean: 8.44168472290039 Prediction Std Dev: 0.09444092959165573
+Actual Mean: 9.56893539428711 Actual Std Dev: 11.042301177978516
+Prediction Mean: 8.447484016418457 Prediction Std Dev: 0.11415623873472214
+Test Error: 
+ Accuracy: 4.0%, Avg loss: 153.439568 
+Epoch 7
+-------------------------------
+loss: 74.524017  [  124/12499]loss: 139.424927  [ 2604/12499]loss: 123.841652  [ 5084/12499]loss: 107.715492  [ 7564/12499]loss: 240.599487  [10044/12499]
+Actual Mean: 10.151949882507324 Actual Std Dev: 13.722134590148926
+Prediction Mean: 8.444293022155762 Prediction Std Dev: 0.1172456294298172
+Actual Mean: 9.56893539428711 Actual Std Dev: 11.042301177978516
+Prediction Mean: 8.453280448913574 Prediction Std Dev: 0.14073863625526428
+Test Error: 
+ Accuracy: 4.0%, Avg loss: 153.248669 
+Epoch 8
+-------------------------------
+loss: 74.400581  [  124/12499]loss: 139.300980  [ 2604/12499]loss: 123.734428  [ 5084/12499]loss: 107.634666  [ 7564/12499]loss: 240.397858  [10044/12499]
+Actual Mean: 10.151949882507324 Actual Std Dev: 13.722134590148926
+Prediction Mean: 8.447225570678711 Prediction Std Dev: 0.14130298793315887
+Actual Mean: 9.56893539428711 Actual Std Dev: 11.042301177978516
+Prediction Mean: 8.459517478942871 Prediction Std Dev: 0.16889163851737976
+Test Error: 
+ Accuracy: 4.0%, Avg loss: 153.048889 
+Epoch 9
+-------------------------------
+loss: 74.272461  [  124/12499]loss: 139.171478  [ 2604/12499]loss: 123.622643  [ 5084/12499]loss: 107.549675  [ 7564/12499]loss: 240.185455  [10044/12499]
+Actual Mean: 10.151949882507324 Actual Std Dev: 13.722134590148926
+Prediction Mean: 8.451055526733398 Prediction Std Dev: 0.1671077162027359
+Actual Mean: 9.56893539428711 Actual Std Dev: 11.042301177978516
+Prediction Mean: 8.466836929321289 Prediction Std Dev: 0.19907496869564056
+Test Error: 
+ Accuracy: 4.0%, Avg loss: 152.834808 
+Epoch 10
+-------------------------------
+loss: 74.138016  [  124/12499]loss: 139.033325  [ 2604/12499]loss: 123.504135  [ 5084/12499]loss: 107.459122  [ 7564/12499]loss: 239.953644  [10044/12499]
+Actual Mean: 10.151949882507324 Actual Std Dev: 13.722134590148926
+Prediction Mean: 8.454565048217773 Prediction Std Dev: 0.19511909782886505
+Actual Mean: 9.56893539428711 Actual Std Dev: 11.042301177978516
+Prediction Mean: 8.474102973937988 Prediction Std Dev: 0.23191489279270172
+Test Error: 
+ Accuracy: 4.0%, Avg loss: 152.605812 
+Done!
+Model weights saved to model_weights/micro_rz_input_only.pth
+Training Model
+===============================
+Epoch 1
+-------------------------------
+loss: 207.037796  [  124/12499]loss: 236.596298  [ 2604/12499]loss: 288.490143  [ 5084/12499]loss: 202.316498  [ 7564/12499]loss: 198.972595  [10044/12499]
+Actual Mean: 7.409375190734863 Actual Std Dev: 8.32241439819336
+Prediction Mean: 0.8609662055969238 Prediction Std Dev: 0.0005907195736654103
+Actual Mean: 8.531832695007324 Actual Std Dev: 9.591796875
+Prediction Mean: 0.8606185913085938 Prediction Std Dev: 0.0023941018152981997
+Test Error: 
+ Accuracy: 7.0%, Avg loss: 129.886333 
+Epoch 2
+-------------------------------
+loss: 193.439911  [  124/12499]loss: 221.868729  [ 2604/12499]loss: 272.681091  [ 5084/12499]loss: 186.945007  [ 7564/12499]loss: 181.703445  [10044/12499]
+Actual Mean: 7.409375190734863 Actual Std Dev: 8.32241439819336
+Prediction Mean: 2.1423707008361816 Prediction Std Dev: 0.0026733234990388155
+Actual Mean: 8.531832695007324 Actual Std Dev: 9.591796875
+Prediction Mean: 2.1409029960632324 Prediction Std Dev: 0.01027730479836464
+Test Error: 
+ Accuracy: 3.0%, Avg loss: 113.321110 
+Epoch 3
+-------------------------------
+loss: 174.637878  [  124/12499]loss: 200.322800  [ 2604/12499]loss: 248.730057  [ 5084/12499]loss: 163.879257  [ 7564/12499]loss: 155.864166  [10044/12499]
+Actual Mean: 7.409375190734863 Actual Std Dev: 8.32241439819336
+Prediction Mean: 4.634674072265625 Prediction Std Dev: 0.006827055010944605
+Actual Mean: 8.531832695007324 Actual Std Dev: 9.591796875
+Prediction Mean: 4.629836559295654 Prediction Std Dev: 0.03144634887576103
+Test Error: 
+ Accuracy: 8.0%, Avg loss: 90.500477 
+Epoch 4
+-------------------------------
+loss: 147.461914  [  124/12499]loss: 170.355408  [ 2604/12499]loss: 217.741043  [ 5084/12499]loss: 139.629883  [ 7564/12499]loss: 133.551178  [10044/12499]
+Actual Mean: 7.409375190734863 Actual Std Dev: 8.32241439819336
+Prediction Mean: 7.965395450592041 Prediction Std Dev: 0.013551199808716774
+Actual Mean: 8.531832695007324 Actual Std Dev: 9.591796875
+Prediction Mean: 7.954144477844238 Prediction Std Dev: 0.06081089377403259
+Test Error: 
+ Accuracy: 3.0%, Avg loss: 79.322449 
+Epoch 5
+-------------------------------
+loss: 130.442505  [  124/12499]loss: 155.959274  [ 2604/12499]loss: 208.729187  [ 5084/12499]loss: 137.447723  [ 7564/12499]loss: 132.390167  [10044/12499]
+Actual Mean: 7.409375190734863 Actual Std Dev: 8.32241439819336
+Prediction Mean: 8.229229927062988 Prediction Std Dev: 0.03663736581802368
+Actual Mean: 8.531832695007324 Actual Std Dev: 9.591796875
+Prediction Mean: 8.214298248291016 Prediction Std Dev: 0.06746091693639755
+Test Error: 
+ Accuracy: 1.0%, Avg loss: 79.269615 
+Epoch 6
+-------------------------------
+loss: 129.853790  [  124/12499]loss: 155.591599  [ 2604/12499]loss: 208.384460  [ 5084/12499]loss: 137.282623  [ 7564/12499]loss: 132.216736  [10044/12499]
+Actual Mean: 7.409375190734863 Actual Std Dev: 8.32241439819336
+Prediction Mean: 8.240133285522461 Prediction Std Dev: 0.0648280680179596
+Actual Mean: 8.531832695007324 Actual Std Dev: 9.591796875
+Prediction Mean: 8.221599578857422 Prediction Std Dev: 0.08154021948575974
+Test Error: 
+ Accuracy: 2.0%, Avg loss: 79.153397 
+Epoch 7
+-------------------------------
+loss: 129.637787  [  124/12499]loss: 155.355789  [ 2604/12499]loss: 208.139694  [ 5084/12499]loss: 137.110840  [ 7564/12499]loss: 132.043152  [10044/12499]
+Actual Mean: 7.409375190734863 Actual Std Dev: 8.32241439819336
+Prediction Mean: 8.251233100891113 Prediction Std Dev: 0.0949208065867424
+Actual Mean: 8.531832695007324 Actual Std Dev: 9.591796875
+Prediction Mean: 8.228869438171387 Prediction Std Dev: 0.10218491405248642
+Test Error: 
+ Accuracy: 2.0%, Avg loss: 79.033630 
+Epoch 8
+-------------------------------
+loss: 129.413605  [  124/12499]loss: 155.113419  [ 2604/12499]loss: 207.885971  [ 5084/12499]loss: 136.930267  [ 7564/12499]loss: 131.860718  [10044/12499]
+Actual Mean: 7.409375190734863 Actual Std Dev: 8.32241439819336
+Prediction Mean: 8.261373519897461 Prediction Std Dev: 0.1272147297859192
+Actual Mean: 8.531832695007324 Actual Std Dev: 9.591796875
+Prediction Mean: 8.234848976135254 Prediction Std Dev: 0.12753519415855408
+Test Error: 
+ Accuracy: 2.0%, Avg loss: 78.906311 
+Epoch 9
+-------------------------------
+loss: 129.177963  [  124/12499]loss: 154.856232  [ 2604/12499]loss: 207.617264  [ 5084/12499]loss: 136.736313  [ 7564/12499]loss: 131.664642  [10044/12499]
+Actual Mean: 7.409375190734863 Actual Std Dev: 8.32241439819336
+Prediction Mean: 8.270927429199219 Prediction Std Dev: 0.16255752742290497
+Actual Mean: 8.531832695007324 Actual Std Dev: 9.591796875
+Prediction Mean: 8.239831924438477 Prediction Std Dev: 0.1572505533695221
+Test Error: 
+ Accuracy: 4.0%, Avg loss: 78.767834 
+Epoch 10
+-------------------------------
+loss: 128.923370  [  124/12499]loss: 154.577469  [ 2604/12499]loss: 207.323517  [ 5084/12499]loss: 136.522293  [ 7564/12499]loss: 131.451523  [10044/12499]
+Actual Mean: 7.409375190734863 Actual Std Dev: 8.32241439819336
+Prediction Mean: 8.279693603515625 Prediction Std Dev: 0.20228759944438934
+Actual Mean: 8.531832695007324 Actual Std Dev: 9.591796875
+Prediction Mean: 8.243396759033203 Prediction Std Dev: 0.19183221459388733
+Test Error: 
+ Accuracy: 4.0%, Avg loss: 78.614403 
+Done!
+Model weights saved to model_weights/micro_rz_input_only.pth

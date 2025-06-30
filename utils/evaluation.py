@@ -4,7 +4,7 @@ NOTE catered to image as an input feature. Not yet able to process rz-coordinate
 
 Last modified: 6.26.2025
 """
-from torch import Tensor, from_numpy
+from torch import Tensor, from_numpy, rand, isnan
 from skimage import io
 import numpy as np
 import matplotlib.pyplot as plt
@@ -50,9 +50,10 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
     model.eval()
     data_paths = config_object["data_paths"]
 
-    drop_dataset = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"])
+    drop_dataset = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"], ignore_images=(input_type!="image"))
 
     evaluation_info = []
+    nan_samples = []
 
     #for each sample
     for i, sample_id in enumerate(drop_dataset.available_samples):
@@ -62,24 +63,36 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
         Ar = features["Wo_Ar"]["Ar"]
         sample_sigma = features["surface_tension"]
         #predict sample
-        image_input = Tensor.float(from_numpy(np.array(features['coordinates']).flatten())).unsqueeze(0)
-        print(image_input.shape)
-        prediction = model(image_input).detach().numpy()     
-        #calculate differences
-        true_diff = features["surface_tension"] - prediction
-        relative_error = true_diff / features["surface_tension"]
-        #save info
-        evaluation_info.append(np.array([Wo, Ar, sample_sigma, prediction, true_diff, relative_error]))
+        if input_type == "image":
+            model_input = Tensor.float(from_numpy(np.array(features['image']))).unsqueeze(0)
+        elif input_type == "coordinates":
+            # print(features["coordinates"].shape)
+            model_input = Tensor.float(from_numpy(features["coordinates"])).unsqueeze(0)
+            # model_input = rand((4, 1, 2, 40))
+        prediction = model(model_input).detach().numpy()     
+        if np.isnan(prediction):
+            nan_samples.append(np.array([Wo, Ar, sample_sigma]))
+        else:
+            #calculate differences
+            true_diff = sample_sigma - prediction
+            relative_error = np.absolute(true_diff) / sample_sigma
+            #save info
+            evaluation_info.append(np.array([Wo, Ar, sample_sigma, prediction, true_diff, relative_error]))
 
 
     #save data info to file
     evaluation_info = np.asarray(evaluation_info)
+    print(nan_samples)
 
     np.savetxt(config_object["save_info"]["eval_results"] + "Evaluation.txt", evaluation_info, delimiter=",",
                header="Wo,Ar,sample_sigma,prediction,abs_error,rel_error")
     #save prediction info to file
 
     if visualize:
+
+        plt.clf()
+
+
         # [Wo, Ar, sample_sigma, prediction, true_diff, relative_error]
         #  0    1       2           3           4           5           of evaluation_info
         all_Wo = evaluation_info[:, 0]
@@ -99,8 +112,8 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
 
             
         #plot data info, Wo vs Ar vs Surface Tension distribution
-        norm_all_sigma = Normalize()(all_sigma) #(all_sigma - np.min(all_sigma)) / (np.max(all_sigma) - np.min(all_sigma))
-        plt.scatter(all_Wo, all_Ar, c=norm_all_sigma, cmap="viridis", marker=".")
+        # norm_all_sigma = Normalize()(all_sigma) #(all_sigma - np.min(all_sigma)) / (np.max(all_sigma) - np.min(all_sigma))
+        plt.scatter(all_Wo, all_Ar, c=all_sigma, norm="log", cmap="viridis", marker=".")
         plt.xlabel("Worthington Number (Wo)")
         plt.ylabel("Aspect Ratio (Ar)")
         plt.title("Training Data Wo vs Ar vs Surface Tension")
@@ -110,8 +123,8 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
         plt.show(block=False)
         plt.clf()
         #plot Wo vs Ar vs accuracy
-        norm_all_true = Normalize()(all_true)
-        plt.scatter(all_Wo, all_Ar, c=norm_all_true, cmap="plasma", marker=".")
+        # norm_all_true = Normalize()(all_true)
+        plt.scatter(all_Wo, all_Ar, c=all_true, norm=Normalize(), cmap="plasma", marker=".")
         plt.xlabel("Worthington Number (Wo)")
         plt.ylabel("Aspect Ratio (Ar)")
         plt.title("Training Data Wo vs Ar vs AbsoluteError")
@@ -121,8 +134,8 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
         plt.show(block=False)
         plt.clf()
 
-        norm_all_rel = Normalize()(all_rel)
-        plt.scatter(all_Wo, all_Ar, c=norm_all_rel, cmap="plasma", marker=".")
+        # norm_all_rel = Normalize()(all_rel)
+        plt.scatter(all_Wo, all_Ar, c=all_rel, norm=Normalize(), cmap="plasma", marker=".")
         plt.xlabel("Worthington Number (Wo)")
         plt.ylabel("Aspect Ratio (Ar)")
         plt.title("Training Data Wo vs Ar vs RelativeError")

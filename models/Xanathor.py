@@ -29,7 +29,7 @@ class Xanathor(nn.Module):
 
     def forward(self, x):
         x = torch.nn.functional.normalize(x)
-        x = x.squeeze()
+        # x = x.squeeze()
         logits = self.linear_relu_stack(x)
         logits = logits.squeeze()
         return logits
