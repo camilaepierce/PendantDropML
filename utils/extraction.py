@@ -18,7 +18,7 @@ warnings.filterwarnings("ignore")
 
 def extract_data_frame_single(file):
     """
-    Extracts rz data from test_data_rz files
+    Extracts rz or surface tension tensor data from test_data_rz files
 
     Parameters:
         file (str) : Path to file. Absolute or relative
@@ -117,7 +117,7 @@ def get_digits_from_filename(filename):
 class PendantDropDataset(Dataset):
     """Pendant Drop Dataset, inherits from torch.utils.data.Dataset Class."""
 
-    def __init__(self, params_dir, rz_dir, img_dir, transform=None, select_samples=None, ignore_images=False):
+    def __init__(self, params_dir, rz_dir, img_dir, sigma_dir=None, transform=None, select_samples=None, ignore_images=False):
         """
         Some good documentation.
 
@@ -139,6 +139,10 @@ class PendantDropDataset(Dataset):
         self.coord_outline_dict = extract_data_frame_directory(rz_dir)
         self.surf_tens_dict = extract_surface_tension_directory(params_dir)
         self.Wo_Ar_dict = extract_Wo_Ar_directory(params_dir)
+        if sigma_dir:
+            self.sigmas_dict = extract_data_frame_directory(sigma_dir)
+        else:
+            self.sigmas_dict = None
         self.img_dir = img_dir
         self.transform = transform
         self.ignore_images = ignore_images
@@ -170,10 +174,14 @@ class PendantDropDataset(Dataset):
             image = None
         else:
             image = io.imread(img_name)
+        if self.sigmas_dict:
+            sigma_tensor = self.sigmas_dict[idx]
+        else:
+            sigma_tensor = None
 
         coords = self.coord_outline_dict[idx]
 
-        sample = {'image': image, 'coordinates': coords, 'surface_tension': self.surf_tens_dict[idx], 'Wo_Ar' : self.Wo_Ar_dict[idx]} #
+        sample = {'image': image, 'coordinates': coords, 'surface_tension': self.surf_tens_dict[idx], 'Wo_Ar' : self.Wo_Ar_dict[idx], "sigma_tensor": sigma_tensor} #
         ## Could choose whether or not to include rz coordinates vs image (?)
 
         return sample
@@ -219,10 +227,10 @@ if __name__ == "__main__":
     ### Test Case for Dataset Class
     ##################################################
 
-    drop_dataset = PendantDropDataset("data/test_data_params", "data/test_data_rz","data/test_images")
+    drop_dataset = PendantDropDataset("elastic_mini/test_data_params", "elastic_mini/test_data_rz","elastic_mini/test_images", "elastic_mini/test_data_sigmas", ignore_images=True)
 
 
     for i, sample_id in enumerate(drop_dataset.available_samples):
         sample = drop_dataset[sample_id]
 
-        print(i, sample['image'].shape, sample['surface_tension'], sample["coordinates"].shape)
+        print(i, sample['image'].shape, sample['surface_tension'], sample["coordinates"].shape, sample["sigma_tensor"].shape)
