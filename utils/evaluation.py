@@ -1,6 +1,5 @@
 """
 Evaluation of model predictions.
-NOTE catered to image as an input feature. Not yet able to process rz-coordinates.
 
 Last modified: 6.26.2025
 """
@@ -13,6 +12,7 @@ from matplotlib.colors import Normalize
 from utils.extraction import PendantDropDataset
 from models.five_layer import FiveLayerCNN
 from models.single_layer import SingleLayerCNN
+from utils.visualize import scattershort
 
 
 def evaluate_single(model, image_path):
@@ -61,6 +61,9 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
         features = drop_dataset[sample_id]
         Wo = features["Wo_Ar"]["Wo"]
         Ar = features["Wo_Ar"]["Ar"]
+        K = features["Wo_Ar"]["Kmod"]
+        G = features["Wo_Ar"]["Gmod"]
+        frac = features["Wo_Ar"]["frac"]
 
         if config_object["settings"]["isElastic"]:
             sample_sigma = features["sigma_tensor"]
@@ -81,9 +84,11 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
         else:
             #calculate differences
             true_diff = sample_sigma - prediction
+            true_diff_sq = np.square(true_diff)
+            mse = np.average(true_diff_sq)
             relative_error = np.absolute(true_diff) / sample_sigma
-            #save info
-            evaluation_info.append(np.array([Wo, Ar, np.average(sample_sigma), np.average(prediction), np.average(true_diff), np.average(relative_error)]))
+            #save info:: Wo, Ar, sigma, pred, true, relative, mse
+            evaluation_info.append(np.array([Wo, Ar, np.average(sample_sigma), np.average(prediction), np.average(true_diff), np.average(relative_error), mse, K, G, frac]))
 
 
     #save data info to file
@@ -91,7 +96,7 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
     print("nan samples:", nan_samples)
 
     np.savetxt(config_object["save_info"]["eval_results"] + "Evaluation.txt", evaluation_info, delimiter=",",
-               header="Wo,Ar,sample_sigma,prediction,abs_error,rel_error")
+               header="Wo,Ar,sample_sigma,prediction,abs_error,rel_error,mse")
     #save prediction info to file
 
     if visualize:
@@ -107,6 +112,10 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
         all_pred = evaluation_info[:, 3]
         all_true = evaluation_info[:, 4]
         all_rel = evaluation_info[:, 5]
+        all_mse = evaluation_info[:, 6]
+        all_K = evaluation_info[:, 7]
+        all_G = evaluation_info[:, 8]
+        all_frac = evaluation_info[:, 9]
 
         with open(config_object["save_info"]["eval_results"] + "Distribution.txt", "a") as f:
             f.write("Sample Distribution\n")
@@ -119,66 +128,57 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
             
         #plot data info, Wo vs Ar vs Surface Tension distribution
         # norm_all_sigma = Normalize()(all_sigma) #(all_sigma - np.min(all_sigma)) / (np.max(all_sigma) - np.min(all_sigma))
-        plt.scatter(all_Wo, all_Ar, c=all_sigma, norm="log", cmap="viridis", marker=".")
-        plt.xlabel("Worthington Number (Wo)")
-        plt.ylabel("Aspect Ratio (Ar)")
-        plt.title("Training Data Wo vs Ar vs Surface Tension")
-        plt.colorbar(label="Surface Tension")
-        plt.savefig(config_object["save_info"]["eval_results"] + "WoArSurfTension" + ".png")
 
-        plt.show(block=False)
-        plt.clf()
+        # def scattershort(xdata, ydata, cdata, cmap, 
+        #                  xfull, xshort, 
+        #                  yfull, yshort, 
+        #                  cfull, cshort, 
+        #                  config_object, norm=Normalize()):
+        scattershort(all_Wo, all_Ar, all_sigma, "viridis", 
+                    "Worthington Number", "Wo",
+                    "Aspect Ratio", "Ar",
+                    "Surface Tension", "SurfTension",
+                    config_object, norm="log")
+        
         #plot Wo vs Ar vs accuracy
         # norm_all_true = Normalize()(all_true)
-        plt.scatter(all_Wo, all_Ar, c=all_true, norm=Normalize(), cmap="plasma", marker=".")
-        plt.xlabel("Worthington Number (Wo)")
-        plt.ylabel("Aspect Ratio (Ar)")
-        plt.title("Training Data Wo vs Ar vs AbsoluteError")
-        plt.colorbar(label="Absolute Error")
-        plt.savefig(config_object["save_info"]["eval_results"] + "WoArAccuracyTrue" + ".png")
-
-        plt.show(block=False)
-        plt.clf()
-
-        #plot Wo vs Ar vs accuracy
-        # norm_all_true = Normalize()(all_true) ***Ar/Wo vs Ar
-        plt.scatter(np.divide(all_Ar, all_Wo), all_Ar, c=all_true, norm=Normalize(), cmap="plasma", marker=".")
-        plt.xlabel("AspectRatio / Worthington Number (Ar/Wo)")
-        plt.ylabel("Aspect Ratio (Ar)")
-        plt.title("Training Data Ar/Wo vs Ar vs AbsoluteError")
-        plt.colorbar(label="Absolute Error")
-        plt.savefig(config_object["save_info"]["eval_results"] + "ArOverWoArAccuracyTrue" + ".png")
-
-        plt.xlim((0, 20))
-        plt.savefig(config_object["save_info"]["eval_results"] + "ArOverWoArAccuracyTrue_forcedperspective" + ".png")
-        plt.show(block=False)
-        plt.clf()
-
+        scattershort(all_Wo, all_Ar, all_true, "plasma", 
+                    "Worthington Number", "Wo",
+                    "Aspect Ratio", "Ar",
+                    "Absolute Error", "Abs",
+                    config_object)
+        
         # norm_all_rel = Normalize()(all_rel)
-        plt.scatter(all_Wo, all_Ar, c=all_rel, norm=Normalize(), cmap="plasma", marker=".")
-        plt.xlabel("Worthington Number (Wo)")
-        plt.ylabel("Aspect Ratio (Ar)")
-        plt.title("Training Data Wo vs Ar vs RelativeError")
-        plt.colorbar(label="Relative Error")
-        plt.savefig(config_object["save_info"]["eval_results"] + "WoArAccuracyRel" + ".png")
+        scattershort(all_Wo, all_Ar, all_rel, "plasma", 
+                    "Worthington Number", "Wo",
+                    "Aspect Ratio", "Ar",
+                    "Relative Error", "Rel",
+                    config_object)
+        
+        scattershort(all_Wo, all_Ar, all_mse, "plasma", 
+                    "Worthington Number", "Wo",
+                    "Aspect Ratio", "Ar",
+                    "Mean Squared Error", "MSE",
+                    config_object)
+        
+        scattershort(all_K, all_G, all_mse, "magma", 
+                    "K Modulus", "K",
+                    "G Modulus", "G",
+                    "Mean Squared Error", "MSE",
+                    config_object)
+        
+        scattershort(all_K, all_frac, all_mse, "magma", 
+                    "K Modulus", "K",
+                    "Compression Fraction", "Frac",
+                    "Mean Squared Error", "MSE",
+                    config_object)
 
-        plt.show(block=False)
-        plt.clf()
- 
-        # norm_all_rel = Normalize()(all_rel) ***Ar/Wo vs Ar
-        plt.scatter(np.divide(all_Ar, all_Wo), all_Ar, c=all_rel, norm=Normalize(), cmap="plasma", marker=".")
-        plt.xlabel("Apect Ratio / Worthington Number (Ar/Wo)")
-        plt.ylabel("Aspect Ratio (Ar)")
-        plt.title("Training Data Ar/Wo vs Ar vs RelativeError")
-        plt.colorbar(label="Relative Error")
-        plt.savefig(config_object["save_info"]["eval_results"] + "ArOverWoArAccuracyRel" + ".png")
-
-        plt.xlim((0, 20))
-        plt.savefig(config_object["save_info"]["eval_results"] + "ArOverWoArAccuracyRel_forcedperspective" + ".png")
-
-        plt.show(block=False)
-        plt.clf()
-
+        scattershort(all_K, all_sigma, all_mse, "magma", 
+                    "K Modulus", "K",
+                    "Surface Tension at Apex", "SurfTens",
+                    "Mean Squared Error", "MSE",
+                    config_object)
+        
         #plot Surface tension vs accuracy
         plt.scatter(all_sigma, all_true, c='forestgreen', marker=".")
         plt.xlabel("Surface Tension")
@@ -198,6 +198,14 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
         plt.show(block=False)
         plt.clf()
 
+        plt.scatter(all_sigma, all_mse, c='forestgreen', marker=".")
+        plt.xlabel("Surface Tension")
+        plt.ylabel("Mean Squared Error")
+        plt.title("Surface Tension vs MSE")
+        plt.savefig(config_object["save_info"]["eval_results"] + "SurfAccuracyMSE" + ".png")
+
+        plt.show(block=False)
+        plt.clf()
 
 
-    
+        

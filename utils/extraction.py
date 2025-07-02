@@ -71,7 +71,7 @@ def extract_surface_tension_directory(dir_path):
 def extract_Wo_Ar_single(file):
     """Extracts Wo and Ar information from file object"""
     params = json.load(file)
-    return {"Wo": params["Wo_paper"], "Ar" : params["Ar_paper"]}
+    return {"Wo": params["Wo_paper"], "Ar" : params["Ar_paper"], "Kmod" : params["Kmod"], "Gmod" : params["Gmod"], "frac" : params["frac"]}
 
 def extract_Wo_Ar_directory(dir_path):
     """Extracts Wo and Ar information from dictionary path"""
