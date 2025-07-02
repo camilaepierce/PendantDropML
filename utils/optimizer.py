@@ -38,7 +38,7 @@ def train_loop(dataloader, model, loss_fxn, optimizer, batch_size, train_losses,
         optimizer.step()
         if batch % 20 == 0:
             loss, current = loss.item(), batch * batch_size + len(X)
-            out += (f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
+            out += (f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]\n")
             train_loss_avg += loss
         else:
             train_loss_avg += loss.item()
@@ -59,14 +59,14 @@ def test_loop(dataloader, model, loss_fxn, testing_size, num_batches, tolerance,
         for X, y in dataloader:
             pred = model(X)
             test_loss += loss_fxn(pred, y).item()
-            with open(filename, "a", encoding="utf-8") as f:
-                # for (pred_val, y_val) in zip(pred, y):
-                #     f.write(f"Acutal: {y_val:3.3f} Estimate: {pred_val:3.3f} Difference: {(pred_val - y_val):3.3f}\n")
-                correct += (torch.isclose(pred, y, rtol=0, atol=tolerance)).type(torch.float).sum().item()
-                if (y.shape == (40, 2)):
-                    correct /= 80
-                f.write(f"Actual Mean: {torch.mean(y)} Actual Std Dev: {torch.std(y)}\n")
-                f.write(f"Prediction Mean: {torch.mean(pred)} Prediction Std Dev: {torch.std(pred)}\n")
+            # with open(filename, "a", encoding="utf-8") as f:
+            # for (pred_val, y_val) in zip(pred, y):
+            #     f.write(f"Acutal: {y_val:3.3f} Estimate: {pred_val:3.3f} Difference: {(pred_val - y_val):3.3f}\n")
+            correct += (torch.isclose(pred, y, rtol=0, atol=tolerance)).type(torch.float).sum().item()
+            if (y.shape == (40, 2)):
+                correct /= 80
+                # f.write(f"Actual Mean: {torch.mean(y)} Actual Std Dev: {torch.std(y)}\n")
+                # f.write(f"Prediction Mean: {torch.mean(pred)} Prediction Std Dev: {torch.std(pred)}\n")
     test_loss /= num_batches
     correct /= testing_size
     with open(filename, "a", encoding="utf-8") as f:

@@ -19,6 +19,7 @@ from models.elasticbasic import Elastic
 from utils.evaluation import evaluate_directory
 from models.Xanathor import Xanathor
 from torchinfo import summary
+from models.Gandalf import Gandalf
 
 
 if __name__ == "__main__":
@@ -31,11 +32,11 @@ if __name__ == "__main__":
     with open("config.json") as jsonFile:
         config = load(jsonFile)
     
-    model = Xanathor()
-    model.load_state_dict(torch.load('model_weights/XanathorFull.pth', weights_only=True))
+    model = Gandalf()
+    # model.load_state_dict(torch.load('model_weights/Gandalf.pth', weights_only=True))
 
     # Run the optimzer
-    # model = run_optimizer(config, Elastic, model=None)
+    model = run_optimizer(config, Gandalf, model=model)
 
 
     # print(str(summary(model, input_size=(100, 40, 2))))

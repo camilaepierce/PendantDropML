@@ -5,7 +5,7 @@ Last modified: 6.26.2025
 """
 import matplotlib.pyplot as plt
 import numpy as np
-
+from matplotlib.pylab import Normalize
 
 def show_image_with_outline(img, rz_frame):
     """Plots image on already created pyplot figure"""
@@ -41,6 +41,35 @@ def plot_loss_evolution(num_epochs, training_loss, testing_loss, model_name, los
     if save:
         plt.savefig(model_name.replace(" ", "_") + ".png")
     plt.show()
+
+def scattershort(xdata, ydata, cdata, cmap, 
+                     xfull, xshort, 
+                     yfull, yshort, 
+                     cfull, cshort, config_object, norm=Normalize()):
+        """
+        Parameters:
+            xdata
+            ydata
+            cdata
+            cmap
+            xfull
+            xshort
+            yfull
+            yshort
+            cfull
+            cshort
+            config_object
+            norm
+        """
+        plt.scatter(xdata, ydata, c=cdata, norm=norm, cmap=cmap, marker=".")
+        plt.xlabel(f"{xfull} ({xshort})")
+        plt.ylabel(f"{yfull} ({yshort})")
+        plt.title(f"Training Data {xshort} vs {yshort} vs {cshort}")
+        plt.colorbar(label=f"{cfull}")
+        plt.savefig(config_object["save_info"]["eval_results"] + f"{xshort}{yshort}{cshort}" + ".png")
+        plt.show(block=False)
+        plt.clf()
+
 
 
 if __name__ == "__main__":

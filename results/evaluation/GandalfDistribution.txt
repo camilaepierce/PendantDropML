@@ -1,0 +1,18 @@
+Sample Distribution
+Worthington Number:: Mean: 3.0372263587252295 Std Dev: 1.17531610533489
+Aspect Ratio:: Mean: 10.24716305411768 Std Dev: 5.379338001765184
+Surface Tension:: Mean: 3.1927927904222004 Std Dev: 2.6202155128462716
+Prediction Distribution
+Surface Tension:: Mean: 3.189126292562886 Std Dev: 1.1566272331813081
+Sample Distribution
+Worthington Number:: Mean: 3.0372263587252295 Std Dev: 1.17531610533489
+Aspect Ratio:: Mean: 10.24716305411768 Std Dev: 5.379338001765184
+Surface Tension:: Mean: 3.1927927904222004 Std Dev: 2.6202155128462716
+Prediction Distribution
+Surface Tension:: Mean: 3.076189553832295 Std Dev: 1.522948199149828
+Sample Distribution
+Worthington Number:: Mean: 3.0372263587252295 Std Dev: 1.17531610533489
+Aspect Ratio:: Mean: 10.24716305411768 Std Dev: 5.379338001765184
+Surface Tension:: Mean: 3.1927927904222004 Std Dev: 2.6202155128462716
+Prediction Distribution
+Surface Tension:: Mean: 3.0674978415231626 Std Dev: 1.5249903150426125
