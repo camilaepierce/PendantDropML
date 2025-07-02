@@ -63,6 +63,8 @@ def test_loop(dataloader, model, loss_fxn, testing_size, num_batches, tolerance,
                 # for (pred_val, y_val) in zip(pred, y):
                 #     f.write(f"Acutal: {y_val:3.3f} Estimate: {pred_val:3.3f} Difference: {(pred_val - y_val):3.3f}\n")
                 correct += (torch.isclose(pred, y, rtol=0, atol=tolerance)).type(torch.float).sum().item()
+                if (y.shape == (40, 2)):
+                    correct /= 80
                 f.write(f"Actual Mean: {torch.mean(y)} Actual Std Dev: {torch.std(y)}\n")
                 f.write(f"Prediction Mean: {torch.mean(pred)} Prediction Std Dev: {torch.std(pred)}\n")
     test_loss /= num_batches
@@ -86,8 +88,9 @@ def run_optimizer(config_object, CNNModel, model=None):
     Returns:
         Model with trained or updated weights.
     """
-
-    # Extracting information from config file (currently config object)
+    ###########################################
+    ###   Extracting Config Information     ###
+    ###########################################
     data_paths = config_object["data_paths"]
 
     training_params = config_object["training_parameters"]
@@ -107,17 +110,38 @@ def run_optimizer(config_object, CNNModel, model=None):
     train_losses = []
     test_losses = []
 
+    ###########################################
+    ###        Processing Settings          ###
+    ###########################################
+    settings = config_object["settings"]
+    if settings["isElastic"]:
+        labels_fxn = lambda x : x["sigma_tensor"]
+    else:
+        labels_fxn = lambda x : x["surface_tension"]
+
+    if settings["ignoreImages"]:
+        features_fxn = lambda x : x["coordinates"]
+    else:
+        features_fxn = lambda x : x["image"]
+
     ##############################################################
     ### Custom Modules
     ##############################################################
 
-    drop_dataset = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"], ignore_images=True)
+    drop_dataset = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"], 
+                                      sigma_dir=data_paths["sigmas"], ignore_images=settings["ignoreImages"])
     training_data, testing_data = drop_dataset.split_dataset(testing_size, random_seed)
 
     batch_size = int(len(training_data)/ num_batches)
 
-    train_dataloader = PendantDataLoader(training_data, num_batches=num_batches, feat_fxn=lambda x: x["coordinates"])
-    test_dataloader = PendantDataLoader(testing_data, test_num_batches, feat_fxn=lambda x: x["coordinates"])
+    if (len(training_data.available_samples) == 0 or len(testing_data.available_samples) == 0):
+        raise IndexError("You have only provided " + str(len(drop_dataset)) + " samples. Please update the config file.")
+    
+    if (batch_size == 0):
+        raise ValueError("You have only provided " + str(len(drop_dataset)) + " samples. Please update number of batches")
+
+    train_dataloader = PendantDataLoader(training_data, num_batches=num_batches, feat_fxn=features_fxn, lab_fxn=labels_fxn)
+    test_dataloader = PendantDataLoader(testing_data, test_num_batches, feat_fxn=features_fxn, lab_fxn=labels_fxn)
 
     if model == None:
         model = CNNModel()

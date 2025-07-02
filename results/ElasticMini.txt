@@ -1,0 +1,469 @@
+Model weights saved to model_weights/ElasticMini.pth
+Training Model
+===============================
+==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+Elastic                                  [7, 40, 2]                --
+├─Sequential: 1-1                        [7, 80]                   --
+│    └─Linear: 2-1                       [7, 300]                  24,300
+│    └─ReLU: 2-2                         [7, 300]                  --
+│    └─Linear: 2-3                       [7, 500]                  150,500
+│    └─ReLU: 2-4                         [7, 500]                  --
+│    └─Linear: 2-5                       [7, 300]                  150,300
+│    └─ReLU: 2-6                         [7, 300]                  --
+│    └─Linear: 2-7                       [7, 80]                   24,080
+==========================================================================================
+Total params: 349,180
+Trainable params: 349,180
+Non-trainable params: 0
+Total mult-adds (Units.MEGABYTES): 2.44
+==========================================================================================
+Input size (MB): 0.00
+Forward/backward pass size (MB): 0.07
+Params size (MB): 1.40
+Estimated Total Size (MB): 1.47
+==========================================================================================
+Epoch 1
+-------------------------------
+loss: 5.188207  [    9/   70]
+Actual Mean: 4.163259029388428 Actual Std Dev: 2.1135265827178955
+Prediction Mean: 0.022377705201506615 Prediction Std Dev: 0.06672096252441406
+Actual Mean: 2.615535259246826 Actual Std Dev: 1.984401822090149
+Prediction Mean: 0.022419478744268417 Prediction Std Dev: 0.06799455732107162
+Test Error: 
+ Accuracy: 100.0%, Avg loss: 16.128707 
+Epoch 2
+-------------------------------
+loss: 5.129538  [    9/   70]
+Actual Mean: 4.163259029388428 Actual Std Dev: 2.1135265827178955
+Prediction Mean: 0.038173750042915344 Prediction Std Dev: 0.06878579407930374
+Actual Mean: 2.615535259246826 Actual Std Dev: 1.984401822090149
+Prediction Mean: 0.038183603435754776 Prediction Std Dev: 0.07031957805156708
+Test Error: 
+ Accuracy: 110.0%, Avg loss: 16.021771 
+Epoch 3
+-------------------------------
+loss: 5.071640  [    9/   70]
+Actual Mean: 4.163259029388428 Actual Std Dev: 2.1135265827178955
+Prediction Mean: 0.05479806289076805 Prediction Std Dev: 0.0721275731921196
+Actual Mean: 2.615535259246826 Actual Std Dev: 1.984401822090149
+Prediction Mean: 0.0547725111246109 Prediction Std Dev: 0.07406628876924515
+Test Error: 
+ Accuracy: 110.0%, Avg loss: 15.909877 
+Epoch 4
+-------------------------------
+loss: 5.011311  [    9/   70]
+Actual Mean: 4.163259029388428 Actual Std Dev: 2.1135265827178955
+Prediction Mean: 0.07244160771369934 Prediction Std Dev: 0.07673629373311996
+Actual Mean: 2.615535259246826 Actual Std Dev: 1.984401822090149
+Prediction Mean: 0.07237251102924347 Prediction Std Dev: 0.07916519045829773
+Test Error: 
+ Accuracy: 120.0%, Avg loss: 15.791820 
+Epoch 5
+-------------------------------
+loss: 4.948009  [    9/   70]
+Actual Mean: 4.163259029388428 Actual Std Dev: 2.1135265827178955
+Prediction Mean: 0.09137922525405884 Prediction Std Dev: 0.08248484134674072
+Actual Mean: 2.615535259246826 Actual Std Dev: 1.984401822090149
+Prediction Mean: 0.09124786406755447 Prediction Std Dev: 0.08560341596603394
+Test Error: 
+ Accuracy: 140.0%, Avg loss: 15.665978 
+Epoch 6
+-------------------------------
+loss: 4.880718  [    9/   70]
+Actual Mean: 4.163259029388428 Actual Std Dev: 2.1135265827178955
+Prediction Mean: 0.1119343638420105 Prediction Std Dev: 0.08925196528434753
+Actual Mean: 2.615535259246826 Actual Std Dev: 1.984401822090149
+Prediction Mean: 0.11172772198915482 Prediction Std Dev: 0.09321385622024536
+Test Error: 
+ Accuracy: 180.0%, Avg loss: 15.530283 
+Epoch 7
+-------------------------------
+loss: 4.808630  [    9/   70]
+Actual Mean: 4.163259029388428 Actual Std Dev: 2.1135265827178955
+Prediction Mean: 0.1344147026538849 Prediction Std Dev: 0.09689584374427795
+Actual Mean: 2.615535259246826 Actual Std Dev: 1.984401822090149
+Prediction Mean: 0.13412374258041382 Prediction Std Dev: 0.10185851901769638
+Test Error: 
+ Accuracy: 200.0%, Avg loss: 15.382998 
+Epoch 8
+-------------------------------
+loss: 4.730753  [    9/   70]
+Actual Mean: 4.163259029388428 Actual Std Dev: 2.1135265827178955
+Prediction Mean: 0.159099742770195 Prediction Std Dev: 0.10533807426691055
+Actual Mean: 2.615535259246826 Actual Std Dev: 1.984401822090149
+Prediction Mean: 0.15873904526233673 Prediction Std Dev: 0.11151023954153061
+Test Error: 
+ Accuracy: 210.0%, Avg loss: 15.222487 
+Epoch 9
+-------------------------------
+loss: 4.646231  [    9/   70]
+Actual Mean: 4.163259029388428 Actual Std Dev: 2.1135265827178955
+Prediction Mean: 0.18615587055683136 Prediction Std Dev: 0.11455535143613815
+Actual Mean: 2.615535259246826 Actual Std Dev: 1.984401822090149
+Prediction Mean: 0.18574362993240356 Prediction Std Dev: 0.12215390056371689
+Test Error: 
+ Accuracy: 260.0%, Avg loss: 15.047989 
+Epoch 10
+-------------------------------
+loss: 4.554915  [    9/   70]
+Actual Mean: 4.163259029388428 Actual Std Dev: 2.1135265827178955
+Prediction Mean: 0.2158498913049698 Prediction Std Dev: 0.12450184673070908
+Actual Mean: 2.615535259246826 Actual Std Dev: 1.984401822090149
+Prediction Mean: 0.2153831273317337 Prediction Std Dev: 0.13376854360103607
+Test Error: 
+ Accuracy: 330.0%, Avg loss: 14.858293 
+Done!
+Model weights saved to model_weights/ElasticMini.pth
+Training Model
+===============================
+==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+Elastic                                  [7, 40, 2]                --
+├─Sequential: 1-1                        [7, 80]                   --
+│    └─Linear: 2-1                       [7, 300]                  24,300
+│    └─ReLU: 2-2                         [7, 300]                  --
+│    └─Linear: 2-3                       [7, 500]                  150,500
+│    └─ReLU: 2-4                         [7, 500]                  --
+│    └─Linear: 2-5                       [7, 300]                  150,300
+│    └─ReLU: 2-6                         [7, 300]                  --
+│    └─Linear: 2-7                       [7, 80]                   24,080
+==========================================================================================
+Total params: 349,180
+Trainable params: 349,180
+Non-trainable params: 0
+Total mult-adds (Units.MEGABYTES): 2.44
+==========================================================================================
+Input size (MB): 0.00
+Forward/backward pass size (MB): 0.07
+Params size (MB): 1.40
+Estimated Total Size (MB): 1.47
+==========================================================================================
+Epoch 1
+-------------------------------
+loss: 23.717428  [    9/   70]
+Actual Mean: 2.4815542697906494 Actual Std Dev: 1.982195496559143
+Prediction Mean: 0.008717801421880722 Prediction Std Dev: 0.05668165907263756
+Actual Mean: 2.606779098510742 Actual Std Dev: 1.5008068084716797
+Prediction Mean: 0.00775211863219738 Prediction Std Dev: 0.053291793912649155
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 9.518043 
+Epoch 2
+-------------------------------
+loss: 23.601368  [    9/   70]
+Actual Mean: 2.4815542697906494 Actual Std Dev: 1.982195496559143
+Prediction Mean: 0.02291652373969555 Prediction Std Dev: 0.05929148942232132
+Actual Mean: 2.606779098510742 Actual Std Dev: 1.5008068084716797
+Prediction Mean: 0.020709777250885963 Prediction Std Dev: 0.05581434816122055
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 9.445640 
+Epoch 3
+-------------------------------
+loss: 23.486322  [    9/   70]
+Actual Mean: 2.4815542697906494 Actual Std Dev: 1.982195496559143
+Prediction Mean: 0.037350740283727646 Prediction Std Dev: 0.06318075209856033
+Actual Mean: 2.606779098510742 Actual Std Dev: 1.5008068084716797
+Prediction Mean: 0.0338931530714035 Prediction Std Dev: 0.059498291462659836
+Test Error: 
+ Accuracy: 10.0%, Avg loss: 9.372697 
+Epoch 4
+-------------------------------
+loss: 23.370150  [    9/   70]
+Actual Mean: 2.4815542697906494 Actual Std Dev: 1.982195496559143
+Prediction Mean: 0.05263717100024223 Prediction Std Dev: 0.06817330420017242
+Actual Mean: 2.606779098510742 Actual Std Dev: 1.5008068084716797
+Prediction Mean: 0.047856077551841736 Prediction Std Dev: 0.06420843303203583
+Test Error: 
+ Accuracy: 10.0%, Avg loss: 9.296064 
+Epoch 5
+-------------------------------
+loss: 23.247984  [    9/   70]
+Actual Mean: 2.4815542697906494 Actual Std Dev: 1.982195496559143
+Prediction Mean: 0.06912494450807571 Prediction Std Dev: 0.07419506460428238
+Actual Mean: 2.606779098510742 Actual Std Dev: 1.5008068084716797
+Prediction Mean: 0.06285538524389267 Prediction Std Dev: 0.06988151371479034
+Test Error: 
+ Accuracy: 40.0%, Avg loss: 9.214047 
+Epoch 6
+-------------------------------
+loss: 23.116611  [    9/   70]
+Actual Mean: 2.4815542697906494 Actual Std Dev: 1.982195496559143
+Prediction Mean: 0.08714485913515091 Prediction Std Dev: 0.08108582347631454
+Actual Mean: 2.606779098510742 Actual Std Dev: 1.5008068084716797
+Prediction Mean: 0.07919486612081528 Prediction Std Dev: 0.076386958360672
+Test Error: 
+ Accuracy: 90.0%, Avg loss: 9.125187 
+Epoch 7
+-------------------------------
+loss: 22.973749  [    9/   70]
+Actual Mean: 2.4815542697906494 Actual Std Dev: 1.982195496559143
+Prediction Mean: 0.1069176122546196 Prediction Std Dev: 0.0887046605348587
+Actual Mean: 2.606779098510742 Actual Std Dev: 1.5008068084716797
+Prediction Mean: 0.0971180722117424 Prediction Std Dev: 0.08361604064702988
+Test Error: 
+ Accuracy: 150.0%, Avg loss: 9.028464 
+Epoch 8
+-------------------------------
+loss: 22.817799  [    9/   70]
+Actual Mean: 2.4815542697906494 Actual Std Dev: 1.982195496559143
+Prediction Mean: 0.12870599329471588 Prediction Std Dev: 0.0971243754029274
+Actual Mean: 2.606779098510742 Actual Std Dev: 1.5008068084716797
+Prediction Mean: 0.11686080694198608 Prediction Std Dev: 0.0916401818394661
+Test Error: 
+ Accuracy: 200.0%, Avg loss: 8.922810 
+Epoch 9
+-------------------------------
+loss: 22.646807  [    9/   70]
+Actual Mean: 2.4815542697906494 Actual Std Dev: 1.982195496559143
+Prediction Mean: 0.1527239829301834 Prediction Std Dev: 0.10633129626512527
+Actual Mean: 2.606779098510742 Actual Std Dev: 1.5008068084716797
+Prediction Mean: 0.13861581683158875 Prediction Std Dev: 0.1004842147231102
+Test Error: 
+ Accuracy: 280.0%, Avg loss: 8.807401 
+Epoch 10
+-------------------------------
+loss: 22.459230  [    9/   70]
+Actual Mean: 2.4815542697906494 Actual Std Dev: 1.982195496559143
+Prediction Mean: 0.17928747832775116 Prediction Std Dev: 0.11633697897195816
+Actual Mean: 2.606779098510742 Actual Std Dev: 1.5008068084716797
+Prediction Mean: 0.16262397170066833 Prediction Std Dev: 0.11016309261322021
+Test Error: 
+ Accuracy: 320.0%, Avg loss: 8.681182 
+Done!
+Model weights saved to model_weights/ElasticMini.pth
+Training Model
+===============================
+==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+Elastic                                  [7, 40, 2]                --
+├─Sequential: 1-1                        [7, 80]                   --
+│    └─Linear: 2-1                       [7, 300]                  24,300
+│    └─ReLU: 2-2                         [7, 300]                  --
+│    └─Linear: 2-3                       [7, 500]                  150,500
+│    └─ReLU: 2-4                         [7, 500]                  --
+│    └─Linear: 2-5                       [7, 300]                  150,300
+│    └─ReLU: 2-6                         [7, 300]                  --
+│    └─Linear: 2-7                       [7, 80]                   24,080
+==========================================================================================
+Total params: 349,180
+Trainable params: 349,180
+Non-trainable params: 0
+Total mult-adds (Units.MEGABYTES): 2.44
+==========================================================================================
+Input size (MB): 0.00
+Forward/backward pass size (MB): 0.07
+Params size (MB): 1.40
+Estimated Total Size (MB): 1.47
+==========================================================================================
+Epoch 1
+-------------------------------
+loss: 9.967035  [    9/   70]
+Actual Mean: 4.043176174163818 Actual Std Dev: 3.493479013442993
+Prediction Mean: 0.010336130857467651 Prediction Std Dev: 0.06341481953859329
+Actual Mean: 2.4688355922698975 Actual Std Dev: 1.856002926826477
+Prediction Mean: 0.011088238097727299 Prediction Std Dev: 0.06731122732162476
+Test Error: 
+ Accuracy: 890.0%, Avg loss: 18.946195 
+Epoch 2
+-------------------------------
+loss: 9.880607  [    9/   70]
+Actual Mean: 4.043176174163818 Actual Std Dev: 3.493479013442993
+Prediction Mean: 0.02407005801796913 Prediction Std Dev: 0.06613936275243759
+Actual Mean: 2.4688355922698975 Actual Std Dev: 1.856002926826477
+Prediction Mean: 0.025481989607214928 Prediction Std Dev: 0.07067495584487915
+Test Error: 
+ Accuracy: 900.0%, Avg loss: 18.841114 
+Epoch 3
+-------------------------------
+loss: 9.793412  [    9/   70]
+Actual Mean: 4.043176174163818 Actual Std Dev: 3.493479013442993
+Prediction Mean: 0.03837953880429268 Prediction Std Dev: 0.0701451301574707
+Actual Mean: 2.4688355922698975 Actual Std Dev: 1.856002926826477
+Prediction Mean: 0.04050402715802193 Prediction Std Dev: 0.07557645440101624
+Test Error: 
+ Accuracy: 900.0%, Avg loss: 18.732279 
+Epoch 4
+-------------------------------
+loss: 9.703087  [    9/   70]
+Actual Mean: 4.043176174163818 Actual Std Dev: 3.493479013442993
+Prediction Mean: 0.05349511653184891 Prediction Std Dev: 0.07522908598184586
+Actual Mean: 2.4688355922698975 Actual Std Dev: 1.856002926826477
+Prediction Mean: 0.05647413432598114 Prediction Std Dev: 0.08172783255577087
+Test Error: 
+ Accuracy: 930.0%, Avg loss: 18.617858 
+Epoch 5
+-------------------------------
+loss: 9.607903  [    9/   70]
+Actual Mean: 4.043176174163818 Actual Std Dev: 3.493479013442993
+Prediction Mean: 0.0695236325263977 Prediction Std Dev: 0.08131230622529984
+Actual Mean: 2.4688355922698975 Actual Std Dev: 1.856002926826477
+Prediction Mean: 0.07334189862012863 Prediction Std Dev: 0.08904968202114105
+Test Error: 
+ Accuracy: 980.0%, Avg loss: 18.497716 
+Epoch 6
+-------------------------------
+loss: 9.507792  [    9/   70]
+Actual Mean: 4.043176174163818 Actual Std Dev: 3.493479013442993
+Prediction Mean: 0.08696076273918152 Prediction Std Dev: 0.0884571447968483
+Actual Mean: 2.4688355922698975 Actual Std Dev: 1.856002926826477
+Prediction Mean: 0.09175310283899307 Prediction Std Dev: 0.09757623821496964
+Test Error: 
+ Accuracy: 1000.0%, Avg loss: 18.367188 
+Epoch 7
+-------------------------------
+loss: 9.399523  [    9/   70]
+Actual Mean: 4.043176174163818 Actual Std Dev: 3.493479013442993
+Prediction Mean: 0.10616308450698853 Prediction Std Dev: 0.09657999128103256
+Actual Mean: 2.4688355922698975 Actual Std Dev: 1.856002926826477
+Prediction Mean: 0.11214311420917511 Prediction Std Dev: 0.10724443942308426
+Test Error: 
+ Accuracy: 1090.0%, Avg loss: 18.223766 
+Epoch 8
+-------------------------------
+loss: 9.280937  [    9/   70]
+Actual Mean: 4.043176174163818 Actual Std Dev: 3.493479013442993
+Prediction Mean: 0.12728890776634216 Prediction Std Dev: 0.1056789681315422
+Actual Mean: 2.4688355922698975 Actual Std Dev: 1.856002926826477
+Prediction Mean: 0.1345774382352829 Prediction Std Dev: 0.11817152053117752
+Test Error: 
+ Accuracy: 1170.0%, Avg loss: 18.066781 
+Epoch 9
+-------------------------------
+loss: 9.151533  [    9/   70]
+Actual Mean: 4.043176174163818 Actual Std Dev: 3.493479013442993
+Prediction Mean: 0.15051865577697754 Prediction Std Dev: 0.1157989650964737
+Actual Mean: 2.4688355922698975 Actual Std Dev: 1.856002926826477
+Prediction Mean: 0.15922988951206207 Prediction Std Dev: 0.13034069538116455
+Test Error: 
+ Accuracy: 1250.0%, Avg loss: 17.895258 
+Epoch 10
+-------------------------------
+loss: 9.010547  [    9/   70]
+Actual Mean: 4.043176174163818 Actual Std Dev: 3.493479013442993
+Prediction Mean: 0.17604738473892212 Prediction Std Dev: 0.1269088238477707
+Actual Mean: 2.4688355922698975 Actual Std Dev: 1.856002926826477
+Prediction Mean: 0.18633952736854553 Prediction Std Dev: 0.14373736083507538
+Test Error: 
+ Accuracy: 1400.0%, Avg loss: 17.708100 
+Done!
+Model weights saved to model_weights/ElasticMini.pth
+Training Model
+===============================
+==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+Elastic                                  [7, 40, 2]                --
+├─Sequential: 1-1                        [7, 80]                   --
+│    └─Linear: 2-1                       [7, 300]                  24,300
+│    └─ReLU: 2-2                         [7, 300]                  --
+│    └─Linear: 2-3                       [7, 500]                  150,500
+│    └─ReLU: 2-4                         [7, 500]                  --
+│    └─Linear: 2-5                       [7, 300]                  150,300
+│    └─ReLU: 2-6                         [7, 300]                  --
+│    └─Linear: 2-7                       [7, 80]                   24,080
+==========================================================================================
+Total params: 349,180
+Trainable params: 349,180
+Non-trainable params: 0
+Total mult-adds (Units.MEGABYTES): 2.44
+==========================================================================================
+Input size (MB): 0.00
+Forward/backward pass size (MB): 0.07
+Params size (MB): 1.40
+Estimated Total Size (MB): 1.47
+==========================================================================================
+Epoch 1
+-------------------------------
+loss: 4.665588  [    9/   70]
+Actual Mean: 3.86104154586792 Actual Std Dev: 2.2473888397216797
+Prediction Mean: 0.014047532342374325 Prediction Std Dev: 0.06243134289979935
+Actual Mean: 3.4434573650360107 Actual Std Dev: 1.990227222442627
+Prediction Mean: 0.013601439073681831 Prediction Std Dev: 0.06081250682473183
+Test Error: 
+ Accuracy: 260.0%, Avg loss: 17.775146 
+Epoch 2
+-------------------------------
+loss: 4.610736  [    9/   70]
+Actual Mean: 3.86104154586792 Actual Std Dev: 2.2473888397216797
+Prediction Mean: 0.027515249326825142 Prediction Std Dev: 0.06412462890148163
+Actual Mean: 3.4434573650360107 Actual Std Dev: 1.990227222442627
+Prediction Mean: 0.02642541378736496 Prediction Std Dev: 0.06242694333195686
+Test Error: 
+ Accuracy: 280.0%, Avg loss: 17.675929 
+Epoch 3
+-------------------------------
+loss: 4.556908  [    9/   70]
+Actual Mean: 3.86104154586792 Actual Std Dev: 2.2473888397216797
+Prediction Mean: 0.04119154065847397 Prediction Std Dev: 0.06739584356546402
+Actual Mean: 3.4434573650360107 Actual Std Dev: 1.990227222442627
+Prediction Mean: 0.03948873281478882 Prediction Std Dev: 0.06555528938770294
+Test Error: 
+ Accuracy: 330.0%, Avg loss: 17.575469 
+Epoch 4
+-------------------------------
+loss: 4.502561  [    9/   70]
+Actual Mean: 3.86104154586792 Actual Std Dev: 2.2473888397216797
+Prediction Mean: 0.05559193715453148 Prediction Std Dev: 0.07188896834850311
+Actual Mean: 3.4434573650360107 Actual Std Dev: 1.990227222442627
+Prediction Mean: 0.05321548134088516 Prediction Std Dev: 0.06989298015832901
+Test Error: 
+ Accuracy: 380.0%, Avg loss: 17.470688 
+Epoch 5
+-------------------------------
+loss: 4.445730  [    9/   70]
+Actual Mean: 3.86104154586792 Actual Std Dev: 2.2473888397216797
+Prediction Mean: 0.07100316882133484 Prediction Std Dev: 0.07746628671884537
+Actual Mean: 3.4434573650360107 Actual Std Dev: 1.990227222442627
+Prediction Mean: 0.06794478744268417 Prediction Std Dev: 0.07527012377977371
+Test Error: 
+ Accuracy: 410.0%, Avg loss: 17.358851 
+Epoch 6
+-------------------------------
+loss: 4.385238  [    9/   70]
+Actual Mean: 3.86104154586792 Actual Std Dev: 2.2473888397216797
+Prediction Mean: 0.08785506337881088 Prediction Std Dev: 0.08400066941976547
+Actual Mean: 3.4434573650360107 Actual Std Dev: 1.990227222442627
+Prediction Mean: 0.08403593301773071 Prediction Std Dev: 0.08159539848566055
+Test Error: 
+ Accuracy: 470.0%, Avg loss: 17.237190 
+Epoch 7
+-------------------------------
+loss: 4.319953  [    9/   70]
+Actual Mean: 3.86104154586792 Actual Std Dev: 2.2473888397216797
+Prediction Mean: 0.10633304715156555 Prediction Std Dev: 0.09137993305921555
+Actual Mean: 3.4434573650360107 Actual Std Dev: 1.990227222442627
+Prediction Mean: 0.10165592283010483 Prediction Std Dev: 0.08878610283136368
+Test Error: 
+ Accuracy: 470.0%, Avg loss: 17.104676 
+Epoch 8
+-------------------------------
+loss: 4.249151  [    9/   70]
+Actual Mean: 3.86104154586792 Actual Std Dev: 2.2473888397216797
+Prediction Mean: 0.12672030925750732 Prediction Std Dev: 0.09954080730676651
+Actual Mean: 3.4434573650360107 Actual Std Dev: 1.990227222442627
+Prediction Mean: 0.12108027189970016 Prediction Std Dev: 0.09676270931959152
+Test Error: 
+ Accuracy: 500.0%, Avg loss: 16.959294 
+Epoch 9
+-------------------------------
+loss: 4.172097  [    9/   70]
+Actual Mean: 3.86104154586792 Actual Std Dev: 2.2473888397216797
+Prediction Mean: 0.14922146499156952 Prediction Std Dev: 0.1084599643945694
+Actual Mean: 3.4434573650360107 Actual Std Dev: 1.990227222442627
+Prediction Mean: 0.1425151377916336 Prediction Std Dev: 0.10551011562347412
+Test Error: 
+ Accuracy: 510.0%, Avg loss: 16.799811 
+Epoch 10
+-------------------------------
+loss: 4.088245  [    9/   70]
+Actual Mean: 3.86104154586792 Actual Std Dev: 2.2473888397216797
+Prediction Mean: 0.17405052483081818 Prediction Std Dev: 0.11812188476324081
+Actual Mean: 3.4434573650360107 Actual Std Dev: 1.990227222442627
+Prediction Mean: 0.16614417731761932 Prediction Std Dev: 0.1150176003575325
+Test Error: 
+ Accuracy: 530.0%, Avg loss: 16.625168 
+Done!
+Model weights saved to model_weights/ElasticMini.pth

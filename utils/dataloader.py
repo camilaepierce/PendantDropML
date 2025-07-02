@@ -7,7 +7,7 @@ from torch import from_numpy, Tensor
 
 class PendantDataLoader():
 
-    def __init__(self, data, num_batches, shuffle=True, random_seed=None, feat_fxn=lambda x: x["image"], lab_fxn=lambda x: x["surface_tension"]):
+    def __init__(self, data, num_batches, random_seed=None, feat_fxn=lambda x: x["image"], lab_fxn=lambda x: x["surface_tension"]):
         """
         Initializes a DataLoader Object with optional random seeding parameter
         """
@@ -22,6 +22,7 @@ class PendantDataLoader():
         self.num_batches = num_batches
         # self.size = len(data)
         self.feature_shape = (num_batches,) + feat_fxn(data[self.order[0]]).shape
+        self.label_shape = (num_batches,) + lab_fxn(data[self.order[0]]).shape
     
     def __iter__(self):
         """

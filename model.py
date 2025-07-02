@@ -15,11 +15,17 @@ import utils
 from utils.optimizer import run_optimizer
 from models.five_layer import FiveLayerCNN
 from models.grayscaletransform import GrayscaleTransform
+from models.elasticbasic import Elastic
 from utils.evaluation import evaluate_directory
 from models.Xanathor import Xanathor
 from torchinfo import summary
 
+
 if __name__ == "__main__":
+
+    device = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
+    print(f"Using {device} device")
+
 
     # Open config file as dictionary
     with open("config.json") as jsonFile:
@@ -29,7 +35,7 @@ if __name__ == "__main__":
     model.load_state_dict(torch.load('model_weights/XanathorFull.pth', weights_only=True))
 
     # Run the optimzer
-    model = run_optimizer(config, Xanathor, model=None)
+    # model = run_optimizer(config, Elastic, model=None)
 
 
     # print(str(summary(model, input_size=(100, 40, 2))))

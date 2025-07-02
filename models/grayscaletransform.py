@@ -3,10 +3,6 @@ from torch import nn
 from torchvision import transforms
 from torchvision import transforms
 
-device = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
-print(f"Using {device} device")
-
-
 class GrayscaleTransform(nn.Module):
 
     def __init__(self):

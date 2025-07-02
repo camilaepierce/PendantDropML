@@ -1,7 +1,5 @@
 from torch import nn
 
-
-
 class FiveLayerCNN(nn.Module):
 
     def __init__(self):

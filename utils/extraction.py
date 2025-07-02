@@ -136,9 +136,11 @@ class PendantDropDataset(Dataset):
         self.params_dir = params_dir
         self.rz_dir = rz_dir
         self.img_dir = img_dir
+        self.sigma_dir = sigma_dir
         self.coord_outline_dict = extract_data_frame_directory(rz_dir)
         self.surf_tens_dict = extract_surface_tension_directory(params_dir)
         self.Wo_Ar_dict = extract_Wo_Ar_directory(params_dir)
+
         if sigma_dir:
             self.sigmas_dict = extract_data_frame_directory(sigma_dir)
         else:
@@ -150,7 +152,7 @@ class PendantDropDataset(Dataset):
         if select_samples is None:
             self.available_samples = set(self.coord_outline_dict.keys())
         else:
-            self.available_samples = select_samples
+            self.available_samples = select_samples.copy()
 
     def __len__(self):
         """ Returns size of dataset """
@@ -198,8 +200,8 @@ class PendantDropDataset(Dataset):
         """
         seeded_random = random.Random(random_seed)
         order = seeded_random.sample(list(self.available_samples), len(self.available_samples))
-        testingset = PendantDropDataset(self.params_dir, self.rz_dir, self.img_dir, select_samples=order[:k], ignore_images=self.ignore_images)
-        trainingset = PendantDropDataset(self.params_dir, self.rz_dir, self.img_dir, select_samples=order[k:], ignore_images=self.ignore_images)
+        trainingset = PendantDropDataset(self.params_dir, self.rz_dir, self.img_dir, sigma_dir=self.sigma_dir, select_samples=order[k:], ignore_images=self.ignore_images)
+        testingset = PendantDropDataset(self.params_dir, self.rz_dir, self.img_dir, sigma_dir=self.sigma_dir, select_samples=order[:k], ignore_images=self.ignore_images)
         return (trainingset, testingset)
 
 if __name__ == "__main__":
@@ -230,7 +232,14 @@ if __name__ == "__main__":
     drop_dataset = PendantDropDataset("elastic_mini/test_data_params", "elastic_mini/test_data_rz","elastic_mini/test_images", "elastic_mini/test_data_sigmas", ignore_images=True)
 
 
-    for i, sample_id in enumerate(drop_dataset.available_samples):
-        sample = drop_dataset[sample_id]
+    # for i, sample_id in enumerate(drop_dataset.available_samples):
+    #     sample = drop_dataset[sample_id]
 
-        print(i, sample['image'].shape, sample['surface_tension'], sample["coordinates"].shape, sample["sigma_tensor"].shape)
+        # print(i, "sample ID", sample_id, "surface_tension", sample['surface_tension'], "coords size", sample["coordinates"].shape,"tensor_size", sample["sigma_tensor"].shape)
+    
+        # Removed sample['image'].shape from test statement
+
+    # print(drop_dataset["38"]["coordinates"])
+
+    print(type(drop_dataset["38"]["sigma_tensor"]))
+    print(drop_dataset["38"]["sigma_tensor"].shape)
