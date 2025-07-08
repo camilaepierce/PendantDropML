@@ -49,7 +49,7 @@ def train_loop(dataloader, model, loss_fxn, optimizer, batch_size, train_losses,
 
 
 
-def test_loop(dataloader, model, loss_fxn, testing_size, num_batches, tolerance, test_losses, filename):
+def test_loop(dataloader, model, loss_fxn, num_batches, tolerance, test_losses, filename):
     """ Testing loop of optimization. """
     model.eval()
 
@@ -63,12 +63,10 @@ def test_loop(dataloader, model, loss_fxn, testing_size, num_batches, tolerance,
             # for (pred_val, y_val) in zip(pred, y):
             #     f.write(f"Acutal: {y_val:3.3f} Estimate: {pred_val:3.3f} Difference: {(pred_val - y_val):3.3f}\n")
             correct += (torch.isclose(pred, y, rtol=0, atol=tolerance)).type(torch.float).sum().item()
-            if (y.shape == (40, 2)):
-                correct /= 80
                 # f.write(f"Actual Mean: {torch.mean(y)} Actual Std Dev: {torch.std(y)}\n")
                 # f.write(f"Prediction Mean: {torch.mean(pred)} Prediction Std Dev: {torch.std(pred)}\n")
     test_loss /= num_batches
-    correct /= testing_size
+    correct /= len(dataloader.data)
     with open(filename, "a", encoding="utf-8") as f:
         f.write(f"Test Error: \n Accuracy: {(100*correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
     test_losses.append(test_loss)
@@ -158,7 +156,7 @@ def run_optimizer(config_object, CNNModel, model=None):
         with open(results_file, "a", encoding="utf-8") as f:
             f.write(f"Epoch {t+1}\n-------------------------------\n")
         train_loop(train_dataloader, model, loss_fxn, optimizer, batch_size, train_losses, results_file)
-        test_loop(test_dataloader, model, loss_fxn, testing_size, 
+        test_loop(test_dataloader, model, loss_fxn, 
                   test_num_batches, config_object["testing_parameters"]["absolute_tolerance"], test_losses, results_file)
     with open(results_file, "a", encoding="utf-8") as f:
         f.write("Done!\n")

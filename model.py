@@ -13,13 +13,13 @@ from torchvision import transforms
 # import torchvision.models as models
 import utils
 from utils.optimizer import run_optimizer
-#from models.five_layer import FiveLayerCNN
-#from models.grayscaletransform import GrayscaleTransform
-#from models.elasticbasic import Elastic
+from models.five_layer import FiveLayerCNN
+from models.grayscaletransform import GrayscaleTransform
+from models.elasticbasic import Elastic
 from utils.evaluation import evaluate_directory
-#from models.Xanathor import Xanathor
+from models.Xanathor import Xanathor
 from torchinfo import summary
-from models.Gandalf import Gandalf
+from models.elastic.Gandalf import Gandalf
 
 
 if __name__ == "__main__":
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     # model.load_state_dict(torch.load('model_weights/Gandalf.pth', weights_only=True))
 
     # Run the optimzer
-    model = run_optimizer(config, Gandalf, model=model)
+    # model = run_optimizer(config, Gandalf, model=model)
 
 
     # print(str(summary(model, input_size=(100, 40, 2))))

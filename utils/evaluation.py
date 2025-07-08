@@ -87,7 +87,7 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
             true_diff_sq = np.square(true_diff)
             mse = np.average(true_diff_sq)
             relative_error = np.absolute(true_diff) / sample_sigma
-            #save info:: Wo, Ar, sigma, pred, true, relative, mse
+            #save info:: Wo, Ar, sigma, pred, true, relative, mse, K, G, frac
             evaluation_info.append(np.array([Wo, Ar, np.average(sample_sigma), np.average(prediction), np.average(true_diff), np.average(relative_error), mse, K, G, frac]))
 
 
@@ -159,25 +159,25 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
                     "Worthington Number", "Wo",
                     "Aspect Ratio", "Ar",
                     "Mean Squared Error", "MSE",
-                    config_object)
+                    config_object, norm="log")
         
         scattershort(all_K, all_G, all_mse, "magma", 
                     "K Modulus", "K",
                     "G Modulus", "G",
                     "Mean Squared Error", "MSE",
-                    config_object)
+                    config_object, norm="log")
         
         scattershort(all_K, all_frac, all_mse, "magma", 
                     "K Modulus", "K",
                     "Compression Fraction", "Frac",
                     "Mean Squared Error", "MSE",
-                    config_object)
+                    config_object, norm="log")
 
         scattershort(all_K, all_sigma, all_mse, "magma", 
                     "K Modulus", "K",
                     "Surface Tension at Apex", "SurfTens",
                     "Mean Squared Error", "MSE",
-                    config_object)
+                    config_object, norm="log")
         
         #plot Surface tension vs accuracy
         plt.scatter(all_sigma, all_true, c='forestgreen', marker=".")
