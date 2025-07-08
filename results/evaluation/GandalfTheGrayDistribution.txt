@@ -1,0 +1,6 @@
+Sample Distribution
+Worthington Number:: Mean: 2.7136652658327343 Std Dev: 1.0695462325751786
+Aspect Ratio:: Mean: 12.342343942973105 Std Dev: 3.5520559053630567
+Surface Tension:: Mean: 2.738759544817867 Std Dev: 2.528253495052683
+Prediction Distribution
+Surface Tension:: Mean: 2.807826051222228 Std Dev: 0.958598503865279
