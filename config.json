@@ -6,8 +6,8 @@
         "save_info" : {
             "modelName" : "model_weights/GandalfTheGray.pth", 
             "save_model" : true,
-            "results" : "results/GandalfTheGray",
-            "eval_results" : "results/evaluation/GandalfTheGray"
+            "results" : "results/GandalfTheGraySecondRun",
+            "eval_results" : "results/evaluation/GandalfTheGraySecondRun"
         },
         "data_paths" : {
             "params" : "elastic_massive/test_data_params", 
