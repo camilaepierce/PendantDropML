@@ -7,19 +7,13 @@ import torch
 from torch import nn
 
 
-class Gandalf(nn.Module):
+class Empty(nn.Module):
     """ Works with rc coordinates 40x2, and output features 40x2"""
 
     def __init__(self):
         super().__init__()
         self.linear_relu_stack = nn.Sequential(
-            nn.Linear(80, 300),
-            nn.ReLU(),
-            nn.Linear(300, 500),
-            nn.ReLU(),
-            nn.Linear(500, 300),
-            nn.ReLU(),
-            nn.Linear(300, 80)
+            nn.Linear(80, 80),
         )
         self.name = "Five Layer CNN"
 

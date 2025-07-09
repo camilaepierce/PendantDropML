@@ -9,7 +9,7 @@ import torch
 
 # with open("../results/evaluation/GandalfTheGrayEvaluation.txt", "r") as f:
 
-Wo,Ar,sample_sigma,prediction,abs_error,rel_error,mse,K, G, frac = np.loadtxt("results/evaluation/GandalfTheGrayEvaluation.txt", delimiter=",", skiprows=1, unpack=True)
+Wo,Ar,sample_sigma,prediction,abs_error,rel_error,mse,K, G, frac = np.loadtxt("results/evaluation/EmptyEvaluation.txt", delimiter=",", skiprows=1, unpack=True)
 
 print(np.min(mse), "minimum value of mse")
 print(np.max(mse), "maximum value of mse")
@@ -32,58 +32,58 @@ import matplotlib.pyplot as plt
 
 # plt.show()
 
-print(np.min(sample_sigma))
+# print(np.min(sample_sigma))
 
-below_zero = []
+# below_zero = []
 
-for i, sigma in enumerate(sample_sigma):
-    if sigma <0:
-        below_zero.append([Wo[i], Ar[i], sample_sigma[i], prediction[i], mse[i], K[i], G[i], frac[i]])
+# for i, sigma in enumerate(sample_sigma):
+#     if sigma <0:
+#         below_zero.append([Wo[i], Ar[i], sample_sigma[i], prediction[i], mse[i], K[i], G[i], frac[i]])
 
-below_zero = np.array(below_zero)
+# below_zero = np.array(below_zero)
 
-print(len(below_zero))
-print(len(sample_sigma))
+# print(len(below_zero))
+# print(len(sample_sigma))
 
-print(np.average(Wo), np.average(Ar), np.average(sample_sigma), np.average(prediction), np.average(mse), "\n", np.average(K), np.average(G), np.average(frac))
-print(np.average(below_zero, axis=0))
+# print(np.average(Wo), np.average(Ar), np.average(sample_sigma), np.average(prediction), np.average(mse), "\n", np.average(K), np.average(G), np.average(frac))
+# print(np.average(below_zero, axis=0))
 
-# significantly different: mse, K, sigma (ofc), 
-print("below zero")
-print(below_zero[: , 5])
-print("max, min")
-print(np.max(below_zero[:, 5]))
-print(np.min(below_zero[:, 5]))
-print("quartiles (25, 50, 75)")
-print(np.quantile(below_zero[:, 5], .25))
-print(np.quantile(below_zero[:, 5], .50))
-print(np.quantile(below_zero[:, 5], .75))
+# # significantly different: mse, K, sigma (ofc), 
+# print("below zero")
+# print(below_zero[: , 5])
+# print("max, min")
+# print(np.max(below_zero[:, 5]))
+# print(np.min(below_zero[:, 5]))
+# print("quartiles (25, 50, 75)")
+# print(np.quantile(below_zero[:, 5], .25))
+# print(np.quantile(below_zero[:, 5], .50))
+# print(np.quantile(below_zero[:, 5], .75))
 
 
-below_zero = []
+# below_zero = []
 
-for i, k in enumerate(K):
-    if k <49.8 and k > 5.06:
-        below_zero.append([Wo[i], Ar[i], sample_sigma[i], prediction[i], mse[i], K[i], G[i], frac[i]])
+# for i, k in enumerate(K):
+#     if k <49.8 and k > 5.06:
+#         below_zero.append([Wo[i], Ar[i], sample_sigma[i], prediction[i], mse[i], K[i], G[i], frac[i]])
 
-below_zero = np.array(below_zero)
+# below_zero = np.array(below_zero)
 
-print(len(below_zero))
-print(len(sample_sigma))
+# print(len(below_zero))
+# print(len(sample_sigma))
 
-print(np.average(Wo), np.average(Ar), np.average(sample_sigma), np.average(prediction), np.average(mse), "\n", np.average(K), np.average(G), np.average(frac))
-print(np.average(below_zero, axis=0))
+# print(np.average(Wo), np.average(Ar), np.average(sample_sigma), np.average(prediction), np.average(mse), "\n", np.average(K), np.average(G), np.average(frac))
+# print(np.average(below_zero, axis=0))
 
-# significantly different: mse, K, sigma (ofc), 
-print("below zero")
-print(below_zero[: , 5])
-print("max, min")
-print(np.max(below_zero[:, 5]))
-print(np.min(below_zero[:, 5]))
-print("quartiles (25, 50, 75)")
-print(np.quantile(below_zero[:, 5], .25))
-print(np.quantile(below_zero[:, 5], .50))
-print(np.quantile(below_zero[:, 5], .75))
+# # significantly different: mse, K, sigma (ofc), 
+# print("below zero")
+# print(below_zero[: , 5])
+# print("max, min")
+# print(np.max(below_zero[:, 5]))
+# print(np.min(below_zero[:, 5]))
+# print("quartiles (25, 50, 75)")
+# print(np.quantile(below_zero[:, 5], .25))
+# print(np.quantile(below_zero[:, 5], .50))
+# print(np.quantile(below_zero[:, 5], .75))
 
 print()
 print()

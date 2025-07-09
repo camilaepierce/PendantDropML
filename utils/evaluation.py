@@ -10,8 +10,6 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import Normalize
 
 from utils.extraction import PendantDropDataset
-from models.five_layer import FiveLayerCNN
-from models.single_layer import SingleLayerCNN
 from utils.visualize import scattershort
 
 

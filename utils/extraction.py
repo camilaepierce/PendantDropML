@@ -113,7 +113,6 @@ def get_digits_from_filename(filename):
 
 
 
-
 class PendantDropDataset(Dataset):
     """Pendant Drop Dataset, inherits from torch.utils.data.Dataset Class."""
 
@@ -130,8 +129,6 @@ class PendantDropDataset(Dataset):
 
         Returns:
             New Dataset Object
-
-        TODO Need to construct a custom sampler (Dataset relies on integer indexing)
         """
         self.params_dir = params_dir
         self.rz_dir = rz_dir
@@ -156,7 +153,7 @@ class PendantDropDataset(Dataset):
 
     def __len__(self):
         """ Returns size of dataset """
-        return len(self.surf_tens_dict)
+        return len(self.available_samples)
     
     def __getitem__(self, idx):
         """
@@ -188,21 +185,52 @@ class PendantDropDataset(Dataset):
 
         return sample
     
-    def split_dataset(self, k, random_seed=None):
+    def split_dataset(self, test_size, random_seed=None):
         """
-        Splits the dataset into two datasets of size {k} and size {len(this) - k}
+        Splits the dataset into two datasets of size {test_size} and size {len(this) - k}
 
         Parameters:
-            k (int) : size of future testing set
+            test_size (int) : size of future testing set
 
         Returns:
             (TrainingDataset, TestingDataset) both of type PendantDropDataset
         """
         seeded_random = random.Random(random_seed)
         order = seeded_random.sample(list(self.available_samples), len(self.available_samples))
-        trainingset = PendantDropDataset(self.params_dir, self.rz_dir, self.img_dir, sigma_dir=self.sigma_dir, select_samples=order[k:], ignore_images=self.ignore_images)
-        testingset = PendantDropDataset(self.params_dir, self.rz_dir, self.img_dir, sigma_dir=self.sigma_dir, select_samples=order[:k], ignore_images=self.ignore_images)
+        trainingset = PendantDropDataset(self.params_dir, self.rz_dir, self.img_dir, sigma_dir=self.sigma_dir, select_samples=order[test_size:], ignore_images=self.ignore_images)
+        testingset = PendantDropDataset(self.params_dir, self.rz_dir, self.img_dir, sigma_dir=self.sigma_dir, select_samples=order[:test_size], ignore_images=self.ignore_images)
         return (trainingset, testingset)
+    
+    def split_k_dataset(self, k, random_seed=None):
+        """
+        Splits the dataset into k datasets of size {len(test) // k}
+
+        Parameters:
+            test_size (int) : size of future testing set
+
+        Returns:
+            (TrainingDataset, TestingDataset) both of type PendantDropDataset
+        """
+        seeded_random = random.Random(random_seed)
+        order = seeded_random.sample(list(self.available_samples), len(self.available_samples))
+
+        all_sets = []
+        split_order = np.array_split(order, k)
+        for i in range(k):
+            next_set = PendantDropDataset(self.params_dir, self.rz_dir, self.img_dir, sigma_dir=self.sigma_dir, select_samples=set(split_order[i]), ignore_images=self.ignore_images)
+            all_sets.append(next_set)
+        return all_sets
+    
+    def combine_datasets(self, sets_array):
+        """
+        Datasets must refer to the same folders
+        """
+        all_samples_combined = set()
+        for dataset in sets_array:
+            all_samples_combined.update(dataset.available_samples.copy())
+
+        return PendantDropDataset(self.params_dir, self.rz_dir, self.img_dir, sigma_dir=self.sigma_dir, select_samples=all_samples_combined, ignore_images=self.ignore_images)
+        
 
 if __name__ == "__main__":
 

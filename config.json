@@ -4,30 +4,30 @@
             "ignoreImages" : true
         },
         "save_info" : {
-            "modelName" : "model_weights/GandalfTheGray.pth", 
-            "save_model" : true,
-            "results" : "results/GandalfTheGraySecondRun",
-            "eval_results" : "results/evaluation/GandalfTheGraySecondRun"
+            "modelName" : "model_weights/Gandalf.pth", 
+            "save_model" : false,
+            "results" : "results/Gandalf",
+            "eval_results" : "results/evaluation/Gandalf"
         },
         "data_paths" : {
-            "params" : "data/elastic_massive/test_data_params", 
-            "rz" : "data/elastic_massive/test_data_rz", 
-            "images" : "data/elastic_massive/test_images",
-            "sigmas" : "data/elastic_massive/test_data_sigmas"
+            "params" : "data/elastic_mini/test_data_params", 
+            "rz" : "data/elastic_mini/test_data_rz", 
+            "images" : "data/elastic_mini/test_images",
+            "sigmas" : "data/elastic_mini/test_data_sigmas"
         },
         "training_parameters" : {
             "learning_rate" : 0.01,
-            "num_batches" : 800, 
-            "epochs" : 200,
+            "num_batches" : 7, 
+            "epochs" : 30,
             "testing_size" : 200, 
             "random_seed" : null,
-            "visualize_training" : true
+            "visualize_training" : false
         },
         "testing_parameters" : {
             "num_batches": 5, 
             "absolute_tolerance" : 0.1
         },
         "eval_config" : {
-            "eval_data_path" : "elastic_massive/test_images"
+            "eval_data_path" : "elastic_mini/test_images"
         }
     }

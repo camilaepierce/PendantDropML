@@ -36,7 +36,7 @@ def train_loop(dataloader, model, loss_fxn, optimizer, batch_size, train_losses,
         loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), clip)
         optimizer.step()
-        if batch % 20 == 0:
+        if batch % 6 == 0:
             loss, current = loss.item(), batch * batch_size + len(X)
             out += (f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]\n")
             train_loss_avg += loss
@@ -74,7 +74,7 @@ def test_loop(dataloader, model, loss_fxn, num_batches, tolerance, test_losses, 
 
 
 
-def run_optimizer(config_object, CNNModel, model=None):
+def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, chosen_testing=None, return_loss=False):
     """
     Runs optimization of NN Model. Saves output to text file, saves training and testing loss progression to image file.
 
@@ -125,19 +125,23 @@ def run_optimizer(config_object, CNNModel, model=None):
     ##############################################################
     ### Custom Modules
     ##############################################################
+    if chosen_training == None or chosen_testing == None:
+        drop_dataset = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"], 
+                                        sigma_dir=data_paths["sigmas"], ignore_images=settings["ignoreImages"])
+        training_data, testing_data = drop_dataset.split_dataset(testing_size, random_seed)
 
-    drop_dataset = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"], 
-                                      sigma_dir=data_paths["sigmas"], ignore_images=settings["ignoreImages"])
-    training_data, testing_data = drop_dataset.split_dataset(testing_size, random_seed)
+
+        if (len(training_data.available_samples) == 0 or len(testing_data.available_samples) == 0):
+            raise IndexError("You have only provided " + str(len(drop_dataset)) + " samples. Please update the config file.")
+        
+        if (batch_size == 0):
+            raise ValueError("You have only provided " + str(len(drop_dataset)) + " samples. Please update number of batches")
+        
+    else:
+        training_data, testing_data = chosen_training, chosen_testing
 
     batch_size = int(len(training_data)/ num_batches)
-
-    if (len(training_data.available_samples) == 0 or len(testing_data.available_samples) == 0):
-        raise IndexError("You have only provided " + str(len(drop_dataset)) + " samples. Please update the config file.")
     
-    if (batch_size == 0):
-        raise ValueError("You have only provided " + str(len(drop_dataset)) + " samples. Please update number of batches")
-
     train_dataloader = PendantDataLoader(training_data, num_batches=num_batches, feat_fxn=features_fxn, lab_fxn=labels_fxn)
     test_dataloader = PendantDataLoader(testing_data, test_num_batches, feat_fxn=features_fxn, lab_fxn=labels_fxn)
 
@@ -150,7 +154,7 @@ def run_optimizer(config_object, CNNModel, model=None):
 
     with open(results_file, "a", encoding="utf-8") as f:
         f.write("Training Model\n===============================\n")
-        f.write(str(summary(model, input_size=train_dataloader.feature_shape)) + "\n")
+        f.write(str(summary(model, input_size=train_dataloader.feature_shape, verbose=0)) + "\n")
 
     for t in range(epochs):
         with open(results_file, "a", encoding="utf-8") as f:
@@ -160,10 +164,12 @@ def run_optimizer(config_object, CNNModel, model=None):
                   test_num_batches, config_object["testing_parameters"]["absolute_tolerance"], test_losses, results_file)
     with open(results_file, "a", encoding="utf-8") as f:
         f.write("Done!\n")
-    print("Done!")
+    # print("Done!")
 
-    plot_loss_evolution(epochs, train_losses, test_losses, config_object["save_info"]["results"], "MSE", save=True)
+    if training_params["visualize_training"]:
+        plot_loss_evolution(epochs, train_losses, test_losses, config_object["save_info"]["results"], "MSE", save=True)
     
+
     ### Save Model
     with open(results_file, "a", encoding="utf-8") as f:
         if config_object["save_info"]["save_model"]:
@@ -171,6 +177,7 @@ def run_optimizer(config_object, CNNModel, model=None):
             f.write(f"Model weights saved to {config_object["save_info"]["modelName"]}\n")
         else:
             f.write("Model weights not saved\n")
-    print(train_losses)
-    print(test_losses)
-    return model
+    if not return_loss:
+        return model
+    else:
+        return model, (train_losses[-1], test_losses[-1])
