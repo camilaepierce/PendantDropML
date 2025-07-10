@@ -74,7 +74,7 @@ def test_loop(dataloader, model, loss_fxn, num_batches, tolerance, test_losses, 
 
 
 
-def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, chosen_testing=None, return_loss=False):
+def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, chosen_testing=None, return_loss=False, chosen_learning=None):
     """
     Runs optimization of NN Model. Saves output to text file, saves training and testing loss progression to image file.
 
@@ -139,6 +139,9 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
         
     else:
         training_data, testing_data = chosen_training, chosen_testing
+    
+    if chosen_learning != None:
+        learning_rate = chosen_learning
 
     batch_size = int(len(training_data)/ num_batches)
     

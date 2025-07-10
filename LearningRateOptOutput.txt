@@ -1,0 +1,386 @@
+##### Beginning Learning Rate:: 1e-06 #####
+Fold #0::= Training Loss: 15.825600215366908, Testing Loss: 13.885669136047364
+Fold #1::= Training Loss: 15.78537995474679, Testing Loss: 15.350413131713868
+Fold #2::= Training Loss: 15.678716250828334, Testing Loss: 16.103501319885254
+Fold #3::= Training Loss: 15.52714306967599, Testing Loss: 16.264423751831053
+Fold #4::= Training Loss: 15.72761903490339, Testing Loss: 16.558091926574708
+Fold #5::= Training Loss: 15.797242437090192, Testing Loss: 15.278535079956054
+Fold #6::= Training Loss: 15.590049198695592, Testing Loss: 16.48339214324951
+Fold #7::= Training Loss: 15.669346945626396, Testing Loss: 14.718869018554688
+Fold #8::= Training Loss: 15.583437374659947, Testing Loss: 16.129369735717773
+Fold #9::= Training Loss: 15.55549567086356, Testing Loss: 15.526652908325195
+Completed learning rate 1e-06, with average training loss 15.674003015245711, average testing loss 15.629891815185548
+##### Beginning Learning Rate:: 1e-05 #####
+Fold #0::= Training Loss: 15.622741835457939, Testing Loss: 15.820694923400879
+Fold #1::= Training Loss: 15.602526664733887, Testing Loss: 16.596659660339355
+Fold #2::= Training Loss: 15.55707849775042, Testing Loss: 17.19708881378174
+Fold #3::= Training Loss: 15.880469594682966, Testing Loss: 14.613823127746581
+Fold #4::= Training Loss: 15.665411404200963, Testing Loss: 16.106763648986817
+Fold #5::= Training Loss: 15.374366079057966, Testing Loss: 17.765998458862306
+Fold #6::= Training Loss: 15.774347032819476, Testing Loss: 15.68309726715088
+Fold #7::= Training Loss: 15.878820964268275, Testing Loss: 13.879981231689452
+Fold #8::= Training Loss: 15.819071088518415, Testing Loss: 13.499313354492188
+Fold #9::= Training Loss: 15.803832054138184, Testing Loss: 15.3870210647583
+Completed learning rate 1e-05, with average training loss 15.69786652156285, average testing loss 15.655044155120851
+##### Beginning Learning Rate:: 0.0001 #####
+Fold #0::= Training Loss: 15.7464417048863, Testing Loss: 15.868090057373047
+Fold #1::= Training Loss: 15.636394909449987, Testing Loss: 16.252831268310548
+Fold #2::= Training Loss: 15.54430089678083, Testing Loss: 16.740358352661133
+Fold #3::= Training Loss: 15.731087957109724, Testing Loss: 15.459687423706054
+Fold #4::= Training Loss: 15.627874783107213, Testing Loss: 15.278996658325195
+Fold #5::= Training Loss: 15.76501192365374, Testing Loss: 15.22592658996582
+Fold #6::= Training Loss: 15.854076385498047, Testing Loss: 13.720284843444825
+Fold #7::= Training Loss: 15.86378983088902, Testing Loss: 14.421749687194824
+Fold #8::= Training Loss: 15.60654354095459, Testing Loss: 16.42454586029053
+Fold #9::= Training Loss: 15.396554674421038, Testing Loss: 16.930956649780274
+Completed learning rate 0.0001, with average training loss 15.677207660675046, average testing loss 15.632342739105226
+##### Beginning Learning Rate:: 0.001 #####
+Fold #0::= Training Loss: 15.61532633645194, Testing Loss: 16.85670051574707
+Fold #1::= Training Loss: 15.934217589242119, Testing Loss: 13.620477294921875
+Fold #2::= Training Loss: 15.741721017020089, Testing Loss: 13.893951797485352
+Fold #3::= Training Loss: 15.689197676522392, Testing Loss: 15.399875068664551
+Fold #4::= Training Loss: 15.422005244663783, Testing Loss: 16.4952054977417
+Fold #5::= Training Loss: 15.786747251238141, Testing Loss: 15.658768844604491
+Fold #6::= Training Loss: 15.815906660897392, Testing Loss: 15.633342742919922
+Fold #7::= Training Loss: 15.606901713779994, Testing Loss: 16.89630718231201
+Fold #8::= Training Loss: 15.585095950535365, Testing Loss: 16.87748622894287
+Fold #9::= Training Loss: 15.702141898018974, Testing Loss: 15.17443561553955
+Completed learning rate 0.001, with average training loss 15.68992613383702, average testing loss 15.65065507888794
+##### Beginning Learning Rate:: 0.003 #####
+Fold #0::= Training Loss: 15.778729030064174, Testing Loss: 14.97449607849121
+Fold #1::= Training Loss: 15.673629760742188, Testing Loss: 15.712347984313965
+Fold #2::= Training Loss: 15.325224195207868, Testing Loss: 15.857707977294922
+Fold #3::= Training Loss: 15.686631611415319, Testing Loss: 14.65168514251709
+Fold #4::= Training Loss: 15.505165508815221, Testing Loss: 16.030973815917967
+Fold #5::= Training Loss: 15.852036884852819, Testing Loss: 15.06018524169922
+Fold #6::= Training Loss: 15.543304579598564, Testing Loss: 14.684680938720703
+Fold #7::= Training Loss: 15.723107065473284, Testing Loss: 15.849225997924805
+Fold #8::= Training Loss: 15.537220137459892, Testing Loss: 16.648907279968263
+Fold #9::= Training Loss: 15.618074144635882, Testing Loss: 16.295491409301757
+Completed learning rate 0.003, with average training loss 15.624312291826522, average testing loss 15.57657018661499
+##### Beginning Learning Rate:: 0.005 #####
+Fold #0::= Training Loss: 15.833379200526647, Testing Loss: 14.701375007629395
+Fold #1::= Training Loss: 15.877978324890137, Testing Loss: 14.781139755249024
+Fold #2::= Training Loss: 15.816764014107841, Testing Loss: 16.09391098022461
+Fold #3::= Training Loss: 15.529093742370605, Testing Loss: 16.45175971984863
+Fold #4::= Training Loss: 15.5821898324149, Testing Loss: 16.57049388885498
+Fold #5::= Training Loss: 15.276108196803502, Testing Loss: 17.821302032470705
+Fold #6::= Training Loss: 15.8298522404262, Testing Loss: 13.80518741607666
+Fold #7::= Training Loss: 15.755575452532087, Testing Loss: 15.400707054138184
+Fold #8::= Training Loss: 15.83769348689488, Testing Loss: 14.32390480041504
+Fold #9::= Training Loss: 15.626378740583148, Testing Loss: 16.572389602661133
+Completed learning rate 0.005, with average training loss 15.696501323154996, average testing loss 15.652217025756837
+##### Beginning Learning Rate:: 0.008 #####
+Fold #0::= Training Loss: 15.948742049080986, Testing Loss: 15.195126342773438
+Fold #1::= Training Loss: 15.67769363948277, Testing Loss: 15.121681785583496
+Fold #2::= Training Loss: 15.57832704271589, Testing Loss: 16.527922058105467
+Fold #3::= Training Loss: 15.898758207048688, Testing Loss: 14.644895935058594
+Fold #4::= Training Loss: 15.385777745928083, Testing Loss: 19.130129623413087
+Fold #5::= Training Loss: 15.822696685791016, Testing Loss: 14.65410919189453
+Fold #6::= Training Loss: 15.905412537711006, Testing Loss: 14.02579460144043
+Fold #7::= Training Loss: 15.728048324584961, Testing Loss: 15.432673835754395
+Fold #8::= Training Loss: 15.72566454751151, Testing Loss: 16.077953720092772
+Fold #9::= Training Loss: 15.609171322413854, Testing Loss: 16.043230056762695
+Completed learning rate 0.008, with average training loss 15.728029210226875, average testing loss 15.68535171508789
+##### Beginning Learning Rate:: 0.01 #####
+Fold #0::= Training Loss: 15.717705181666783, Testing Loss: 15.358948898315429
+Fold #1::= Training Loss: 15.61332471030099, Testing Loss: 16.613477325439455
+Fold #2::= Training Loss: 15.622548648289271, Testing Loss: 15.865740776062012
+Fold #3::= Training Loss: 15.501920018877302, Testing Loss: 16.871520233154296
+Fold #4::= Training Loss: 15.596773965018135, Testing Loss: 15.774145126342773
+Fold #5::= Training Loss: 15.762651443481445, Testing Loss: 15.393979835510255
+Fold #6::= Training Loss: 15.904688017708915, Testing Loss: 13.678396224975586
+Fold #7::= Training Loss: 15.377202442714147, Testing Loss: 18.39240894317627
+Fold #8::= Training Loss: 15.984636306762695, Testing Loss: 13.366670989990235
+Fold #9::= Training Loss: 15.626407759530204, Testing Loss: 14.991483116149903
+Completed learning rate 0.01, with average training loss 15.670785849434987, average testing loss 15.630677146911623
+##### Beginning Learning Rate:: 0.02 #####
+Fold #0::= Training Loss: 15.833471025739398, Testing Loss: 14.44779567718506
+Fold #1::= Training Loss: 15.497897284371513, Testing Loss: 16.89408760070801
+Fold #2::= Training Loss: 15.72607149396624, Testing Loss: 15.260797500610352
+Fold #3::= Training Loss: 15.62227385384696, Testing Loss: 15.660265731811524
+Fold #4::= Training Loss: 15.453868593488421, Testing Loss: 16.443716621398927
+Fold #5::= Training Loss: 15.799218995230538, Testing Loss: 15.270404434204101
+Fold #6::= Training Loss: 15.319419452122279, Testing Loss: 17.11812744140625
+Fold #7::= Training Loss: 15.822977883475167, Testing Loss: 14.646415328979492
+Fold #8::= Training Loss: 15.79696410042899, Testing Loss: 14.63000774383545
+Fold #9::= Training Loss: 15.710136686052595, Testing Loss: 15.721814918518067
+Completed learning rate 0.02, with average training loss 15.658229936872209, average testing loss 15.609343299865722
+##### Beginning Learning Rate:: 0.03 #####
+Fold #0::= Training Loss: 15.65580313546317, Testing Loss: 17.097640991210938
+Fold #1::= Training Loss: 15.62761402130127, Testing Loss: 15.815256309509277
+Fold #2::= Training Loss: 15.906561170305524, Testing Loss: 14.225303077697754
+Fold #3::= Training Loss: 15.861369405473981, Testing Loss: 14.726023483276368
+Fold #4::= Training Loss: 15.735986982073102, Testing Loss: 15.403512763977051
+Fold #5::= Training Loss: 15.475053787231445, Testing Loss: 17.236917304992676
+Fold #6::= Training Loss: 15.88896438053676, Testing Loss: 14.171240043640136
+Fold #7::= Training Loss: 15.605749811444964, Testing Loss: 15.46193733215332
+Fold #8::= Training Loss: 15.661331449236188, Testing Loss: 15.898252487182617
+Fold #9::= Training Loss: 15.599975313459124, Testing Loss: 16.514792251586915
+Completed learning rate 0.03, with average training loss 15.701840945652553, average testing loss 15.65508760452271
+##### Beginning Learning Rate:: 0.04 #####
+Fold #0::= Training Loss: 15.752480779375349, Testing Loss: 15.641983985900879
+Fold #1::= Training Loss: 15.725187574114118, Testing Loss: 15.653772735595703
+Fold #2::= Training Loss: 15.875389780317034, Testing Loss: 14.92035732269287
+Fold #3::= Training Loss: 15.810226849147252, Testing Loss: 15.367259979248047
+Fold #4::= Training Loss: 15.650710650852748, Testing Loss: 15.741483116149903
+Fold #5::= Training Loss: 15.478636469159808, Testing Loss: 16.507900619506835
+Fold #6::= Training Loss: 15.637355259486608, Testing Loss: 16.260930442810057
+Fold #7::= Training Loss: 15.712688854762487, Testing Loss: 15.400882148742676
+Fold #8::= Training Loss: 15.616792133876256, Testing Loss: 16.098527908325195
+Fold #9::= Training Loss: 15.790929794311523, Testing Loss: 14.974404907226562
+Completed learning rate 0.04, with average training loss 15.705039814540319, average testing loss 15.656750316619874
+##### Beginning Learning Rate:: 0.05 #####
+Fold #0::= Training Loss: 15.731219019208636, Testing Loss: 16.37634143829346
+Fold #1::= Training Loss: 15.46696676526751, Testing Loss: 17.887333869934082
+Fold #2::= Training Loss: 15.644113540649414, Testing Loss: 14.908756065368653
+Fold #3::= Training Loss: 15.859801428658622, Testing Loss: 12.56517391204834
+Fold #4::= Training Loss: 15.651538576398577, Testing Loss: 15.63480224609375
+Fold #5::= Training Loss: 15.66979421888079, Testing Loss: 15.474779891967774
+Fold #6::= Training Loss: 15.584738050188337, Testing Loss: 16.062271690368654
+Fold #7::= Training Loss: 15.858245713370186, Testing Loss: 14.387932586669923
+Fold #8::= Training Loss: 15.492872783115931, Testing Loss: 17.122529792785645
+Fold #9::= Training Loss: 15.63071700504848, Testing Loss: 15.707210922241211
+Completed learning rate 0.05, with average training loss 15.659000710078647, average testing loss 15.612713241577149
+##### Beginning Learning Rate:: 0.1 #####
+Fold #0::= Training Loss: 15.559314864022392, Testing Loss: 16.397402000427245
+Fold #1::= Training Loss: 15.946671077183314, Testing Loss: 13.916165161132813
+Fold #2::= Training Loss: 15.690911429268974, Testing Loss: 15.501434707641602
+Fold #3::= Training Loss: 15.487408365522112, Testing Loss: 16.166050720214844
+Fold #4::= Training Loss: 15.505257061549596, Testing Loss: 18.482814407348634
+Fold #5::= Training Loss: 15.568296432495117, Testing Loss: 15.867502403259277
+Fold #6::= Training Loss: 15.76901272365025, Testing Loss: 14.916258430480957
+Fold #7::= Training Loss: 15.8309052331107, Testing Loss: 13.915320014953613
+Fold #8::= Training Loss: 15.693902833121163, Testing Loss: 16.270292663574217
+Fold #9::= Training Loss: 15.766779627118792, Testing Loss: 14.970954132080077
+Completed learning rate 0.1, with average training loss 15.681845964704241, average testing loss 15.640419464111327
+##### Beginning Learning Rate:: 0.2 #####
+Fold #0::= Training Loss: 15.648570605686732, Testing Loss: 16.56310272216797
+Fold #1::= Training Loss: 15.973462241036552, Testing Loss: 14.145938491821289
+Fold #2::= Training Loss: 15.691043172563825, Testing Loss: 14.648514556884766
+Fold #3::= Training Loss: 15.64016832624163, Testing Loss: 14.964070320129395
+Fold #4::= Training Loss: 15.821904182434082, Testing Loss: 14.731843757629395
+Fold #5::= Training Loss: 15.846049853733607, Testing Loss: 15.066366958618165
+Fold #6::= Training Loss: 15.72648457118443, Testing Loss: 14.409119415283204
+Fold #7::= Training Loss: 15.409791401454381, Testing Loss: 18.63125400543213
+Fold #8::= Training Loss: 15.845796312604632, Testing Loss: 15.674262809753419
+Fold #9::= Training Loss: 15.459094864981514, Testing Loss: 17.83295783996582
+Completed learning rate 0.2, with average training loss 15.706236553192138, average testing loss 15.666743087768555
+##### Beginning Learning Rate:: 0.3 #####
+Fold #0::= Training Loss: 15.359814371381487, Testing Loss: 15.566706085205078
+Fold #1::= Training Loss: 15.117847715105329, Testing Loss: 17.942353820800783
+Fold #2::= Training Loss: 15.491794177464076, Testing Loss: 16.360126304626466
+Fold #3::= Training Loss: 15.52960695539202, Testing Loss: 15.99283390045166
+Fold #4::= Training Loss: 15.714847155979701, Testing Loss: 16.676568603515626
+Fold #5::= Training Loss: 15.842490604945592, Testing Loss: 14.288953590393067
+Fold #6::= Training Loss: 15.891972541809082, Testing Loss: 14.896862030029297
+Fold #7::= Training Loss: 15.942644664219447, Testing Loss: 13.956402015686034
+Fold #8::= Training Loss: 15.661343574523926, Testing Loss: 14.40426025390625
+Fold #9::= Training Loss: 15.656883920942034, Testing Loss: 15.615362548828125
+Completed learning rate 0.3, with average training loss 15.620924568176267, average testing loss 15.570042915344237
+##### Beginning Learning Rate:: 0.5 #####
+Fold #0::= Training Loss: 15.644245420183454, Testing Loss: 15.285265731811524
+Fold #1::= Training Loss: 15.313582011631556, Testing Loss: 16.227005386352538
+Fold #2::= Training Loss: 15.766247476850237, Testing Loss: 15.889655685424804
+Fold #3::= Training Loss: 15.580768721444267, Testing Loss: 16.868923377990722
+Fold #4::= Training Loss: 15.601449285234724, Testing Loss: 16.005509185791016
+Fold #5::= Training Loss: 15.838655063084193, Testing Loss: 14.478495979309082
+Fold #6::= Training Loss: 15.694190979003906, Testing Loss: 15.432841682434082
+Fold #7::= Training Loss: 15.661327498299736, Testing Loss: 15.404202651977538
+Fold #8::= Training Loss: 15.962551253182548, Testing Loss: 14.282381629943847
+Fold #9::= Training Loss: 15.629704884120397, Testing Loss: 16.376412010192873
+Completed learning rate 0.5, with average training loss 15.669272259303503, average testing loss 15.625069332122802
+(.venv) (base) camilapierce@fedora:~/Desktop/UNED/MLPendantDropUNED$ /home/camilapierce/Desktop/UNED/MLPendantDropUNED/.venv/bin/python /home/camilapierce/Desktop/UNED/MLPendantDropUNED/opt_hyperparameters.py
+Using cpu device
+##### Beginning Learning Rate:: 1e-06 #####
+Fold #0::= Training Loss: 17.140254156930105, Testing Loss: 16.727231597900392
+Fold #1::= Training Loss: 17.076101575578964, Testing Loss: 17.563719177246092
+Fold #2::= Training Loss: 17.120765822274343, Testing Loss: 16.906132316589357
+Fold #3::= Training Loss: 16.971265520368302, Testing Loss: 18.268158149719238
+Fold #4::= Training Loss: 17.32541411263602, Testing Loss: 15.30779209136963
+Fold #5::= Training Loss: 17.157395226614817, Testing Loss: 16.850624656677248
+Fold #6::= Training Loss: 17.095178740365164, Testing Loss: 17.220273399353026
+Fold #7::= Training Loss: 16.85909857068743, Testing Loss: 19.35936737060547
+Fold #8::= Training Loss: 17.09473282950265, Testing Loss: 17.4653678894043
+Fold #9::= Training Loss: 17.289248330252512, Testing Loss: 15.44981632232666
+Completed learning rate 1e-06, with average training loss 17.112945488521028, average testing loss 17.111848297119142
+##### Beginning Learning Rate:: 1e-05 #####
+Fold #0::= Training Loss: 17.325474875313894, Testing Loss: 15.148071670532227
+Fold #1::= Training Loss: 17.122273172651017, Testing Loss: 17.013300895690918
+Fold #2::= Training Loss: 17.293161255972727, Testing Loss: 15.39999885559082
+Fold #3::= Training Loss: 17.046032769339426, Testing Loss: 18.205829429626466
+Fold #4::= Training Loss: 16.894526617867605, Testing Loss: 19.050484085083006
+Fold #5::= Training Loss: 16.81301498413086, Testing Loss: 19.85403938293457
+Fold #6::= Training Loss: 17.184669767107284, Testing Loss: 16.909824752807616
+Fold #7::= Training Loss: 17.17382894243513, Testing Loss: 16.4902645111084
+Fold #8::= Training Loss: 17.26952293940953, Testing Loss: 15.409040641784667
+Fold #9::= Training Loss: 17.09330804007394, Testing Loss: 17.73395347595215
+Completed learning rate 1e-05, with average training loss 17.12158133643014, average testing loss 17.12148077011108
+##### Beginning Learning Rate:: 0.0001 #####
+Fold #0::= Training Loss: 17.34316607883998, Testing Loss: 14.809927177429199
+Fold #1::= Training Loss: 17.150488444737025, Testing Loss: 16.41278133392334
+Fold #2::= Training Loss: 17.003589357648575, Testing Loss: 17.829508781433105
+Fold #3::= Training Loss: 16.997110639299667, Testing Loss: 18.201762199401855
+Fold #4::= Training Loss: 16.95915617261614, Testing Loss: 18.49084892272949
+Fold #5::= Training Loss: 17.099365098135813, Testing Loss: 17.068365478515624
+Fold #6::= Training Loss: 17.136009897504533, Testing Loss: 17.11336441040039
+Fold #7::= Training Loss: 17.189816066196986, Testing Loss: 16.53892230987549
+Fold #8::= Training Loss: 16.996026039123535, Testing Loss: 18.351749610900878
+Fold #9::= Training Loss: 17.18894863128662, Testing Loss: 16.247942543029787
+Completed learning rate 0.0001, with average training loss 17.106367642538892, average testing loss 17.106517276763917
+##### Beginning Learning Rate:: 0.001 #####
+Fold #0::= Training Loss: 16.78322832924979, Testing Loss: 18.97653732299805
+Fold #1::= Training Loss: 16.866053444998606, Testing Loss: 18.536067962646484
+Fold #2::= Training Loss: 17.187103816441127, Testing Loss: 16.060647201538085
+Fold #3::= Training Loss: 17.120698928833008, Testing Loss: 16.296338844299317
+Fold #4::= Training Loss: 17.098400115966797, Testing Loss: 16.167535972595214
+Fold #5::= Training Loss: 16.901316370282853, Testing Loss: 17.991016006469728
+Fold #6::= Training Loss: 17.002061707632883, Testing Loss: 16.808609771728516
+Fold #7::= Training Loss: 17.070567539760045, Testing Loss: 16.26509494781494
+Fold #8::= Training Loss: 16.934280804225377, Testing Loss: 17.385682106018066
+Fold #9::= Training Loss: 17.188877650669642, Testing Loss: 15.667453575134278
+Completed learning rate 0.001, with average training loss 17.015258870806015, average testing loss 17.01549837112427
+##### Beginning Learning Rate:: 0.003 #####
+Fold #0::= Training Loss: 16.782172475542342, Testing Loss: 16.965202713012694
+Fold #1::= Training Loss: 16.81266062600272, Testing Loss: 16.63938789367676
+Fold #2::= Training Loss: 16.56784984043666, Testing Loss: 18.40683708190918
+Fold #3::= Training Loss: 16.95127977643694, Testing Loss: 15.337424659729004
+Fold #4::= Training Loss: 16.724296842302596, Testing Loss: 16.488504219055176
+Fold #5::= Training Loss: 16.690837587629044, Testing Loss: 17.583912086486816
+Fold #6::= Training Loss: 16.89978231702532, Testing Loss: 15.901011848449707
+Fold #7::= Training Loss: 16.948397363935197, Testing Loss: 15.45501708984375
+Fold #8::= Training Loss: 16.802612032209122, Testing Loss: 16.70449447631836
+Fold #9::= Training Loss: 16.669352803911483, Testing Loss: 18.31415252685547
+Completed learning rate 0.003, with average training loss 16.784924166543142, average testing loss 16.779594459533694
+##### Beginning Learning Rate:: 0.005 #####
+Fold #0::= Training Loss: 16.503048760550364, Testing Loss: 17.132633209228516
+Fold #1::= Training Loss: 16.527245930262975, Testing Loss: 16.210869216918944
+Fold #2::= Training Loss: 16.499088832310267, Testing Loss: 17.21302719116211
+Fold #3::= Training Loss: 16.46527099609375, Testing Loss: 17.498455619812013
+Fold #4::= Training Loss: 16.661410059247697, Testing Loss: 15.589007759094239
+Fold #5::= Training Loss: 16.606073107038224, Testing Loss: 16.034861373901368
+Fold #6::= Training Loss: 16.674942834036692, Testing Loss: 15.49523105621338
+Fold #7::= Training Loss: 16.499588421412877, Testing Loss: 16.611561965942382
+Fold #8::= Training Loss: 16.592992646353586, Testing Loss: 16.528314781188964
+Fold #9::= Training Loss: 16.497858456202916, Testing Loss: 17.11582202911377
+Completed learning rate 0.005, with average training loss 16.552752004350936, average testing loss 16.542978420257565
+##### Beginning Learning Rate:: 0.008 #####
+Fold #0::= Training Loss: 16.059861728123256, Testing Loss: 16.53834171295166
+Fold #1::= Training Loss: 16.30418722970145, Testing Loss: 14.716122245788574
+Fold #2::= Training Loss: 16.082385880606516, Testing Loss: 16.03705711364746
+Fold #3::= Training Loss: 16.257149287632533, Testing Loss: 14.930564498901367
+Fold #4::= Training Loss: 16.12882559640067, Testing Loss: 16.69422130584717
+Fold #5::= Training Loss: 16.061458587646484, Testing Loss: 16.675754165649415
+Fold #6::= Training Loss: 15.911586897713798, Testing Loss: 16.849498558044434
+Fold #7::= Training Loss: 15.845779827662877, Testing Loss: 17.077038192749022
+Fold #8::= Training Loss: 16.03537150791713, Testing Loss: 16.933696746826172
+Fold #9::= Training Loss: 16.233659744262695, Testing Loss: 14.197471618652344
+Completed learning rate 0.008, with average training loss 16.09202662876674, average testing loss 16.06497661590576
+##### Beginning Learning Rate:: 0.01 #####
+Fold #0::= Training Loss: 15.860553877694267, Testing Loss: 14.422371101379394
+Fold #1::= Training Loss: 15.636195319039482, Testing Loss: 16.274946403503417
+Fold #2::= Training Loss: 15.416357585362025, Testing Loss: 16.127174186706544
+Fold #3::= Training Loss: 15.657805715288434, Testing Loss: 16.50610065460205
+Fold #4::= Training Loss: 15.656302724565778, Testing Loss: 15.17522735595703
+Fold #5::= Training Loss: 15.724273136683873, Testing Loss: 14.970019912719726
+Fold #6::= Training Loss: 15.4632169178554, Testing Loss: 15.870630264282227
+Fold #7::= Training Loss: 15.678445543561663, Testing Loss: 15.236653327941895
+Fold #8::= Training Loss: 15.564931460789271, Testing Loss: 16.81223087310791
+Fold #9::= Training Loss: 15.678147452218193, Testing Loss: 14.490763473510743
+Completed learning rate 0.01, with average training loss 15.633622973305838, average testing loss 15.588611755371096
+##### Beginning Learning Rate:: 0.02 #####
+Fold #0::= Training Loss: 11.63899380820138, Testing Loss: 11.827295112609864
+Fold #1::= Training Loss: 11.390957287379674, Testing Loss: 9.921345520019532
+Fold #2::= Training Loss: 12.024507386343819, Testing Loss: 13.124114036560059
+Fold #3::= Training Loss: 10.811963626316615, Testing Loss: 10.575696086883545
+Fold #4::= Training Loss: 11.359879629952568, Testing Loss: 13.057207107543945
+Fold #5::= Training Loss: 11.924332754952568, Testing Loss: 11.92837963104248
+Fold #6::= Training Loss: 11.71066325051444, Testing Loss: 10.180334091186523
+Fold #7::= Training Loss: 11.564249992370605, Testing Loss: 9.844644165039062
+Fold #8::= Training Loss: 11.146988187517438, Testing Loss: 10.65170497894287
+Fold #9::= Training Loss: 11.527233260018486, Testing Loss: 11.589395332336426
+Completed learning rate 0.02, with average training loss 11.50997691835676, average testing loss 11.27001160621643
+##### Beginning Learning Rate:: 0.03 #####
+Fold #0::= Training Loss: 6.783278805868966, Testing Loss: 7.150333309173584
+Fold #1::= Training Loss: 7.005589212690081, Testing Loss: 6.3676902770996096
+Fold #2::= Training Loss: 6.813357557569232, Testing Loss: 6.890108680725097
+Fold #3::= Training Loss: 6.708162307739258, Testing Loss: 8.00020990371704
+Fold #4::= Training Loss: 6.860181467873709, Testing Loss: 6.8083775520324705
+Fold #5::= Training Loss: 6.839736870356968, Testing Loss: 7.946055316925049
+Fold #6::= Training Loss: 6.953685488019671, Testing Loss: 5.7380904197692875
+Fold #7::= Training Loss: 6.9570610863821845, Testing Loss: 6.760542392730713
+Fold #8::= Training Loss: 6.8239103725978305, Testing Loss: 7.000210857391357
+Fold #9::= Training Loss: 6.902239186423166, Testing Loss: 5.852757549285888
+Completed learning rate 0.03, with average training loss 6.864720235552106, average testing loss 6.851437625885009
+##### Beginning Learning Rate:: 0.04 #####
+Fold #0::= Training Loss: 6.740986210959298, Testing Loss: 6.097025585174561
+Fold #1::= Training Loss: 6.689278943198068, Testing Loss: 6.677529335021973
+Fold #2::= Training Loss: 6.681923048836844, Testing Loss: 6.448523139953613
+Fold #3::= Training Loss: 6.724557059151786, Testing Loss: 6.254830646514892
+Fold #4::= Training Loss: 6.600363663264683, Testing Loss: 7.001805305480957
+Fold #5::= Training Loss: 6.5465505463736395, Testing Loss: 7.729877376556397
+Fold #6::= Training Loss: 6.714831829071045, Testing Loss: 6.787521457672119
+Fold #7::= Training Loss: 6.591753346579416, Testing Loss: 7.145865821838379
+Fold #8::= Training Loss: 6.734596388680594, Testing Loss: 6.43890609741211
+Fold #9::= Training Loss: 6.754733085632324, Testing Loss: 6.056236457824707
+Completed learning rate 0.04, with average training loss 6.677957412174768, average testing loss 6.66381212234497
+##### Beginning Learning Rate:: 0.05 #####
+Fold #0::= Training Loss: 6.513167040688651, Testing Loss: 6.264883518218994
+Fold #1::= Training Loss: 6.55016108921596, Testing Loss: 5.9083281517028805
+Fold #2::= Training Loss: 6.414902482713972, Testing Loss: 6.6101726531982425
+Fold #3::= Training Loss: 6.574872085026333, Testing Loss: 6.312246036529541
+Fold #4::= Training Loss: 6.518836293901716, Testing Loss: 6.024089622497558
+Fold #5::= Training Loss: 6.551218441554478, Testing Loss: 6.509612560272217
+Fold #6::= Training Loss: 6.571549892425537, Testing Loss: 6.456913852691651
+Fold #7::= Training Loss: 6.338780130658831, Testing Loss: 7.783423137664795
+Fold #8::= Training Loss: 6.553274290902274, Testing Loss: 5.1865184783935545
+Fold #9::= Training Loss: 6.278320244380406, Testing Loss: 7.461839103698731
+Completed learning rate 0.05, with average training loss 6.486508199146816, average testing loss 6.451802711486816
+##### Beginning Learning Rate:: 0.1 #####
+Fold #0::= Training Loss: 4.946591990334647, Testing Loss: 4.412448692321777
+Fold #1::= Training Loss: 4.702760900769915, Testing Loss: 5.214610767364502
+Fold #2::= Training Loss: 4.8216869831085205, Testing Loss: 4.932298183441162
+Fold #3::= Training Loss: 4.709429468427386, Testing Loss: 5.023519611358642
+Fold #4::= Training Loss: 4.850221906389509, Testing Loss: 4.6800233840942385
+Fold #5::= Training Loss: 5.519539151872907, Testing Loss: 5.47653112411499
+Fold #6::= Training Loss: 4.703660760607038, Testing Loss: 4.504292154312134
+Fold #7::= Training Loss: 4.73819603238787, Testing Loss: 4.432223796844482
+Fold #8::= Training Loss: 4.775028637477329, Testing Loss: 5.003166770935058
+Fold #9::= Training Loss: 4.865953581673758, Testing Loss: 4.754256725311279
+Completed learning rate 0.1, with average training loss 4.863306941304887, average testing loss 4.843337121009826
+##### Beginning Learning Rate:: 0.2 #####
+Fold #0::= Training Loss: 4.701633862086704, Testing Loss: 4.805947589874267
+Fold #1::= Training Loss: 4.828696523393903, Testing Loss: 4.248367738723755
+Fold #2::= Training Loss: 4.779972280774798, Testing Loss: 4.680590629577637
+Fold #3::= Training Loss: 4.819427490234375, Testing Loss: 4.455223035812378
+Fold #4::= Training Loss: 4.774174281529018, Testing Loss: 4.868063640594483
+Fold #5::= Training Loss: 4.828061444418771, Testing Loss: 4.330720615386963
+Fold #6::= Training Loss: 4.811977795192173, Testing Loss: 4.845467185974121
+Fold #7::= Training Loss: 4.752559457506452, Testing Loss: 5.143858146667481
+Fold #8::= Training Loss: 4.740603855678013, Testing Loss: 5.58417854309082
+Fold #9::= Training Loss: 4.881730965205601, Testing Loss: 4.349031686782837
+Completed learning rate 0.2, with average training loss 4.79188379560198, average testing loss 4.731144881248474
+##### Beginning Learning Rate:: 0.3 #####
+Fold #0::= Training Loss: 4.826970100402832, Testing Loss: 5.839604377746582
+Fold #1::= Training Loss: 5.100338527134487, Testing Loss: 4.219114875793457
+Fold #2::= Training Loss: 5.066328525543213, Testing Loss: 4.298071575164795
+Fold #3::= Training Loss: 4.961154120309012, Testing Loss: 4.383708477020264
+Fold #4::= Training Loss: 4.9340353693280905, Testing Loss: 4.6591188430786135
+Fold #5::= Training Loss: 4.937977245875767, Testing Loss: 4.670335912704468
+Fold #6::= Training Loss: 4.861474854605539, Testing Loss: 5.593212985992432
+Fold #7::= Training Loss: 4.9114813804626465, Testing Loss: 4.696575260162353
+Fold #8::= Training Loss: 4.967207772391183, Testing Loss: 5.274268245697021
+Fold #9::= Training Loss: 4.774820736476353, Testing Loss: 5.473373699188232
+Completed learning rate 0.3, with average training loss 4.934178863252912, average testing loss 4.910738425254822
+##### Beginning Learning Rate:: 0.5 #####
+Fold #0::= Training Loss: 5.263080937521798, Testing Loss: 5.678493642807007
+Fold #1::= Training Loss: 5.291099684579032, Testing Loss: 5.620655059814453
+Fold #2::= Training Loss: 5.2090012686593195, Testing Loss: 5.032020568847656
+Fold #3::= Training Loss: 5.122223785945347, Testing Loss: 5.659455823898315
+Fold #4::= Training Loss: 5.279493468148368, Testing Loss: 5.799699211120606
+Fold #5::= Training Loss: 5.211961201259068, Testing Loss: 6.188672065734863
+Fold #6::= Training Loss: 5.37073540687561, Testing Loss: 4.995393085479736
+Fold #7::= Training Loss: 5.174666677202497, Testing Loss: 5.142663669586182
+Fold #8::= Training Loss: 5.188065869467599, Testing Loss: 5.233030986785889
+Fold #9::= Training Loss: 5.275229317801339, Testing Loss: 4.167351388931275
+Completed learning rate 0.5, with average training loss 5.238555761745998, average testing loss 5.351743550300599

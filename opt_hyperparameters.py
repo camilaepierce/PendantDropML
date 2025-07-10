@@ -57,12 +57,14 @@ if __name__ == "__main__":
 
     master = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"], 
                                        sigma_dir=data_paths["sigmas"], ignore_images=settings["ignoreImages"])
-    learning_rates = [.000001, .00001, .0001, .001, .005, .01, .05, .1, .2, .3, .5]
+    LEARNING_RATES = [.000001, .00001, .0001, .001, 0.003, .005, .008, .01, .02, .03, .04, .05, .1, .2, .3, .5]
+
+
 
     train_losses = []
     test_losses = []
     
-    for lr in learning_rates:
+    for lr in LEARNING_RATES:
         print(f"##### Beginning Learning Rate:: {lr} #####")
         cross_set = create_cross_validation(master, k_folds)
         lr_train = 0
@@ -71,7 +73,7 @@ if __name__ == "__main__":
             model = Gandalf()
             training_set, testing_set = next(cross_set)
             # Run the optimzer
-            model, (ftrain_loss, ftest_loss) = run_optimizer(config, Gandalf, model=model, chosen_training=training_set, chosen_testing=testing_set, return_loss=True)
+            model, (ftrain_loss, ftest_loss) = run_optimizer(config, Gandalf, model=model, chosen_training=training_set, chosen_testing=testing_set, return_loss=True, chosen_learning=lr)
             lr_train += ftrain_loss
             lr_test += ftest_loss
             print(f"Fold #{fold}::= Training Loss: {ftrain_loss}, Testing Loss: {ftest_loss}")
@@ -81,9 +83,23 @@ if __name__ == "__main__":
 
     
 
-    plt.plot(learning_rates, train_losses, c="red")
+    plt.plot(LEARNING_RATES, train_losses, c="red", label="Train Losses")
     plt.xlabel("Learning Rates")
-    plt.plot(learning_rates, test_losses, c="blue", )
+    plt.plot(LEARNING_RATES, test_losses, c="blue", label="Test Losses")
     plt.ylabel("Testing and Training Loss")
+    plt.legend()
+    plt.title("Learning Rate Optimization")
+    plt.savefig("LearningRateOptGandLinear" + ".png")
+    plt.show()
+
+
+    plt.plot(LEARNING_RATES, train_losses, c="red", label="Train Losses")
+    plt.xlabel("Learning Rates (Log)")
+    plt.xscale("log")
+    plt.plot(LEARNING_RATES, test_losses, c="blue", label="Test Losses")
+    plt.ylabel("Testing and Training Loss")
+    plt.legend()
+    plt.title("Learning Rate Optimization")
+    plt.savefig("LearningRateOptGandLog" + ".png")
     plt.show()
 
