@@ -43,7 +43,7 @@ def train_loop(dataloader, model, loss_fxn, optimizer, batch_size, train_losses,
         else:
             train_loss_avg += loss.item()
     # print(Tensor.float())
-    train_losses.append(train_loss_avg / (batch + 1))
+    train_losses.append(train_loss_avg / dataloader.num_batches)
     with open(filename, "a", encoding="utf-8") as f:
         f.write(out + "\n")
 
@@ -66,7 +66,7 @@ def test_loop(dataloader, model, loss_fxn, num_batches, tolerance, test_losses, 
                 # f.write(f"Actual Mean: {torch.mean(y)} Actual Std Dev: {torch.std(y)}\n")
                 # f.write(f"Prediction Mean: {torch.mean(pred)} Prediction Std Dev: {torch.std(pred)}\n")
     test_loss /= num_batches
-    correct /= len(dataloader.data)
+    correct /= (len(dataloader.order) * dataloader.data.output_size) # total number of items isclose is counting
     with open(filename, "a", encoding="utf-8") as f:
         f.write(f"Test Error: \n Accuracy: {(100*correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
     test_losses.append(test_loss)
@@ -134,16 +134,16 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
         if (len(training_data.available_samples) == 0 or len(testing_data.available_samples) == 0):
             raise IndexError("You have only provided " + str(len(drop_dataset)) + " samples. Please update the config file.")
         
-        if (batch_size == 0):
-            raise ValueError("You have only provided " + str(len(drop_dataset)) + " samples. Please update number of batches")
         
     else:
         training_data, testing_data = chosen_training, chosen_testing
     
+    batch_size = int(len(training_data)/ num_batches)
+    if (batch_size == 0):
+            raise ValueError("You have only provided " + str(len(drop_dataset)) + " samples. Please update number of batches")
     if chosen_learning != None:
         learning_rate = chosen_learning
 
-    batch_size = int(len(training_data)/ num_batches)
     
     train_dataloader = PendantDataLoader(training_data, num_batches=num_batches, feat_fxn=features_fxn, lab_fxn=labels_fxn)
     test_dataloader = PendantDataLoader(testing_data, test_num_batches, feat_fxn=features_fxn, lab_fxn=labels_fxn)
@@ -153,7 +153,7 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
 
 
     loss_fxn = nn.MSELoss()
-    optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
     with open(results_file, "a", encoding="utf-8") as f:
         f.write("Training Model\n===============================\n")

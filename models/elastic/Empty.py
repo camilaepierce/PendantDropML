@@ -8,7 +8,10 @@ from torch import nn
 
 
 class Empty(nn.Module):
-    """ Works with rc coordinates 40x2, and output features 40x2"""
+    """ Works with rc coordinates 40x2, and output features 40x2
+    
+    Optimal learning rate: 0.01
+    """
 
     def __init__(self):
         super().__init__()

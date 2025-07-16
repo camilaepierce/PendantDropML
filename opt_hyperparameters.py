@@ -22,8 +22,8 @@ from utils.extraction import PendantDropDataset
 # from models.simple.image_input.grayscaletransform import GrayscaleTransform
 # from models.simple.rz_input.Xanathor import Xanathor
 # from models.elastic.elasticbasic import Elastic
-from models.elastic.Gandalf import Gandalf
-# from models.elastic.Empty import Empty
+# from models.elastic.Gandalf import Gandalf
+from models.elastic.Empty import Empty
 
 
 def create_cross_validation(master_dataset, k_folds):
@@ -70,10 +70,10 @@ if __name__ == "__main__":
         lr_train = 0
         lr_test = 0
         for fold in range(k_folds):
-            model = Gandalf()
+            model = Empty()
             training_set, testing_set = next(cross_set)
             # Run the optimzer
-            model, (ftrain_loss, ftest_loss) = run_optimizer(config, Gandalf, model=model, chosen_training=training_set, chosen_testing=testing_set, return_loss=True, chosen_learning=lr)
+            model, (ftrain_loss, ftest_loss) = run_optimizer(config, Empty, model=model, chosen_training=training_set, chosen_testing=testing_set, return_loss=True, chosen_learning=lr)
             lr_train += ftrain_loss
             lr_test += ftest_loss
             print(f"Fold #{fold}::= Training Loss: {ftrain_loss}, Testing Loss: {ftest_loss}")

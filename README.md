@@ -91,7 +91,7 @@ Working on a more streamlined method of running models, but currently can be run
 ```
 or by opening the folder in Visual Studio Code and running `model.py`. Configurations can be specified at the top of `model.py`, such as which model to run, learning rate, data folders, and number of batches.
 
-
+Customize the actions you want to take by commenting / uncommenting the desired lines. Current, train a model through running the optimizer. Load a model to continue training with the loading function. Evaluate a model through evaluate_directory(). Determine optimal hyperparameters (learning rate, etc.) through running the opt_hyperparameters script.
 
 
 **IMPORTANT** If you start running the optimizer and need to end it, you can just hit Ctrl+C (Keyboard Interrupt) to end the script midway

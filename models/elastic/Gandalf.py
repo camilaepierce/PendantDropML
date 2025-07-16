@@ -8,7 +8,10 @@ from torch import nn
 
 
 class Gandalf(nn.Module):
-    """ Works with rc coordinates 40x2, and output features 40x2"""
+    """ Works with rc coordinates 40x2, and output features 40x2
+    
+    Optimal Learning Rate: 0.1
+    """
 
     def __init__(self):
         super().__init__()

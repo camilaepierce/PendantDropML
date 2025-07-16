@@ -140,7 +140,9 @@ class PendantDropDataset(Dataset):
 
         if sigma_dir:
             self.sigmas_dict = extract_data_frame_directory(sigma_dir)
+            self.output_size = 80
         else:
+            self.output_size = 1
             self.sigmas_dict = None
         self.img_dir = img_dir
         self.transform = transform
@@ -150,6 +152,7 @@ class PendantDropDataset(Dataset):
             self.available_samples = set(self.coord_outline_dict.keys())
         else:
             self.available_samples = select_samples.copy()
+
 
     def __len__(self):
         """ Returns size of dataset """
@@ -163,7 +166,7 @@ class PendantDropDataset(Dataset):
             idx (str) : Index / name of sample, requires idx to in the given directory
 
         Returns:
-            Dictionary of requested sample, or Warning if idx not in the dataset. Dictionary has the keys {'image', 'coordinates', and 'surface_tension'}.
+            Dictionary of requested sample, or Warning if idx not in the dataset. Dictionary has the keys {'image', 'coordinates', 'surface_tension', 'Wo_Ar', and 'sigma_tensor'}.
         """
         if (idx not in self.surf_tens_dict):
             return Warning(f"The requested sample_id {idx} does not exist. Did you match the name of a sample exactly?")
@@ -230,7 +233,32 @@ class PendantDropDataset(Dataset):
             all_samples_combined.update(dataset.available_samples.copy())
 
         return PendantDropDataset(self.params_dir, self.rz_dir, self.img_dir, sigma_dir=self.sigma_dir, select_samples=all_samples_combined, ignore_images=self.ignore_images)
-        
+
+# class SingleDropSimple:
+#     """
+    
+#     """
+
+#     def __init__(self, sample_num, params_dir, rz_dir, img_dir, transform=None, ignore_images=False):
+#         pass
+
+#     def get_rz(self):
+#         pass
+
+#     def get_image(self):
+#         pass
+
+#     def get_sigma(self):
+#         pass
+
+# class SingleDropElastic(SingleDropSimple):
+
+#     def __init__(self, params_dir, rz_dir, img_dir, sigma_dir, transform=None, ignore_images=False):
+#         super.__init__(self, params_dir, rz_dir, img_dir, transform=transform, ignore_images=ignore_images)
+#         self.sigma_dir = sigma_dir
+
+
+#     def get_sigma_tensor(self):
 
 if __name__ == "__main__":
 

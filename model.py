@@ -21,7 +21,8 @@ from utils.evaluation import evaluate_directory
 # from models.simple.rz_input.Xanathor import Xanathor
 # from models.elastic.elasticbasic import Elastic
 # from models.elastic.Gandalf import Gandalf
-from models.elastic.Empty import Empty
+# from models.elastic.Empty import Empty
+from models.elastic.Extreme2 import Extreme
 
 
 if __name__ == "__main__":
@@ -34,11 +35,11 @@ if __name__ == "__main__":
     with open("config.json") as jsonFile:
         config = load(jsonFile)
     
-    model = Empty()
+    model = Extreme()
     # model.load_state_dict(torch.load('model_weights/Gandalf.pth', weights_only=True))
 
     # Run the optimzer
-    model = run_optimizer(config, Empty, model=model)
+    model = run_optimizer(config, Extreme)
 
 
     # print(str(summary(model, input_size=(100, 40, 2))))

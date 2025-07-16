@@ -33,10 +33,13 @@ class PendantDataLoader():
             labels_batch = []
             for sample_id in current_batch:
                 sample = self.data[sample_id]
-                features_batch.append(self.feat_fxn(sample))
+                try:
+                    features_batch.append(self.feat_fxn(sample))
+                except:
+                    print(sample)
                 labels_batch.append(self.lab_fxn(sample))
             self.iter_idx += 1
-            yield (Tensor.float(from_numpy(np.array(features_batch))), Tensor.float(from_numpy(np.array(labels_batch))))
+            yield (Tensor.float(from_numpy(np.array(features_batch))), Tensor.float(from_numpy(np.array(labels_batch))))        
     
 
 ###################################
