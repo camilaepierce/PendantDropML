@@ -36,7 +36,8 @@ def plot_loss_evolution(num_epochs, training_loss, testing_loss, model_name, los
     plt.ylabel(f"Loss ({loss_fxn})")
     plt.xticks(x_axes)
     plt.title(model_name)
-    plt.ylim((0, 20))
+    plt.ylim((0, 10))
+    # plt.yscale("log")
     plt.legend()
 
     if save:

@@ -57,9 +57,9 @@ if __name__ == "__main__":
 
     master = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"], 
                                        sigma_dir=data_paths["sigmas"], ignore_images=settings["ignoreImages"])
-    LEARNING_RATES = [.000001, .00001, .0001, .001, 0.003, .005, .008, .01, .02, .03, .04, .05, .1, .2, .3, .5]
+    # LEARNING_RATES = [.000001, .00001, .0001, .001, 0.003, .005, .008, .01, .02, .03, .04, .05, .1, .2, .3, .5]
 
-
+    LEARNING_RATES = [0.04, 0.05, 0.06, 0.08, 0.1, 0.11, 0.12, 0.13, 0.14]
 
     train_losses = []
     test_losses = []

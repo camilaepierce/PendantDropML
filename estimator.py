@@ -9,9 +9,9 @@ from utils.dataloader import PendantDataLoader
 # from models.simple.image_input.five_layer import FiveLayerCNN
 
 # from models.elastic.elasticbasic import Elastic
-from models.elastic.Gandalf import Gandalf
+# from models.elastic.Gandalf import Gandalf
 # from models.elastic.Empty import Empty
-
+from models.elastic.Extreme2 import Extreme
 
 def toInput(npArray):
     return Tensor.float(from_numpy(npArray)).unsqueeze(0)
@@ -28,8 +28,8 @@ if __name__ == "__main__":
 
     
     # Load model (must be already created)
-    model = Gandalf()
-    model.load_state_dict(torch.load('model_weights/GandalfAdam.pth', weights_only=True))
+    model = Extreme()
+    model.load_state_dict(torch.load('model_weights/ExtremeFinal.pth', weights_only=True))
     model.eval() # set so predictions do not affect training
 
     # Load image (from name? from file? from directory?) -- from dataset object
@@ -38,7 +38,7 @@ if __name__ == "__main__":
                                         sigma_dir=data_paths["sigmas"], ignore_images=settings["ignoreImages"])
     
     # has keys: {'image', 'coordinates', 'surface_tension', 'Wo_Ar', and 'sigma_tensor'}
-    drop = master["1615"]
+    drop = master["1236"]
 
     prediction = model(toInput(drop["coordinates"])).detach().numpy()
     all_diff = []
