@@ -1,0 +1,21 @@
+{
+    "sigma_dimal": 5.0,
+    "grav_dimal": 9807.0,
+    "rneedle_dimal": 0.35762270156622417,
+    "volume0_dimal": 0.7509993353356995,
+    "deltarho_dimal": 0.001,
+    "sigma": 3.9864256612581483,
+    "grav": 1.0,
+    "rneedle": 1.0,
+    "volume0": 16.41966581420914,
+    "deltarho": 1.0,
+    "Wo": 0.6555423831542428,
+    "Wo_paper": 4.118894270068228,
+    "Ar_paper": 16.41966581420914,
+    "Kmod": 12.270568203578708,
+    "Gmod": 1000.0,
+    "compresstype": 2.0,
+    "frac": 0.9,
+    "strainmeasure": "pepicelli",
+    "area0": 29.437827970274657
+}
