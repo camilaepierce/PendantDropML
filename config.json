@@ -17,7 +17,7 @@
         },
         "training_parameters" : {
             "learning_rate" : 0.005,
-            "num_batches" : 300, 
+            "num_batches" : 6000, 
             "epochs" : 600,
             "testing_size" : 876, 
             "random_seed" : null,
