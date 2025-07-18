@@ -27,7 +27,7 @@ from models.elastic.Extreme2 import Extreme
 
 if __name__ == "__main__":
 
-    device = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
+    device = "cpu" #torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
     print(f"Using {device} device")
 
 
@@ -36,7 +36,7 @@ if __name__ == "__main__":
         config = load(jsonFile)
     
     model = Extreme()
-    model.load_state_dict(torch.load('model_weights/ExtremeFinal.pth', weights_only=True))
+    # model.load_state_dict(torch.load('model_weights/ExtremeFinal.pth', weights_only=True))
 
     # Run the optimzer
     model = run_optimizer(config, Extreme, model=model)
