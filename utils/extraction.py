@@ -244,6 +244,9 @@ class PendantDropDataset(Dataset):
         for sample_id, surf_tens in self.surf_tens_dict.items():
             if surf_tens < 1:
                 self.available_samples.remove(sample_id)
+            if np.average(self.sigmas_dict[sample_id]) < 0:
+                self.available_samples.remove(sample_id)
+
 
 
 # class SingleDropSimple:
@@ -309,16 +312,16 @@ if __name__ == "__main__":
     set_diff = dirty_data.available_samples.difference(clean_data.available_samples)
     print(set_diff, "difference")
 
-    for sample in set_diff:
-        print(dirty_data[sample]["surface_tension"])
+    # for sample in set_diff:
+    #     print(dirty_data[sample]["surface_tension"])
 
 
-    for i, sample_id in enumerate(dirty_data.available_samples):
-        tens = dirty_data[sample_id]["surface_tension"]
-        # if tens < 1:
-        print(sample_id, tens)
-        if i > 1000:
-            break
+    # for i, sample_id in enumerate(dirty_data.available_samples):
+    #     tens = dirty_data[sample_id]["surface_tension"]
+    #     # if tens < 1:
+    #     print(sample_id, tens)
+    #     if i > 1000:
+            # break
     # for i, sample_id in enumerate(drop_dataset.available_samples):
     #     sample = drop_dataset[sample_id]
 

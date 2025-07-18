@@ -4,10 +4,10 @@
             "ignoreImages" : true
         },
         "save_info" : {
-            "modelName" : "model_weights/HuberClean.pth", 
+            "modelName" : "model_weights/HuberCleanedMassive.pth", 
             "save_model" : true,
-            "results" : "results/HuberClean",
-            "eval_results" : "results/evaluation/HuberClean"
+            "results" : "results/HuberCleanedMassive",
+            "eval_results" : "results/evaluation/HuberCleanedMassive"
         },
         "data_paths" : {
             "params" : "data/elastic_massive/test_data_params", 
@@ -17,14 +17,14 @@
         },
         "training_parameters" : {
             "learning_rate" : 0.005,
-            "num_batches" : 10, 
+            "num_batches" : 6000, 
             "epochs" : 200,
-            "testing_size" : 7, 
+            "testing_size" : 876, 
             "random_seed" : null,
             "visualize_training" : true
         },
         "testing_parameters" : {
-            "num_batches": 2, 
+            "num_batches": 16, 
             "absolute_tolerance" : 0.05
         },
         "eval_config" : {

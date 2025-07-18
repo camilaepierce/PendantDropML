@@ -36,10 +36,10 @@ if __name__ == "__main__":
         config = load(jsonFile)
     
     model = Extreme()
-    model.load_state_dict(torch.load('model_weights/HuberLoss.pth', weights_only=True))
+    # model.load_state_dict(torch.load('model_weights/HuberLoss.pth', weights_only=True))
 
     # Run the optimzer
-    # model = run_optimizer(config, Extreme, model=model)
+    model = run_optimizer(config, Extreme, model=model)
 
 
     # print(str(summary(model, input_size=(100, 40, 2))))

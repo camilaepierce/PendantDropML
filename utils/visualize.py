@@ -34,9 +34,8 @@ def plot_loss_evolution(num_epochs, training_loss, testing_loss, model_name, los
     plt.plot(x_axes, testing_loss, c="slateblue", label="Testing Loss")
     plt.xlabel("Epochs")
     plt.ylabel(f"Loss ({loss_fxn})")
-    plt.xticks(x_axes)
     plt.title(model_name)
-    plt.ylim((0, 10))
+    plt.ylim((0, min(10, training_loss[0])))
     # plt.yscale("log")
     plt.legend()
 

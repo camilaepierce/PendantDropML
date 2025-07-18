@@ -127,7 +127,7 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
     ##############################################################
     if chosen_training == None or chosen_testing == None:
         drop_dataset = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"], 
-                                        sigma_dir=data_paths["sigmas"], ignore_images=settings["ignoreImages"])
+                                        sigma_dir=data_paths["sigmas"], ignore_images=settings["ignoreImages"], clean_data=True)
         training_data, testing_data = drop_dataset.split_dataset(testing_size, random_seed)
 
 
@@ -152,7 +152,7 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
         model = CNNModel()
 
 
-    loss_fxn = nn.HuberLoss(delta=8)
+    loss_fxn = nn.HuberLoss(delta=6)
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
     with open(results_file, "a", encoding="utf-8") as f:
