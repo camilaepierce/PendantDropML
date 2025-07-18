@@ -39,7 +39,7 @@ if __name__ == "__main__":
     model.load_state_dict(torch.load('model_weights/ExtremeFinal.pth', weights_only=True))
 
     # Run the optimzer
-    # model = run_optimizer(config, Extreme, model=model)
+    model = run_optimizer(config, Extreme, model=model)
 
 
     # print(str(summary(model, input_size=(100, 40, 2))))

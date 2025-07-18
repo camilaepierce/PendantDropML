@@ -4,10 +4,10 @@
             "ignoreImages" : true
         },
         "save_info" : {
-            "modelName" : "model_weights/ExtremeFinal.pth", 
+            "modelName" : "model_weights/HuberLoss.pth", 
             "save_model" : true,
-            "results" : "results/ExtremeFinal",
-            "eval_results" : "results/evaluation/ExtremeFinalMassive"
+            "results" : "results/ExtremHuberLosseFinal",
+            "eval_results" : "results/evaluation/HuberLoss"
         },
         "data_paths" : {
             "params" : "data/elastic_massive/test_data_params", 
@@ -17,9 +17,9 @@
         },
         "training_parameters" : {
             "learning_rate" : 0.005,
-            "num_batches" : 40, 
+            "num_batches" : 300, 
             "epochs" : 600,
-            "testing_size" : 282, 
+            "testing_size" : 876, 
             "random_seed" : null,
             "visualize_training" : true
         },

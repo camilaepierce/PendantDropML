@@ -152,7 +152,7 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
         model = CNNModel()
 
 
-    loss_fxn = nn.MSELoss()
+    loss_fxn = nn.HuberLoss(delta=8)
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
     with open(results_file, "a", encoding="utf-8") as f:

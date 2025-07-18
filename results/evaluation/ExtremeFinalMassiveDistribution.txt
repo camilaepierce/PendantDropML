@@ -4,3 +4,9 @@ Aspect Ratio:: Mean: 12.303494676126556 Std Dev: 3.568857907835279
 Surface Tension:: Mean: 2.7253057147304007 Std Dev: 2.5255620603974744
 Prediction Distribution
 Surface Tension:: Mean: 3.833623460514308 Std Dev: 2.221968780274758
+Sample Distribution
+Worthington Number:: Mean: 2.70291939761767 Std Dev: 1.0841403433902963
+Aspect Ratio:: Mean: 12.275231415849316 Std Dev: 3.5788182927237124
+Surface Tension:: Mean: 2.7283237494262473 Std Dev: 2.5272356491579027
+Prediction Distribution
+Surface Tension:: Mean: 2.822760656402974 Std Dev: 2.2301900954071727
