@@ -116,7 +116,7 @@ def get_digits_from_filename(filename):
 class PendantDropDataset(Dataset):
     """Pendant Drop Dataset, inherits from torch.utils.data.Dataset Class."""
 
-    def __init__(self, params_dir, rz_dir, img_dir, sigma_dir=None, transform=None, select_samples=None, ignore_images=False):
+    def __init__(self, params_dir, rz_dir, img_dir, sigma_dir=None, transform=None, select_samples=None, ignore_images=False, clean_data=False):
         """
         Some good documentation.
 
@@ -152,6 +152,9 @@ class PendantDropDataset(Dataset):
             self.available_samples = set(self.coord_outline_dict.keys())
         else:
             self.available_samples = select_samples.copy()
+        
+        if clean_data:
+            self.clean_data()
 
 
     def __len__(self):
@@ -233,6 +236,15 @@ class PendantDropDataset(Dataset):
             all_samples_combined.update(dataset.available_samples.copy())
 
         return PendantDropDataset(self.params_dir, self.rz_dir, self.img_dir, sigma_dir=self.sigma_dir, select_samples=all_samples_combined, ignore_images=self.ignore_images)
+    
+    def clean_data(self):
+        """
+        Removes drops that have a surface tension below 1.
+        """
+        for sample_id, surf_tens in self.surf_tens_dict.items():
+            if surf_tens < 1:
+                self.available_samples.remove(sample_id)
+
 
 # class SingleDropSimple:
 #     """
@@ -285,9 +297,28 @@ if __name__ == "__main__":
     ### Test Case for Dataset Class
     ##################################################
 
-    drop_dataset = PendantDropDataset("elastic_mini/test_data_params", "elastic_mini/test_data_rz","elastic_mini/test_images", "elastic_mini/test_data_sigmas", ignore_images=True)
+    dirty_data = PendantDropDataset("data/elastic_massive/test_data_params", "data/elastic_massive/test_data_rz","data/elastic_massive/test_images", "data/elastic_massive/test_data_sigmas", ignore_images=True, clean_data=False)
+
+    clean_data = PendantDropDataset("data/elastic_massive/test_data_params", "data/elastic_massive/test_data_rz","data/elastic_massive/test_images", "data/elastic_massive/test_data_sigmas", ignore_images=True, clean_data=True)
 
 
+    print(len(dirty_data))
+    print(len(clean_data))
+
+    print()
+    set_diff = dirty_data.available_samples.difference(clean_data.available_samples)
+    print(set_diff, "difference")
+
+    for sample in set_diff:
+        print(dirty_data[sample]["surface_tension"])
+
+
+    for i, sample_id in enumerate(dirty_data.available_samples):
+        tens = dirty_data[sample_id]["surface_tension"]
+        # if tens < 1:
+        print(sample_id, tens)
+        if i > 1000:
+            break
     # for i, sample_id in enumerate(drop_dataset.available_samples):
     #     sample = drop_dataset[sample_id]
 
@@ -297,5 +328,5 @@ if __name__ == "__main__":
 
     # print(drop_dataset["38"]["coordinates"])
 
-    print(type(drop_dataset["38"]["sigma_tensor"]))
-    print(drop_dataset["38"]["sigma_tensor"].shape)
+    # print(type(drop_dataset["38"]["sigma_tensor"]))
+    # print(drop_dataset["38"]["sigma_tensor"].shape)

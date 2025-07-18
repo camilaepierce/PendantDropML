@@ -4,30 +4,30 @@
             "ignoreImages" : true
         },
         "save_info" : {
-            "modelName" : "model_weights/HuberLoss.pth", 
+            "modelName" : "model_weights/HuberClean.pth", 
             "save_model" : true,
-            "results" : "results/ExtremHuberLosseFinal",
-            "eval_results" : "results/evaluation/HuberLoss"
+            "results" : "results/HuberClean",
+            "eval_results" : "results/evaluation/HuberClean"
         },
         "data_paths" : {
-            "params" : "data/elastic_mini/test_data_params", 
-            "rz" : "data/elastic_mini/test_data_rz", 
-            "images" : "data/elastic_mini/test_images",
-            "sigmas" : "data/elastic_mini/test_data_sigmas"
+            "params" : "data/elastic_massive/test_data_params", 
+            "rz" : "data/elastic_massive/test_data_rz", 
+            "images" : "data/elastic_massive/test_images",
+            "sigmas" : "data/elastic_massive/test_data_sigmas"
         },
         "training_parameters" : {
             "learning_rate" : 0.005,
-            "num_batches" : 6000, 
-            "epochs" : 600,
-            "testing_size" : 876, 
+            "num_batches" : 10, 
+            "epochs" : 200,
+            "testing_size" : 7, 
             "random_seed" : null,
             "visualize_training" : true
         },
         "testing_parameters" : {
-            "num_batches": 3, 
+            "num_batches": 2, 
             "absolute_tolerance" : 0.05
         },
         "eval_config" : {
-            "eval_data_path" : "elastic_mini/test_images"
+            "eval_data_path" : "elastic_massive/test_images"
         }
     }

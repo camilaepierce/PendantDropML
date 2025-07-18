@@ -1,27 +1,35 @@
 # import matplotlib.pyplot as plt
-from matplotlib.colors import Normalize
+# from matplotlib.colors import Normalize
 
-import numpy as np
-# from skimage import io
-import torch
+# import numpy as np
+# # from skimage import io
+# import torch
 # import random
+my_set = {"23", "1992", "2189", "210"}
+dictionary = {"23": 229, "1992": 2189, "210": 2190}
 
+print(my_set)
+for sample_id, value in dictionary.items():
+    print(sample_id, value)
+    if (value < 1000):
+        my_set.remove(sample_id)
 
+print(my_set)
 # with open("../results/evaluation/GandalfTheGrayEvaluation.txt", "r") as f:
 
-Wo,Ar,sample_sigma,prediction,abs_error,rel_error,mse,K, G, frac = np.loadtxt("results/evaluation/EmptyEvaluation.txt", delimiter=",", skiprows=1, unpack=True)
+# Wo,Ar,sample_sigma,prediction,abs_error,rel_error,mse,K, G, frac = np.loadtxt("results/evaluation/EmptyEvaluation.txt", delimiter=",", skiprows=1, unpack=True)
 
-print(np.min(mse), "minimum value of mse")
-print(np.max(mse), "maximum value of mse")
+# print(np.min(mse), "minimum value of mse")
+# print(np.max(mse), "maximum value of mse")
 
-norm = Normalize()
-normed_vals = norm(mse)
-print(np.min(normed_vals))
-print(np.max(normed_vals))
-print(norm.inverse(np.min(mse)))
-print(norm.inverse(np.max(mse)))
+# norm = Normalize()
+# normed_vals = norm(mse)
+# print(np.min(normed_vals))
+# print(np.max(normed_vals))
+# print(norm.inverse(np.min(mse)))
+# print(norm.inverse(np.max(mse)))
 
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 # plt.scatter(Wo, Ar, c=mse, norm=Normalize(), cmap="magma")
 # plt.colorbar(label="default norm")
@@ -85,9 +93,9 @@ import matplotlib.pyplot as plt
 # print(np.quantile(below_zero[:, 5], .50))
 # print(np.quantile(below_zero[:, 5], .75))
 
-print()
-print()
-print("data collection:")
-print("Average Relative Error:", np.average(rel_error))
-print("Average Absolute Error:", np.average(abs_error))
-print("Average MSE:", np.average(mse))
+# print()
+# print()
+# print("data collection:")
+# print("Average Relative Error:", np.average(rel_error))
+# print("Average Absolute Error:", np.average(abs_error))
+# print("Average MSE:", np.average(mse))
