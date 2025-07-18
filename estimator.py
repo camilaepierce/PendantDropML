@@ -38,7 +38,7 @@ if __name__ == "__main__":
                                         sigma_dir=data_paths["sigmas"], ignore_images=settings["ignoreImages"])
     
     # has keys: {'image', 'coordinates', 'surface_tension', 'Wo_Ar', and 'sigma_tensor'}
-    drop = master["1236"]
+    drop = master["85"]
 
     prediction = model(toInput(drop["coordinates"])).detach().numpy()
     all_diff = []
