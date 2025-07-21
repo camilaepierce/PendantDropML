@@ -114,6 +114,8 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
     settings = config_object["settings"]
     if settings["isElastic"]:
         labels_fxn = lambda x : x["sigma_tensor"]
+    elif settings["includeKMod"]:
+        labels_fxn = lambda x : x["sigma_tensor"]
     else:
         labels_fxn = lambda x : x["surface_tension"]
 

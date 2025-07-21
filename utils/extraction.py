@@ -186,10 +186,15 @@ class PendantDropDataset(Dataset):
 
         coords = self.coord_outline_dict[idx]
 
-        sample = {'image': image, 'coordinates': coords, 'surface_tension': self.surf_tens_dict[idx], 'Wo_Ar' : self.Wo_Ar_dict[idx], "sigma_tensor": sigma_tensor} #
+        sample = {'image': image, 'coordinates': coords, 'surface_tension': self.surf_tens_dict[idx], 
+                  'Wo_Ar' : self.Wo_Ar_dict[idx], "sigma_tensor": sigma_tensor, "sample_id": idx} #
         ## Could choose whether or not to include rz coordinates vs image (?)
 
         return sample
+    
+    def __iter__(self):
+        for sample_id in self.available_samples:
+            yield self.__getitem__(sample_id)
     
     def split_dataset(self, test_size, random_seed=None):
         """
