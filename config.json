@@ -17,7 +17,7 @@
             "sigmas" : "data/elastic_massive/test_data_sigmas"
         },
         "training_parameters" : {
-            "learning_rate" : 0.001,
+            "learning_rate" : 0.1,
             "num_batches" : 100, 
             "epochs" : 200,
             "testing_size" : 200, 

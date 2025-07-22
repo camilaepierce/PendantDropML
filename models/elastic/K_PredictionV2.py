@@ -31,7 +31,7 @@ class K_ModulusV2(nn.Module):
             nn.ReLU(),
             nn.Linear(256, 128),
             nn.ReLU(),
-            nn.Linear(1),
+            nn.Linear(128, 1),
         )
         # self.first = FirstModel
         self.name = "K Prediction"
