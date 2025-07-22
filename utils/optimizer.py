@@ -12,8 +12,6 @@ from utils.dataloader import PendantDataLoader
 from utils.extraction import PendantDropDataset
 from utils.visualize import plot_loss_evolution
 
-
-
 def train_loop(dataloader, model, loss_fxn, optimizer, batch_size, train_losses, filename):
     """ Training loop for optimization. """
     size = len(dataloader.data)
@@ -112,10 +110,10 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
     ###        Processing Settings          ###
     ###########################################
     settings = config_object["settings"]
-    if settings["isElastic"]:
+    if settings["isElastic"] and not settings["calculateKMod"]:
         labels_fxn = lambda x : x["sigma_tensor"]
-    elif settings["includeKMod"]:
-        labels_fxn = lambda x : x["sigma_tensor"]
+    elif settings["calculateKMod"]:
+        labels_fxn = lambda x : x["Wo_Ar"]["Kmod"]
     else:
         labels_fxn = lambda x : x["surface_tension"]
 

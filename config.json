@@ -1,33 +1,34 @@
 {
         "settings" : { 
             "isElastic" : true,
-            "ignoreImages" : true
+            "ignoreImages" : true,
+            "calculateKMod" : true
         },
         "save_info" : {
-            "modelName" : "model_weights/HuberCleanedMassive.pth", 
+            "modelName" : "model_weights/KPredictionV2.pth", 
             "save_model" : true,
-            "results" : "results/HuberCleanedMassive",
-            "eval_results" : "results/evaluation/HuberCleanedMassive"
+            "results" : "results/KPredictionV2",
+            "eval_results" : "results/evaluation/KPredictionV2"
         },
         "data_paths" : {
-            "params" : "data/elastic_large/test_data_params", 
-            "rz" : "data/elastic_large/test_data_rz", 
-            "images" : "data/elastic_large/test_images",
-            "sigmas" : "data/elastic_large/test_data_sigmas"
+            "params" : "data/elastic_massive/test_data_params", 
+            "rz" : "data/elastic_massive/test_data_rz", 
+            "images" : "data/elastic_massive/test_images",
+            "sigmas" : "data/elastic_massive/test_data_sigmas"
         },
         "training_parameters" : {
-            "learning_rate" : 0.005,
-            "num_batches" : 6000, 
+            "learning_rate" : 0.001,
+            "num_batches" : 100, 
             "epochs" : 200,
-            "testing_size" : 876, 
+            "testing_size" : 200, 
             "random_seed" : null,
             "visualize_training" : true
         },
         "testing_parameters" : {
-            "num_batches": 16, 
+            "num_batches": 2, 
             "absolute_tolerance" : 0.05
         },
         "eval_config" : {
-            "eval_data_path" : "elastic_large/test_images"
+            "eval_data_path" : "elastic_massive/test_images"
         }
     }

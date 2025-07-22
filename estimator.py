@@ -12,6 +12,7 @@ from utils.dataloader import PendantDataLoader
 # from models.elastic.Gandalf import Gandalf
 # from models.elastic.Empty import Empty
 from models.elastic.Extreme2 import Extreme
+import math
 
 def toInput(npArray):
     return Tensor.float(from_numpy(npArray)).unsqueeze(0)
@@ -35,12 +36,12 @@ if __name__ == "__main__":
     # Load image (from name? from file? from directory?) -- from dataset object
 
     master = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"], 
-                                        sigma_dir=data_paths["sigmas"], ignore_images=settings["ignoreImages"], clean_data=False)
+                                        sigma_dir=data_paths["sigmas"], ignore_images=settings["ignoreImages"], clean_data=True)
     
     # has keys: {'image', 'coordinates', 'surface_tension', 'Wo_Ar', and 'sigma_tensor'}
     # drop = master["9"]
     extra_verbose = False
-    verbose = False
+    verbose = True
 
     all_all_diff = []
     all_all_rel = []
@@ -49,8 +50,8 @@ if __name__ == "__main__":
         prediction = model(toInput(drop["coordinates"])).detach().numpy()
         all_diff = []
         all_rel = []
-        if np.average(prediction) > 6 and np.average(prediction) < 10:
-            verbose = True
+        # if np.average(prediction) > 6 and np.average(prediction) < 10:
+        #     verbose = True
         for pred, act in zip(prediction, drop["sigma_tensor"]):
             # if np.any(np.less(act, 0)):
                 # print("Negative tension", drop["sample_id"])
@@ -60,14 +61,16 @@ if __name__ == "__main__":
                 print(f"Prediction: {pred} Actual: {act} Difference: {diff} Percent Error: {rel_err}")
             all_diff.append(diff)
             all_rel.append(rel_err)
+        # print(all_rel)
         this_mse = np.average(np.square(np.array(all_diff)))
         this_rel = np.average(np.array(all_rel))
-        if verbose:
-            print(f"Mean Squared Error: {this_mse:.4}, Percent Rel Error: {this_rel:2.2%}")
+        if verbose and this_rel > .40:
+            print(f"{drop["sample_id"]} Mean Squared Error: {this_mse:.4}, Percent Rel Error: {this_rel:2.2%}")
         all_all_diff.append(this_mse)
         all_all_rel.append(this_rel)
-        verbose = False
-    print(f"ALL SAMPLES MSE: {np.average(np.square(np.array(all_all_diff))):.4}, Percent Rel Error: {np.average(np.array(all_all_rel)):2.2%}")
+        # verbose = False
+    # print([(idx, x) for idx, x in enumerate(all_all_rel)])
+    print(f"ALL SAMPLES MSE: {np.average(np.square(np.array(all_all_diff))):.4}, Percent Rel Error: {sum(all_all_rel) / len(all_all_rel):2.2%}")
 
 
 

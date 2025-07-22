@@ -23,8 +23,8 @@ from utils.evaluation import evaluate_directory
 # from models.elastic.Gandalf import Gandalf
 # from models.elastic.Empty import Empty
 from models.elastic.Extreme2 import Extreme
-
-
+from models.elastic.K_Prediction import K_Modulus
+from models.elastic.K_PredictionV2 import K_ModulusV2
 if __name__ == "__main__":
 
     device = "cpu" #torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
@@ -35,11 +35,12 @@ if __name__ == "__main__":
     with open("config.json") as jsonFile:
         config = load(jsonFile)
     
-    model = Extreme()
-    # model.load_state_dict(torch.load('model_weights/HuberLoss.pth', weights_only=True))
+    # first_model = Extreme()
+    # first_model.load_state_dict(torch.load('model_weights/HuberLoss.pth', weights_only=True))
+    model = K_ModulusV2()
 
     # Run the optimzer
-    model = run_optimizer(config, Extreme, model=model)
+    model = run_optimizer(config, K_ModulusV2, model=model)
 
 
     # print(str(summary(model, input_size=(100, 40, 2))))

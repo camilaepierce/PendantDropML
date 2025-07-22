@@ -3,18 +3,18 @@
 
 # import numpy as np
 # # from skimage import io
-# import torch
+import torch
 # import random
-my_set = {"23", "1992", "2189", "210"}
-dictionary = {"23": 229, "1992": 2189, "210": 2190}
+# my_set = {"23", "1992", "2189", "210"}
+# dictionary = {"23": 229, "1992": 2189, "210": 2190}
 
-print(my_set)
-for sample_id, value in dictionary.items():
-    print(sample_id, value)
-    if (value < 1000):
-        my_set.remove(sample_id)
+# print(my_set)
+# for sample_id, value in dictionary.items():
+#     print(sample_id, value)
+#     if (value < 1000):
+#         my_set.remove(sample_id)
 
-print(my_set)
+# print(my_set)
 # with open("../results/evaluation/GandalfTheGrayEvaluation.txt", "r") as f:
 
 # Wo,Ar,sample_sigma,prediction,abs_error,rel_error,mse,K, G, frac = np.loadtxt("results/evaluation/EmptyEvaluation.txt", delimiter=",", skiprows=1, unpack=True)
@@ -99,3 +99,28 @@ print(my_set)
 # print("Average Relative Error:", np.average(rel_error))
 # print("Average Absolute Error:", np.average(abs_error))
 # print("Average MSE:", np.average(mse))
+
+
+
+x = torch.rand((6, 40, 2))
+y = torch.rand((6, 40, 2))
+
+z = torch.cat((x, y))
+print(z.shape)
+z = torch.cat((x, y), dim=1)
+print(z.shape)
+x1 = x.flatten()
+y1 = y.flatten()
+z = torch.cat((x1, y1))
+print(z.shape)
+x1 = x.flatten(start_dim=1)
+y1 = y.flatten(start_dim=1)
+z = torch.cat((x1, y1))
+print(z.shape)
+x1 = x.flatten(start_dim=1)
+y1 = y.flatten(start_dim=1)
+z = torch.cat((x1, y1), dim=1)
+print(z.shape)
+z = torch.cat((x, y), dim=1)
+z = z.flatten(start_dim=1)
+print(z.shape)
