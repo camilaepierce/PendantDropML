@@ -5418,3 +5418,159 @@ Test Error:
  Accuracy: 0.6%, Avg loss: 38.762875 
 Epoch 47
 -------------------------------
+Training Model
+===============================
+Epoch 1
+-------------------------------
+Training Model
+===============================
+Epoch 1
+-------------------------------
+Training Model
+===============================
+Epoch 1
+-------------------------------
+Training Model
+===============================
+Epoch 1
+-------------------------------
+Training Model
+===============================
+Epoch 1
+-------------------------------
+Training Model
+===============================
+Epoch 1
+-------------------------------
+Training Model
+===============================
+Epoch 1
+-------------------------------
+Training Model
+===============================
+Epoch 1
+-------------------------------
+Training Model
+===============================
+Epoch 1
+-------------------------------
+loss: 13.339381  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 733.554871 
+Epoch 2
+-------------------------------
+loss: 741.578979  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 6.473562 
+Epoch 3
+-------------------------------
+loss: 8.579596  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 11.721247 
+Epoch 4
+-------------------------------
+loss: 12.461503  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 5.488832 
+Epoch 5
+-------------------------------
+loss: 6.917600  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 4.694748 
+Epoch 6
+-------------------------------
+loss: 6.502657  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 5.034631 
+Epoch 7
+-------------------------------
+loss: 6.768295  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 5.770960 
+Epoch 8
+-------------------------------
+loss: 7.224436  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 7.783745 
+Epoch 9
+-------------------------------
+loss: 8.909068  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 4.563904 
+Epoch 10
+-------------------------------
+loss: 8.449699  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 4.185885 
+Epoch 11
+-------------------------------
+loss: 6.257095  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 6.100401 
+Epoch 12
+-------------------------------
+loss: 7.582569  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 4.273736 
+Epoch 13
+-------------------------------
+loss: 7.102527  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.7%, Avg loss: 3.888482 
+Epoch 14
+-------------------------------
+loss: 6.551638  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 4.002223 
+Epoch 15
+-------------------------------
+loss: 6.153821  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 4.086890 
+Epoch 16
+-------------------------------
+loss: 6.846161  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 3.758430 
+Epoch 17
+-------------------------------
+loss: 6.066558  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 3.695958 
+Epoch 18
+-------------------------------
+loss: 6.131157  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 3.763405 
+Epoch 19
+-------------------------------
+loss: 6.066502  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 3.709584 
+Epoch 20
+-------------------------------
+loss: 6.086365  [    6/   57]
+
+Test Error: 
+ Accuracy: 0.0%, Avg loss: 3.697872 
+Done!
+Model weights saved to model_weights/KPredictionV2.pth

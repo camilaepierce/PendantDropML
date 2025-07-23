@@ -17,13 +17,11 @@ class Extreme(nn.Module):
         super().__init__()
         self.linear_relu_stack = nn.Sequential(
             nn.Flatten(),
-            nn.Linear(80, 226),
+            nn.Linear(80, 512),
             nn.ReLU(),
-            nn.Linear(226, 512),
+            nn.Linear(512, 2048),
             nn.ReLU(),
-            nn.Linear(512, 1024),
-            nn.ReLU(),
-            nn.Linear(1024, 256),
+            nn.Linear(2048, 256),
             nn.ReLU(),
             nn.Linear(256, 80)
         )

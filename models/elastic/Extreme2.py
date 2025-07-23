@@ -8,7 +8,7 @@ from torch import nn
 
 
 class Extreme(nn.Module):
-    """ Works with rc coordinates 40x2, and output features 40x2
+    """ Works with rc coordinates 40x2, and output features 1
     
     Optimal Learning Rate: 0.1
     """

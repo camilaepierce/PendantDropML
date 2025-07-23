@@ -14,7 +14,7 @@ from utils.visualize import plot_loss_evolution
 
 from models.elastic.Extreme2 import Extreme
 
-def train_loop(dataloader, model, tensor_model, loss_fxn, optimizer, batch_size, train_losses, filename):
+def train_loop(dataloader, model, loss_fxn, optimizer, batch_size, train_losses, filename):
     """ Training loop for optimization. """
     size = len(dataloader.data)
     out = ""
@@ -29,11 +29,10 @@ def train_loop(dataloader, model, tensor_model, loss_fxn, optimizer, batch_size,
         X = torch.nan_to_num(X)
         # if torch.isnan(X).any():
         #     print("NaN found")
-        tens = tensor_model(X)
-        in_data = torch.cat((X.flatten(start_dim=1), tens.flatten(start_dim=1)), dim=1)
         # print(in_data)
-        pred = model(in_data)
+        pred = model(X)
         # print("Prediction Shape", pred.shape)
+        # print("Target Shape", y.shape)
         loss = loss_fxn(pred, y)
         optimizer.zero_grad()
         loss.backward()
@@ -52,7 +51,7 @@ def train_loop(dataloader, model, tensor_model, loss_fxn, optimizer, batch_size,
 
 
 
-def test_loop(dataloader, model, tensor_model, loss_fxn, num_batches, tolerance, test_losses, filename):
+def test_loop(dataloader, model, loss_fxn, num_batches, tolerance, test_losses, filename):
     """ Testing loop of optimization. """
     model.eval()
 
@@ -115,10 +114,13 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
     ###        Processing Settings          ###
     ###########################################
     settings = config_object["settings"]
-    if settings["isElastic"]:
+    if settings["calculateKMod"]:
+        if settings["classification"]:
+            labels_fxn = lambda x : str(int(x["Wo_Ar"]["Kmod"]))
+        else:
+            labels_fxn = lambda x : x["Wo_Ar"]["Kmod"]
+    elif settings["isElastic"]:
         labels_fxn = lambda x : x["sigma_tensor"]
-    elif settings["includeKMod"]:
-        labels_fxn = lambda x : (x["Wo_Ar"]["Kmod"], x["sigma_tensor"])
     else:
         labels_fxn = lambda x : x["surface_tension"]
 
@@ -149,31 +151,30 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
     if chosen_learning != None:
         learning_rate = chosen_learning
 
-    
-    train_dataloader = PendantDataLoader(training_data, num_batches=num_batches, feat_fxn=features_fxn, lab_fxn=labels_fxn)
-    test_dataloader = PendantDataLoader(testing_data, test_num_batches, feat_fxn=features_fxn, lab_fxn=labels_fxn)
+    tens_model = Extreme()
+    tens_model.load_state_dict(torch.load('model_weights/HuberCleanedMassive.pth', weights_only=True))
+
+    train_dataloader = PendantDataLoader(training_data, num_batches=num_batches, feat_fxn=features_fxn, lab_fxn=labels_fxn, run_model=tens_model)
+    test_dataloader = PendantDataLoader(testing_data, test_num_batches, feat_fxn=features_fxn, lab_fxn=labels_fxn, run_model=tens_model)
 
     if model == None:
         model = CNNModel()
 
 
-    loss_fxn = nn.HuberLoss(delta=6)
+    # loss_fxn = nn.HuberLoss(delta=6)
+    loss_fxn = nn.MSELoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
     with open(results_file, "a", encoding="utf-8") as f:
         f.write("Training Model\n===============================\n")
         # f.write(str(summary(model, input_size=train_dataloader.feature_shape, verbose=0)) + "\n")
 
-    tensor_model = Extreme()
-    tensor_model.load_state_dict(torch.load('model_weights/HuberLoss.pth', weights_only=True))
-    tensor_model.eval()
-    tensor_model.requires_grad_(False)
 
     for t in range(epochs):
         with open(results_file, "a", encoding="utf-8") as f:
             f.write(f"Epoch {t+1}\n-------------------------------\n")
-        train_loop(train_dataloader, model, tensor_model, loss_fxn, optimizer, batch_size, train_losses, results_file)
-        test_loop(test_dataloader, model, tensor_model, loss_fxn, 
+        train_loop(train_dataloader, model, loss_fxn, optimizer, batch_size, train_losses, results_file)
+        test_loop(test_dataloader, model, loss_fxn, 
                   test_num_batches, config_object["testing_parameters"]["absolute_tolerance"], test_losses, results_file)
     with open(results_file, "a", encoding="utf-8") as f:
         f.write("Done!\n")

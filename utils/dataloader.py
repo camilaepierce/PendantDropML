@@ -22,7 +22,7 @@ class PendantDataLoader():
         self.num_batches = num_batches
         # self.size = len(data)
         self.label_shape = (len(self.batches[0]),) + np.array(lab_fxn(data[self.order[0]])).shape
-
+        self.isClassify = isinstance(lab_fxn(data[self.order[0]]), str)
         if run_model:
             self.k_predictor = True
             self.pre_k_model = run_model
@@ -44,14 +44,18 @@ class PendantDataLoader():
                 sample = self.data[sample_id]
                 if self.k_predictor:
                     features = self.feat_fxn(sample)
-                    print(features.shape)
                     sigma_tensor = self.pre_k_model(Tensor.float(from_numpy(np.array(features))).unsqueeze(0)).detach().numpy()
-                    features_batch.append(np.concatenate((features, sigma_tensor)))
+                    feature_inputs = np.concatenate((features, sigma_tensor))
+                    features_batch.append(feature_inputs)
                 else:
                     features_batch.append(self.feat_fxn(sample))
+
                 labels_batch.append(self.lab_fxn(sample))
             self.iter_idx += 1
-            yield (Tensor.float(from_numpy(np.array(features_batch))), Tensor.float(from_numpy(np.array(labels_batch))))        
+            if self.isClassify:
+                yield (Tensor.float(from_numpy(np.array(features_batch))), Tensor(labels_batch))        
+            else:
+                yield (Tensor.float(from_numpy(np.array(features_batch))), Tensor.float(from_numpy(np.array(labels_batch))))        
     
 
 ###################################

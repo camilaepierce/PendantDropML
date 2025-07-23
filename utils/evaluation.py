@@ -48,13 +48,19 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
     model.eval()
     data_paths = config_object["data_paths"]
     isElastic = config_object["settings"]["isElastic"]
+    isKMod = config_object["settings"]["calculateKMod"]
 
-    drop_dataset_dirty = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"], data_paths["sigmas"], ignore_images=(input_type!="image"), clean_data=False)
+    if isKMod:
+        from models.elastic.Extreme2 import Extreme
+        from torch import load
+        run_model = Extreme()
+        run_model.load_state_dict(load('model_weights/HuberCleanedMassive.pth', weights_only=True))
+    else:
+        run_model = None
+    
 
     drop_dataset = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"], data_paths["sigmas"], ignore_images=(input_type!="image"), clean_data=True)
 
-    print("Set Difference")
-    print(drop_dataset.available_samples.difference(drop_dataset_dirty.available_samples))
     evaluation_info = []
     nan_samples = []
 
@@ -69,8 +75,8 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
         frac = features["Wo_Ar"]["frac"]
 
         if isElastic:
-            sample_sigma = features["sigma_tensor"]
-            act_sigma = features["surface_tension"]
+            sample_sigma = features["sigma_tensor"] # sample_sigma = true stress tensor
+            act_sigma = features["surface_tension"] # act_sigma = initial surface tension
         else:
             sample_sigma = features["surface_tension"]
 
@@ -87,10 +93,10 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
             nan_samples.append(np.array([Wo, Ar, sample_sigma]))
         else:
             #calculate differences
-            true_diff = sample_sigma - prediction
+            true_diff = sample_sigma - prediction # true stress tensor - predicted stress tensor
             true_diff_sq = np.square(true_diff)
             mse = np.average(true_diff_sq)
-            relative_error = np.absolute(true_diff) / sample_sigma
+            relative_error = np.divide(np.absolute(true_diff), sample_sigma)
             #save info:: Wo, Ar, act_sigma, avg_sigma, avg_pred, true, relative, mse, K, G, frac
             if isElastic:
                 evaluation_info.append(np.array([Wo, Ar, np.average(sample_sigma), np.average(prediction), np.average(true_diff), np.average(relative_error), mse, K, G, frac, act_sigma]))
@@ -102,7 +108,11 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
     evaluation_info = np.asarray(evaluation_info)
     print("nan samples:", nan_samples)
 
-    np.savetxt(config_object["save_info"]["eval_results"] + "Evaluation.txt", evaluation_info, delimiter=",",
+    if isElastic:
+        np.savetxt(config_object["save_info"]["eval_results"] + "Evaluation.txt", evaluation_info, delimiter=",",
+               header="Wo,Ar,sample_sigma,prediction,abs_error,rel_error,mse,K,G,frac,act_sigma")
+    else:
+        np.savetxt(config_object["save_info"]["eval_results"] + "Evaluation.txt", evaluation_info, delimiter=",",
                header="Wo,Ar,sample_sigma,prediction,abs_error,rel_error,mse")
     #save prediction info to file
 
@@ -113,30 +123,47 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
 
         # [Wo, Ar, sample_sigma, prediction, true_diff, relative_error]
         #  0    1       2           3           4           5           of evaluation_info
-        all_Wo = evaluation_info[:, 0]
-        all_Ar = evaluation_info[:, 1]
-        all_sigma = evaluation_info[:, 2]
-        all_pred = evaluation_info[:, 3]
-        all_true = evaluation_info[:, 4]
-        all_rel = evaluation_info[:, 5]
-        all_mse = evaluation_info[:, 6]
+        all_Wo = evaluation_info[:, 0] # Worthington Number
+        all_Ar = evaluation_info[:, 1] # Aspect Ratio
+        all_sigma = evaluation_info[:, 2] # Elastic - True Stress Tensor
+        all_pred = evaluation_info[:, 3] # Elastic - Predicted Stress Tensor
+        all_true = evaluation_info[:, 4] # True Difference
+        all_rel = evaluation_info[:, 5] # Relative Error
+        all_mse = evaluation_info[:, 6] # Mean Squared Error
         if isElastic:
-            all_K = evaluation_info[:, 7]
-            all_G = evaluation_info[:, 8]
-            all_frac = evaluation_info[:, 9]
-            all_act = evaluation_info[:, 10]
+            all_K = evaluation_info[:, 7] # Dilatation Modulus (K)
+            all_G = evaluation_info[:, 8] # Shear Modulus (G)
+            all_frac = evaluation_info[:, 9] # Compression Fraction
+            all_act = evaluation_info[:, 10] # Elastic - Initial Surface Tension
 
         with open(config_object["save_info"]["eval_results"] + "Distribution.txt", "a") as f:
             f.write("Sample Distribution\n")
             f.write(f"Worthington Number:: Mean: {np.mean(all_Wo)} Std Dev: {np.std(all_Wo)}\n")
             f.write(f"Aspect Ratio:: Mean: {np.mean(all_Ar)} Std Dev: {np.std(all_Ar)}\n")
-            f.write(f"Surface Tension:: Mean: {np.mean(all_sigma)} Std Dev: {np.std(all_sigma)}\n")
-            f.write("Prediction Distribution\n")
-            f.write(f"Surface Tension:: Mean: {np.mean(all_pred)} Std Dev: {np.std(all_pred)}\n")
+            if isElastic:
+                f.write(f"Stress Tensor:: Mean: {np.mean(all_sigma)} Std Dev: {np.std(all_sigma)}\n")
+                f.write("Prediction Distribution\n")
+                f.write(f"Stress Tensor:: Mean: {np.mean(all_pred)} Std Dev: {np.std(all_pred)}\n")
+
+
+            else:
+                f.write(f"Surface Tension:: Mean: {np.mean(all_sigma)} Std Dev: {np.std(all_sigma)}\n")
+                f.write("Prediction Distribution\n")
+                f.write(f"Surface Tension:: Mean: {np.mean(all_pred)} Std Dev: {np.std(all_pred)}\n")
 
             
         #plot data info, Wo vs Ar vs Surface Tension distribution
         # norm_all_sigma = Normalize()(all_sigma) #(all_sigma - np.min(all_sigma)) / (np.max(all_sigma) - np.min(all_sigma))
+
+        plt.scatter(all_act, all_rel, c="slateblue", marker=".")
+        plt.xlabel("Initial Surface Tension")
+        plt.ylabel("Relative Error")
+        plt.ylim(0, 1)
+        plt.title("Initial Surface Tension vs Relative Error")
+        plt.savefig(config_object["save_info"]["eval_results"] + "SurfAccuracyRelIdealZoom" + ".png")
+
+        plt.show(block=False)
+        plt.clf()
 
         # def scattershort(xdata, ydata, cdata, cmap, 
         #                  xfull, xshort, 
@@ -146,12 +173,12 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
         scattershort(all_Wo, all_Ar, all_act, "viridis", 
                     "Worthington Number", "Wo",
                     "Aspect Ratio", "Ar",
-                    "Actual Surface Tension", "AST",
+                    "Initial Surface Tension", "IST",
                     config_object, norm="log")
         
         scattershort(all_act, all_sigma, all_mse, "viridis", 
-                    "Surface Tension at Actual", "AST",
-                    "Average Surface Tension", "AvgST",
+                    "Initial Surface Tension", "IST",
+                    "True Stress Tensor (Average)", "TST",
                     "Mean Squared Error", "MSE",
                     config_object, norm="log")
         
@@ -177,26 +204,44 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
                     config_object, norm="log")
         
         scattershort(all_K, all_G, all_mse, "magma", 
-                    "K Modulus", "K",
-                    "G Modulus", "G",
+                    "Dilitational Modulus (K)", "K",
+                    "Shear Modulus (G)", "G",
                     "Mean Squared Error", "MSE",
                     config_object, norm="log")
         
         scattershort(all_K, all_frac, all_mse, "magma", 
-                    "K Modulus", "K",
+                    "Dilitational Modulus (K)", "K",
                     "Compression Fraction", "Frac",
                     "Mean Squared Error", "MSE",
                     config_object, norm="log")
 
         scattershort(all_K, all_act, all_mse, "magma", 
-                    "K Modulus", "K",
-                    "Surface Tension at Actual", "AST",
+                    "Dilatational Modulus (K)", "K",
+                    "Initial Surface Tension", "IST",
+                    "Mean Squared Error", "MSE",
+                    config_object, norm="log")
+        
+        scattershort(all_sigma, all_K, all_mse, "magma", 
+                    "True Stress Tensor", "TST",
+                    "Dilatational Modulus (K)", "K",
+                    "Mean Squared Error", "MSE",
+                    config_object, norm="log")
+        
+        scattershort(all_sigma, all_Ar, all_mse, "magma", 
+                    "True Stress Tensor", "TST",
+                    "Aspect Ratio", "Ar",
+                    "Mean Squared Error", "MSE",
+                    config_object, norm="log")
+        
+        scattershort(all_sigma, all_Wo, all_mse, "magma", 
+                    "True Stress Tensor", "TST",
+                    "Worthington Number", "Wo",
                     "Mean Squared Error", "MSE",
                     config_object, norm="log")
         
         #plot Surface tension vs accuracy
         plt.scatter(all_act, all_true, c='forestgreen', marker=".")
-        plt.xlabel("Surface Tension at Actual")
+        plt.xlabel("Initial Surface Tension")
         plt.ylabel("Absolute Error")
         plt.title("Surface Tension vs Absolute Error")
         plt.savefig(config_object["save_info"]["eval_results"] + "SurfAccuracyTrue" + ".png")
@@ -204,17 +249,9 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
         plt.show(block=False)
         plt.clf()
 
-        plt.scatter(all_act, all_rel, c="slateblue", marker=".")
-        plt.xlabel("Surface Tension")
-        plt.ylabel("Relative Error")
-        plt.title("Surface Tension vs Relative Error")
-        plt.savefig(config_object["save_info"]["eval_results"] + "SurfAccuracyRel" + ".png")
-
-        plt.show(block=False)
-        plt.clf()
 
         plt.scatter(all_act, all_mse, c='forestgreen', marker=".")
-        plt.xlabel("Surface Tension")
+        plt.xlabel("Initial Surface Tension")
         plt.ylabel("Mean Squared Error")
         plt.title("Surface Tension vs MSE")
         plt.savefig(config_object["save_info"]["eval_results"] + "SurfAccuracyMSE" + ".png")
@@ -226,10 +263,10 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
         ### Plotting with the inclusion of average surface tension ###
 
         plt.scatter(all_act, all_true, c=all_sigma, norm=Normalize(), cmap='viridis', marker=".")
-        plt.xlabel("Surface Tension at Actual")
+        plt.xlabel("Initial Surface Tension")
         plt.ylabel("Absolute Error")
         plt.title("Surface Tension vs Absolute Error")
-        plt.colorbar(label=f"Surface Tension Average")
+        plt.colorbar(label=f"Stress Tensor Average")
         plt.savefig(config_object["save_info"]["eval_results"] + "SurfAccuracyTrueAvgST" + ".png")
 
         plt.show(block=False)
@@ -239,7 +276,7 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
         plt.xlabel("Surface Tension")
         plt.ylabel("Relative Error")
         plt.title("Surface Tension vs Relative Error")
-        plt.colorbar(label=f"Surface Tension Average")
+        plt.colorbar(label=f"Stress Tensor Average")
         plt.savefig(config_object["save_info"]["eval_results"] + "SurfAccuracyRelAvgST" + ".png")
 
         plt.show(block=False)

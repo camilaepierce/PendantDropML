@@ -155,6 +155,7 @@ class PendantDropDataset(Dataset):
         
         if clean_data:
             self.clean_data()
+            
 
 
     def __len__(self):
