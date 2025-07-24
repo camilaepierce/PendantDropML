@@ -2,7 +2,7 @@
         "settings" : { 
             "isElastic" : true,
             "ignoreImages" : true,
-            "calculateKMod" : true,
+            "calculateKMod" : false,
             "classification": false
         },
         "save_info" : {
@@ -12,10 +12,10 @@
             "eval_results" : "results/evaluation/HuberCleanedMassFinal"
         },
         "data_paths" : {
-            "params" : "data/elastic_massive/test_data_params", 
-            "rz" : "data/elastic_massive/test_data_rz", 
-            "images" : "data/elastic_massive/test_images",
-            "sigmas" : "data/elastic_massive/test_data_sigmas"
+            "params" : "data/presentation_example/test_data_params", 
+            "rz" : "data/presentation_example/test_data_rz", 
+            "images" : "data/presentation_example/test_images",
+            "sigmas" : "data/presentation_example/test_data_sigmas"
         },
         "training_parameters" : {
             "learning_rate" : 0.5,
@@ -30,6 +30,6 @@
             "absolute_tolerance" : 0.05
         },
         "eval_config" : {
-            "eval_data_path" : "elastic_massive/test_images"
+            "eval_data_path" : "elastic_large/test_images"
         }
     }

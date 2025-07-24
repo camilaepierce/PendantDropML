@@ -7,7 +7,7 @@ import torch
 from torch import nn
 
 
-class Extreme(nn.Module):
+class Kratz(nn.Module):
     """ Works with rc coordinates 40x2, and output features 40x2
     
     Optimal Learning Rate: 0.1

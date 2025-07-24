@@ -57,12 +57,12 @@ if __name__ == "__main__":
     # Load image (from name? from file? from directory?) -- from dataset object
 
     master = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"], 
-                                        sigma_dir=data_paths["sigmas"], ignore_images=settings["ignoreImages"], clean_data=True,)
+                                        sigma_dir=data_paths["sigmas"], ignore_images=settings["ignoreImages"], clean_data=False)
     
     # has keys: {'image', 'coordinates', 'surface_tension', 'Wo_Ar', and 'sigma_tensor'}
     # drop = master["9"]
-    extra_verbose = False
-    verbose = False
+    extra_verbose = True
+    verbose = True
 
     all_all_diff = []
     all_all_rel = []
