@@ -9,7 +9,7 @@ from torch import nn
 # from torchinfo import summary
 
 from utils.dataloader import PendantDataLoader
-from utils.extraction import PendantDropDataset
+from utils.extraction import PendantDropDataset, extract_data_paths
 from utils.visualize import plot_loss_evolution
 
 from models.elastic.Extreme2 import Extreme
@@ -119,7 +119,7 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
             labels_fxn = lambda x : str(int(x["Wo_Ar"]["Kmod"]))
         else:
             labels_fxn = lambda x : x["Wo_Ar"]["Kmod"]
-    elif settings["isElastic"]:
+    elif settings["is_elastic"]:
         labels_fxn = lambda x : x["sigma_tensor"]
     else:
         labels_fxn = lambda x : x["surface_tension"]
@@ -133,8 +133,9 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
     ### Custom Modules
     ##############################################################
     if chosen_training == None or chosen_testing == None:
-        drop_dataset = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"], 
-                                        sigma_dir=data_paths["sigmas"], ignore_images=settings["ignoreImages"], clean_data=True)
+        params, rz, images, sigmas = extract_data_paths(data_paths)
+        drop_dataset = PendantDropDataset(params, rz, images, 
+                                        sigma_dir=sigmas, ignore_images=settings["ignoreImages"], clean_data=True)
         training_data, testing_data = drop_dataset.split_dataset(testing_size, random_seed)
 
 

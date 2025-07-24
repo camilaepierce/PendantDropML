@@ -9,7 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import Normalize
 
-from utils.extraction import PendantDropDataset
+from utils.extraction import PendantDropDataset, extract_data_paths
 from utils.visualize import scattershort
 
 
@@ -47,7 +47,7 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
     plt.clf()
     model.eval()
     data_paths = config_object["data_paths"]
-    isElastic = config_object["settings"]["isElastic"]
+    isElastic = config_object["settings"]["is_elastic"]
     isKMod = config_object["settings"]["calculateKMod"]
 
     if isKMod:
@@ -58,8 +58,10 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
     else:
         run_model = None
     
-
-    drop_dataset = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"], data_paths["sigmas"], ignore_images=(input_type!="image"), clean_data=True)
+    params, rz, images, sigmas = extract_data_paths(data_paths)
+    drop_dataset = PendantDropDataset(params, rz, images, 
+                                        sigma_dir=sigmas, ignore_images=config_object["settings"]["ignoreImages"], 
+                                        clean_data=config_object["evaluation"]["clean_data"])
 
     evaluation_info = []
     nan_samples = []
@@ -106,13 +108,17 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
 
     #save data info to file
     evaluation_info = np.asarray(evaluation_info)
-    print("nan samples:", nan_samples)
+
+    if len(nan_samples > 0):
+        print("nan samples:", nan_samples)
+
+    save_filename = config_object["save_info"]["eval_folder"] + config_object["settings"]["modelName"] + "Evaluation.txt"
 
     if isElastic:
-        np.savetxt(config_object["save_info"]["eval_results"] + "Evaluation.txt", evaluation_info, delimiter=",",
+        np.savetxt(save_filename, evaluation_info, delimiter=",",
                header="Wo,Ar,sample_sigma,prediction,abs_error,rel_error,mse,K,G,frac,act_sigma")
     else:
-        np.savetxt(config_object["save_info"]["eval_results"] + "Evaluation.txt", evaluation_info, delimiter=",",
+        np.savetxt(save_filename, evaluation_info, delimiter=",",
                header="Wo,Ar,sample_sigma,prediction,abs_error,rel_error,mse")
     #save prediction info to file
 

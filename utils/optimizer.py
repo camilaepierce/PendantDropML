@@ -9,7 +9,7 @@ from torch import nn
 # from torchinfo import summary
 
 from utils.dataloader import PendantDataLoader
-from utils.extraction import PendantDropDataset
+from utils.extraction import PendantDropDataset, extract_data_paths
 from utils.visualize import plot_loss_evolution
 
 def train_loop(dataloader, model, loss_fxn, optimizer, batch_size, train_losses, filename):
@@ -110,7 +110,7 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
     ###        Processing Settings          ###
     ###########################################
     settings = config_object["settings"]
-    if settings["isElastic"] and not settings["calculateKMod"]:
+    if settings["is_elastic"] and not settings["calculateKMod"]:
         labels_fxn = lambda x : x["sigma_tensor"]
     elif settings["calculateKMod"]:
         labels_fxn = lambda x : x["Wo_Ar"]["Kmod"]
@@ -126,8 +126,9 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
     ### Custom Modules
     ##############################################################
     if chosen_training == None or chosen_testing == None:
-        drop_dataset = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"], 
-                                        sigma_dir=data_paths["sigmas"], ignore_images=settings["ignoreImages"], clean_data=True)
+        params, rz, images, sigmas = extract_data_paths(data_paths)
+        drop_dataset = PendantDropDataset(params, rz, images, 
+                                        sigma_dir=sigmas, ignore_images=settings["ignoreImages"], clean_data=True)
         training_data, testing_data = drop_dataset.split_dataset(testing_size, random_seed)
 
 

@@ -111,6 +111,14 @@ def get_digits_from_filename(filename):
     return digits[0]
 
 
+def extract_data_paths(data_path_config):
+    params = data_path_config["folder"] + data_path_config["params"]
+    rz = data_path_config["folder"] + data_path_config["rz"]
+    images = data_path_config["folder"] + data_path_config["images"]
+    sigmas = data_path_config["folder"] + data_path_config["sigmas"]
+    return params, rz, images, sigmas
+
+
 
 
 class PendantDropDataset(Dataset):

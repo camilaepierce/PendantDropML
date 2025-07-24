@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 
 from utils.optimizer import run_optimizer
 from utils.evaluation import evaluate_directory
-from utils.extraction import PendantDropDataset
+from utils.extraction import PendantDropDataset, extract_data_paths
 
 # from models.simple.image_input.five_layer import FiveLayerCNN
 # from models.simple.image_input.grayscaletransform import GrayscaleTransform
@@ -55,8 +55,9 @@ if __name__ == "__main__":
     data_paths = config["data_paths"]
     settings = config["settings"]
 
-    master = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"], 
-                                       sigma_dir=data_paths["sigmas"], ignore_images=settings["ignoreImages"])
+    params, rz, images, sigmas = extract_data_paths(data_paths)
+    master = PendantDropDataset(params, rz, images, 
+                            sigma_dir=sigmas, ignore_images=settings["ignoreImages"], clean_data=True)
     # LEARNING_RATES = [.000001, .00001, .0001, .001, 0.003, .005, .008, .01, .02, .03, .04, .05, .1, .2, .3, .5]
 
     LEARNING_RATES = [0.04, 0.05, 0.06, 0.08, 0.1, 0.11, 0.12, 0.13, 0.14]
