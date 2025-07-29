@@ -4,8 +4,7 @@ from torch import Tensor, from_numpy
 import numpy as np
 
 from utils.optimizer import run_optimizer
-from utils.extraction import PendantDropDataset
-from utils.dataloader import PendantDataLoader
+from utils.extraction import PendantDropDataset, extract_data_paths
 # from models.simple.image_input.five_layer import FiveLayerCNN
 
 # from models.elastic.elasticbasic import Elastic
@@ -13,7 +12,6 @@ from utils.dataloader import PendantDataLoader
 # from models.elastic.Empty import Empty
 from models.elastic.Extreme2 import Extreme
 from models.elastic.K_Pred_FullInput import K_Modulus_Full
-import math
 
 def toInput(npArray, run_model = None):
     if run_model is None:
@@ -26,16 +24,22 @@ def toInput(npArray, run_model = None):
 
 if __name__ == "__main__":
 
-
     # Open config file as dictionary
     with open("config.json") as jsonFile:
         config = load(jsonFile)
     
     data_paths = config["data_paths"]
     settings = config["settings"]
-    isKMod = settings["calculateKMod"]
+    isKMod = settings["calculate_kmod"]
 
+    ######################################
+    ### Estimator Settings
+    ######################################
+
+    ### If looking to estimate for the entire directoy, set SELECT_SAMPLES = None
     
+    SELECT_SAMPLES = ["5", "38"]
+
     if isKMod:
         # Load model (must be already created)
         model = K_Modulus_Full()
@@ -54,11 +58,16 @@ if __name__ == "__main__":
 
         tens_model = None
 
-    # Load image (from name? from file? from directory?) -- from dataset object
+    #########################################
+    ### Estimation
+    #########################################
 
-    master = PendantDropDataset(data_paths["params"], data_paths["rz"], data_paths["images"], 
-                                        sigma_dir=data_paths["sigmas"], ignore_images=settings["ignoreImages"], clean_data=True, select_samples=["5", "38"])
-    
+    # Load image from dataset object
+
+    params, rz, images, sigmas = extract_data_paths(data_paths)
+    master = PendantDropDataset(params, rz, images, sigma_dir=sigmas, 
+                                      ignore_images=settings["ignore_images"], clean_data=config["training_parameters"],
+                                        select_samples=SELECT_SAMPLES)
     # has keys: {'image', 'coordinates', 'surface_tension', 'Wo_Ar', and 'sigma_tensor'}
     # drop = master["9"]
     extra_verbose = True

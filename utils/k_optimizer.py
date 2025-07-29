@@ -114,7 +114,7 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
     ###        Processing Settings          ###
     ###########################################
     settings = config_object["settings"]
-    if settings["calculateKMod"]:
+    if settings["calculate_kmod"]:
         if settings["classification"]:
             labels_fxn = lambda x : str(int(x["Wo_Ar"]["Kmod"]))
         else:
@@ -124,7 +124,7 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
     else:
         labels_fxn = lambda x : x["surface_tension"]
 
-    if settings["ignoreImages"]:
+    if settings["ignore_images"]:
         features_fxn = lambda x : x["coordinates"]
     else:
         features_fxn = lambda x : x["image"]
@@ -135,7 +135,7 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
     if chosen_training == None or chosen_testing == None:
         params, rz, images, sigmas = extract_data_paths(data_paths)
         drop_dataset = PendantDropDataset(params, rz, images, 
-                                        sigma_dir=sigmas, ignore_images=settings["ignoreImages"], clean_data=True)
+                                        sigma_dir=sigmas, ignore_images=settings["ignore_images"], clean_data=True)
         training_data, testing_data = drop_dataset.split_dataset(testing_size, random_seed)
 
 
@@ -187,9 +187,11 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
 
     ### Save Model
     with open(results_file, "a", encoding="utf-8") as f:
-        if config_object["save_info"]["save_model"]:
-            torch.save(model.state_dict(), config_object["save_info"]["modelName"])
-            f.write(f"Model weights saved to {config_object["save_info"]["modelName"]}\n")
+        save_info = config_object["save_info"]
+        if save_info["save_model"]:
+            save_model_path = save_info["model_weights_folder"] + save_info["model_name"] + ".pth"
+            torch.save(model.state_dict(), save_model_path)
+            f.write(f"Model weights saved to {save_model_path}\n")
         else:
             f.write("Model weights not saved\n")
     if not return_loss:

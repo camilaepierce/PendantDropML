@@ -17,6 +17,7 @@ import matplotlib.pyplot as plt
 from utils.optimizer import run_optimizer
 from utils.evaluation import evaluate_directory
 from utils.extraction import PendantDropDataset, extract_data_paths
+import utils.check_config as check_config
 
 # from models.simple.image_input.five_layer import FiveLayerCNN
 # from models.simple.image_input.grayscaletransform import GrayscaleTransform
@@ -42,25 +43,27 @@ def create_cross_validation(master_dataset, k_folds):
 
 
 
-if __name__ == "__main__":
+def optimize_hyperparams(modelType, config):
 
-    device = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
-    print(f"Using {device} device")
 
-    k_folds=10
-    # Open config file as dictionary
-    with open("config.json") as jsonFile:
-        config = load(jsonFile)
+    CHOSEN_MODEL = modelType
+
+    check_config.check_all_data_paths()
 
     data_paths = config["data_paths"]
     settings = config["settings"]
+    hyper_params = config["hyper_param"]
+    k_folds= hyper_params["k_folds"]
+    if config["training_parameters"]["visualize_training"]:
+        x = input("Recommended to set visualize_training to false when optimizing hyperparameters. Continue regardless? (y/N): ")
+        if x.lower() != "y":
+            exit()
 
     params, rz, images, sigmas = extract_data_paths(data_paths)
     master = PendantDropDataset(params, rz, images, 
-                            sigma_dir=sigmas, ignore_images=settings["ignoreImages"], clean_data=True)
-    # LEARNING_RATES = [.000001, .00001, .0001, .001, 0.003, .005, .008, .01, .02, .03, .04, .05, .1, .2, .3, .5]
+                            sigma_dir=sigmas, ignore_images=settings["ignore_images"], clean_data=True)
 
-    LEARNING_RATES = [0.04, 0.05, 0.06, 0.08, 0.1, 0.11, 0.12, 0.13, 0.14]
+    LEARNING_RATES = hyper_params["learning_rates"]
 
     train_losses = []
     test_losses = []
@@ -71,10 +74,10 @@ if __name__ == "__main__":
         lr_train = 0
         lr_test = 0
         for fold in range(k_folds):
-            model = Empty()
+            model = CHOSEN_MODEL()
             training_set, testing_set = next(cross_set)
             # Run the optimzer
-            model, (ftrain_loss, ftest_loss) = run_optimizer(config, Empty, model=model, chosen_training=training_set, chosen_testing=testing_set, return_loss=True, chosen_learning=lr)
+            model, (ftrain_loss, ftest_loss) = run_optimizer(config, model=model, chosen_training=training_set, chosen_testing=testing_set, return_loss=True, chosen_learning=lr)
             lr_train += ftrain_loss
             lr_test += ftest_loss
             print(f"Fold #{fold}::= Training Loss: {ftrain_loss}, Testing Loss: {ftest_loss}")

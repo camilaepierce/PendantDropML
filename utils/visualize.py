@@ -62,12 +62,13 @@ def scattershort(xdata, ydata, cdata, cmap,
             config_object
             norm
         """
+        eval_results_start = config_object["save_info"]["eval_folder"] + config_object["settings"]["model_name"] 
         plt.scatter(xdata, ydata, c=cdata, norm=norm, cmap=cmap, marker=".")
         plt.xlabel(f"{xfull} ({xshort})")
         plt.ylabel(f"{yfull} ({yshort})")
         plt.title(f"Training Data {xshort} vs {yshort} vs {cshort}")
         plt.colorbar(label=f"{cfull}")
-        plt.savefig(config_object["save_info"]["eval_results"] + f"{xshort}{yshort}{cshort}" + ".png")
+        plt.savefig(eval_results_start + f"{xshort}{yshort}{cshort}" + ".png")
         plt.show(block=False)
         plt.clf()
 

@@ -1,17 +1,11 @@
 from json import load
 import os
 
-with open("../config.json") as jsonFile:
+with open("config.json") as jsonFile:
     config = load(jsonFile)
 
-
-### Settings
-
-### Save Info
-
 ### Data Paths
-def check_data_paths(config_subset):
-    data_path_config = config_subset["data_paths"]
+def check_data_paths(data_path_config):
     assert(data_path_config["folder"][-1] == "/", "Please ensure the folder path is valid and ends with a '/'")
     assert(os.path.isdir(data_path_config["folder"]), "Folder does not exist")
     assert(os.path.isfile(data_path_config["folder"] + data_path_config["params"]), "File does not exist")
@@ -24,10 +18,4 @@ def check_data_paths(config_subset):
 def check_all_data_paths():
     check_data_paths(config["data_paths"])
     check_data_paths(config["evaluation"]["data_paths"])
-
-### Training Parameters
-
-### Testing Parameters
-
-### Evaluation
 

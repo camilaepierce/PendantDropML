@@ -46,9 +46,9 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
     # Set model mode to eval
     plt.clf()
     model.eval()
-    data_paths = config_object["data_paths"]
+    data_paths = config_object["evaluation"]["data_paths"]
     isElastic = config_object["settings"]["is_elastic"]
-    isKMod = config_object["settings"]["calculateKMod"]
+    isKMod = config_object["settings"]["calculate_kmod"]
 
     if isKMod:
         from models.elastic.Extreme2 import Extreme
@@ -60,7 +60,7 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
     
     params, rz, images, sigmas = extract_data_paths(data_paths)
     drop_dataset = PendantDropDataset(params, rz, images, 
-                                        sigma_dir=sigmas, ignore_images=config_object["settings"]["ignoreImages"], 
+                                        sigma_dir=sigmas, ignore_images=config_object["settings"]["ignore_images"], 
                                         clean_data=config_object["evaluation"]["clean_data"])
 
     evaluation_info = []
@@ -99,9 +99,11 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
             true_diff_sq = np.square(true_diff)
             mse = np.average(true_diff_sq)
             relative_error = np.divide(np.absolute(true_diff), sample_sigma)
-            #save info:: Wo, Ar, act_sigma, avg_sigma, avg_pred, true, relative, mse, K, G, frac
+            #save info:: Wo, Ar, act_sigma, avg_sigma, avg_pred, 
+            #                true, relative, mse, K, G, frac
             if isElastic:
-                evaluation_info.append(np.array([Wo, Ar, np.average(sample_sigma), np.average(prediction), np.average(true_diff), np.average(relative_error), mse, K, G, frac, act_sigma]))
+                evaluation_info.append(np.array([Wo, Ar, np.average(sample_sigma), np.average(prediction), 
+                                                 np.average(true_diff), np.average(relative_error), mse, K, G, frac, act_sigma]))
             else:
                 #save info:: Wo, Ar, sigma, pred, true, relative, mse
                 evaluation_info.append(np.array([Wo, Ar, sample_sigma, prediction, true_diff, relative_error, mse]))
@@ -109,10 +111,10 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
     #save data info to file
     evaluation_info = np.asarray(evaluation_info)
 
-    if len(nan_samples > 0):
+    if len(nan_samples) > 0:
         print("nan samples:", nan_samples)
 
-    save_filename = config_object["save_info"]["eval_folder"] + config_object["settings"]["modelName"] + "Evaluation.txt"
+    save_filename = config_object["save_info"]["eval_folder"] + config_object["settings"]["model_name"] + "Evaluation.txt"
 
     if isElastic:
         np.savetxt(save_filename, evaluation_info, delimiter=",",
@@ -142,7 +144,8 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
             all_frac = evaluation_info[:, 9] # Compression Fraction
             all_act = evaluation_info[:, 10] # Elastic - Initial Surface Tension
 
-        with open(config_object["save_info"]["eval_results"] + "Distribution.txt", "a") as f:
+        eval_results_start = config_object["save_info"]["eval_folder"] + config_object["settings"]["model_name"] 
+        with open(eval_results_start + "Distribution.txt", "a") as f:
             f.write("Sample Distribution\n")
             f.write(f"Worthington Number:: Mean: {np.mean(all_Wo)} Std Dev: {np.std(all_Wo)}\n")
             f.write(f"Aspect Ratio:: Mean: {np.mean(all_Ar)} Std Dev: {np.std(all_Ar)}\n")
@@ -166,7 +169,7 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
         plt.ylabel("Relative Error")
         plt.ylim(0, 1)
         plt.title("Initial Surface Tension vs Relative Error")
-        plt.savefig(config_object["save_info"]["eval_results"] + "SurfAccuracyRelIdealZoom" + ".png")
+        plt.savefig(eval_results_start + "SurfAccuracyRelIdealZoom" + ".png")
 
         plt.show(block=False)
         plt.clf()
@@ -250,7 +253,7 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
         plt.xlabel("Initial Surface Tension")
         plt.ylabel("Absolute Error")
         plt.title("Surface Tension vs Absolute Error")
-        plt.savefig(config_object["save_info"]["eval_results"] + "SurfAccuracyTrue" + ".png")
+        plt.savefig(eval_results_start + "SurfAccuracyTrue" + ".png")
 
         plt.show(block=False)
         plt.clf()
@@ -260,7 +263,7 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
         plt.xlabel("Initial Surface Tension")
         plt.ylabel("Mean Squared Error")
         plt.title("Surface Tension vs MSE")
-        plt.savefig(config_object["save_info"]["eval_results"] + "SurfAccuracyMSE" + ".png")
+        plt.savefig(eval_results_start + "SurfAccuracyMSE" + ".png")
 
         plt.show(block=False)
         plt.clf()
@@ -273,7 +276,7 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
         plt.ylabel("Absolute Error")
         plt.title("Surface Tension vs Absolute Error")
         plt.colorbar(label=f"Stress Tensor Average")
-        plt.savefig(config_object["save_info"]["eval_results"] + "SurfAccuracyTrueAvgST" + ".png")
+        plt.savefig(eval_results_start + "SurfAccuracyTrueAvgST" + ".png")
 
         plt.show(block=False)
         plt.clf()
@@ -283,7 +286,7 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
         plt.ylabel("Relative Error")
         plt.title("Surface Tension vs Relative Error")
         plt.colorbar(label=f"Stress Tensor Average")
-        plt.savefig(config_object["save_info"]["eval_results"] + "SurfAccuracyRelAvgST" + ".png")
+        plt.savefig(eval_results_start + "SurfAccuracyRelAvgST" + ".png")
 
         plt.show(block=False)
         plt.clf()
@@ -294,7 +297,7 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
         plt.ylabel("Mean Squared Error")
         plt.title("Surface Tension vs MSE")
         plt.colorbar(label=f"Surface Tension Average")
-        plt.savefig(config_object["save_info"]["eval_results"] + "SurfAccuracyMSEAvgST" + ".png")
+        plt.savefig(eval_results_start + "SurfAccuracyMSEAvgST" + ".png")
 
         plt.show(block=False)
         plt.clf()

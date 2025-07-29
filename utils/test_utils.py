@@ -101,26 +101,12 @@ import torch
 # print("Average MSE:", np.average(mse))
 
 
+import atexit
+import time
+from run_at_exit import save_model
 
-x = torch.rand((6, 40, 2))
-y = torch.rand((6, 40, 2))
+# atexit.register(save_model)
 
-z = torch.cat((x, y))
-print(z.shape)
-z = torch.cat((x, y), dim=1)
-print(z.shape)
-x1 = x.flatten()
-y1 = y.flatten()
-z = torch.cat((x1, y1))
-print(z.shape)
-x1 = x.flatten(start_dim=1)
-y1 = y.flatten(start_dim=1)
-z = torch.cat((x1, y1))
-print(z.shape)
-x1 = x.flatten(start_dim=1)
-y1 = y.flatten(start_dim=1)
-z = torch.cat((x1, y1), dim=1)
-print(z.shape)
-z = torch.cat((x, y), dim=1)
-z = z.flatten(start_dim=1)
-print(z.shape)
+# while True:
+#     time.sleep(1)
+#     print("Running")

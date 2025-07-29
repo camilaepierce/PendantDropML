@@ -1,19 +1,18 @@
 {
         "settings" : { 
-            "model_name" : "HuberCleanedMassFinal",
-            "start_from_existing" : false,
+            "model_name" : "EmptyTestingOptMini",
             "ignore_images" : true,
             "is_elastic" : true,
             "calculate_kmod" : false
         },
         "save_info" : {
-            "save_model" : true,
+            "save_model" : false,
             "model_weights_folder" : "model_weights/", 
             "results_folder" : "results/",
             "eval_folder" : "results/evaluation/"
         },
         "data_paths" : {
-            "folder" : "data/presentation_example/",
+            "folder" : "data/elastic_mini/",
             "params" : "test_data_params", 
             "rz" : "test_data_rz", 
             "images" : "test_images",
@@ -21,26 +20,31 @@
         },
         "training_parameters" : {
             "learning_rate" : 0.5,
-            "num_batches" : 500, 
-            "epochs" : 50,
-            "testing_size" : 287, 
+            "num_batches" : 7, 
+            "epochs" : 20,
+            "testing_size" : 7, 
             "random_seed" : null,
             "visualize_training" : true,
             "clean_data": true
         },
         "testing_parameters" : {
-            "num_batches": 3, 
+            "num_batches": 2, 
             "absolute_tolerance" : 0.05,
             "clean_data": true
         },
         "evaluation" : {
             "data_paths" : {
-                "folder" : "data/elastic_large/",
+                "folder" : "data/elastic_mini/",
                 "params" : "test_data_params",
                 "rz" : "test_data_rz",
                 "images" : "test_images",
                 "sigmas" : "test_data_sigmas"
             },
             "clean_data" : true
+        },
+        "hyper_param" : {
+            "learning_rates" : [0.000001, 0.00001, 0.0001, 0.001, 0.003, 0.005, 0.008, 0.01, 0.02, 0.03, 0.04, 0.05, 0.1, 0.2, 0.3, 0.5],
+            "k_folds" : 10
+
         }
     }

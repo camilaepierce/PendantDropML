@@ -256,7 +256,7 @@ class PendantDropDataset(Dataset):
         Removes drops that have a surface tension below 1.
         """
         for sample_id, surf_tens in self.surf_tens_dict.items():
-            if surf_tens < 1:
+            if surf_tens < 1 and (sample_id in self.available_samples):
                 self.available_samples.remove(sample_id)
             if np.average(self.sigmas_dict[sample_id]) < 0:
                 self.available_samples.remove(sample_id)

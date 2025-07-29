@@ -6,11 +6,12 @@ Last modified: 6.26.2025
 """
 import torch
 from torch import nn
-# from torchinfo import summary
+from torchinfo import summary
 
 from utils.dataloader import PendantDataLoader
 from utils.extraction import PendantDropDataset, extract_data_paths
 from utils.visualize import plot_loss_evolution
+import utils.check_config as check_config
 
 def train_loop(dataloader, model, loss_fxn, optimizer, batch_size, train_losses, filename):
     """ Training loop for optimization. """
@@ -72,7 +73,7 @@ def test_loop(dataloader, model, loss_fxn, num_batches, tolerance, test_losses, 
 
 
 
-def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, chosen_testing=None, return_loss=False, chosen_learning=None):
+def run_optimizer(config_object, model, chosen_training=None, chosen_testing=None, return_loss=False, chosen_learning=None):
     """
     Runs optimization of NN Model. Saves output to text file, saves training and testing loss progression to image file.
 
@@ -87,6 +88,9 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
     ###########################################
     ###   Extracting Config Information     ###
     ###########################################
+
+    check_config.check_all_data_paths()
+
     data_paths = config_object["data_paths"]
 
     training_params = config_object["training_parameters"]
@@ -101,7 +105,7 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
 
     test_num_batches = testing_params["num_batches"]
 
-    results_file = config_object["save_info"]["results"] + ".txt"
+    results_file = config_object["save_info"]["results_folder"] + config_object["settings"]["model_name"] + ".txt"
 
     train_losses = []
     test_losses = []
@@ -110,14 +114,15 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
     ###        Processing Settings          ###
     ###########################################
     settings = config_object["settings"]
-    if settings["is_elastic"] and not settings["calculateKMod"]:
+    
+    if settings["is_elastic"] and not settings["calculate_kmod"]:
         labels_fxn = lambda x : x["sigma_tensor"]
-    elif settings["calculateKMod"]:
+    elif settings["calculate_kmod"]:
         labels_fxn = lambda x : x["Wo_Ar"]["Kmod"]
     else:
         labels_fxn = lambda x : x["surface_tension"]
 
-    if settings["ignoreImages"]:
+    if settings["ignore_images"]:
         features_fxn = lambda x : x["coordinates"]
     else:
         features_fxn = lambda x : x["image"]
@@ -128,9 +133,9 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
     if chosen_training == None or chosen_testing == None:
         params, rz, images, sigmas = extract_data_paths(data_paths)
         drop_dataset = PendantDropDataset(params, rz, images, 
-                                        sigma_dir=sigmas, ignore_images=settings["ignoreImages"], clean_data=True)
+                                        sigma_dir=sigmas, ignore_images=settings["ignore_images"], clean_data=True)
         training_data, testing_data = drop_dataset.split_dataset(testing_size, random_seed)
-
+        
 
         if (len(training_data.available_samples) == 0 or len(testing_data.available_samples) == 0):
             raise IndexError("You have only provided " + str(len(drop_dataset)) + " samples. Please update the config file.")
@@ -149,16 +154,19 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
     train_dataloader = PendantDataLoader(training_data, num_batches=num_batches, feat_fxn=features_fxn, lab_fxn=labels_fxn)
     test_dataloader = PendantDataLoader(testing_data, test_num_batches, feat_fxn=features_fxn, lab_fxn=labels_fxn)
 
-    if model == None:
-        model = CNNModel()
+    #######################################
+    ### Optimization Details
+    #######################################
 
+    loss_fxn = nn.MSELoss() ### Loss function
+    ### Other options: nn.HuberLoss()
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate) ### Optimizer
+    ### Other options: torch.optim.SGD(model.parameters(), lr=learning_rate)
 
-    loss_fxn = nn.MSELoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
     with open(results_file, "a", encoding="utf-8") as f:
         f.write("Training Model\n===============================\n")
-        # f.write(str(summary(model, input_size=train_dataloader.feature_shape, verbose=0)) + "\n")
+        f.write(str(summary(model, input_size=train_dataloader.feature_shape, verbose=0)) + "\n")
 
     for t in range(epochs):
         with open(results_file, "a", encoding="utf-8") as f:
@@ -171,14 +179,16 @@ def run_optimizer(config_object, CNNModel, model=None, chosen_training=None, cho
     # print("Done!")
 
     if training_params["visualize_training"]:
-        plot_loss_evolution(epochs, train_losses, test_losses, config_object["save_info"]["results"], "MSE", save=True)
+        plot_loss_evolution(epochs, train_losses, test_losses, results_file, "MSE", save=True)
     
 
     ### Save Model
     with open(results_file, "a", encoding="utf-8") as f:
-        if config_object["save_info"]["save_model"]:
-            torch.save(model.state_dict(), config_object["save_info"]["modelName"])
-            f.write(f"Model weights saved to {config_object["save_info"]["modelName"]}\n")
+        save_info = config_object["save_info"]
+        if save_info["save_model"]:
+            save_model_path = save_info["model_weights_folder"] + settings["model_name"] + ".pth"
+            torch.save(model.state_dict(), save_model_path)
+            f.write(f"Model weights saved to {save_model_path}\n")
         else:
             f.write("Model weights not saved\n")
     if not return_loss:

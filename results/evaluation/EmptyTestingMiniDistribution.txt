@@ -1,0 +1,18 @@
+Sample Distribution
+Worthington Number:: Mean: 2.9815367027004305 Std Dev: 1.1782716084382636
+Aspect Ratio:: Mean: 10.71387958352944 Std Dev: 4.6436922070579385
+Stress Tensor:: Mean: 3.3113983673998835 Std Dev: 2.1816455119464
+Prediction Distribution
+Stress Tensor:: Mean: 3.691824847832322 Std Dev: 1.017353627355466
+Sample Distribution
+Worthington Number:: Mean: 2.9815367027004305 Std Dev: 1.1782716084382636
+Aspect Ratio:: Mean: 10.71387958352944 Std Dev: 4.6436922070579385
+Stress Tensor:: Mean: 3.3113983673998826 Std Dev: 2.1816455119464
+Prediction Distribution
+Stress Tensor:: Mean: 1.5710270492818381 Std Dev: 0.9820273315904131
+Sample Distribution
+Worthington Number:: Mean: 2.98153670270043 Std Dev: 1.1782716084382636
+Aspect Ratio:: Mean: 10.71387958352944 Std Dev: 4.6436922070579385
+Stress Tensor:: Mean: 3.311398367399883 Std Dev: 2.1816455119464
+Prediction Distribution
+Stress Tensor:: Mean: 5.069045640528202 Std Dev: 1.047167567749495

@@ -4,7 +4,6 @@ import random
 from torch import from_numpy, Tensor
 
 
-
 class PendantDataLoader():
 
     def __init__(self, data, num_batches, random_seed=None, feat_fxn=lambda x: x["image"], lab_fxn=lambda x: x["surface_tension"], run_model=None):
