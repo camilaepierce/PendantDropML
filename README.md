@@ -129,7 +129,7 @@ Sample      Training Batches    Testing Size    Testing Batches
 If you are training and you notice that your computer is significantly struggling, or (opening System Monitor), increase the number of batches so the program is taking smaller bites of the data.
 
 ## Creating a New Model
-1. Make a copy of template.py in the models folder
-2. 
-3. 
-4. At the top of `model.py`, add your import statement `from models.[your new file] import [your new model]`
+1. Make a copy of template.py in the models folder. Rename file and module name.
+2. Modify sequential layer, recommended layers include Dropout or Normalization layers (including in the forward function), and in the sequential Linear layers and ReLU or LeakyReLU activations. See a full list of layers and their descriptions here: [text](https://docs.pytorch.org/docs/stable/nn.html)
+3. Save model, make every layer's output matches the next layer's input.
+4. At the top of `model.py`, add your import statement `from models.[your new file] import [your new model]`, and update the model type in the rest of the file.
