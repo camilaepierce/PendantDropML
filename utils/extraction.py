@@ -94,11 +94,12 @@ def create_dictionary_per_file(dir_path, each_fxn):
 
     surf_dir = {}
     for file in file_iter:
-        # Create a new dictionary entry for the sample, 
-        sample_id = get_digits_from_filename(file.name)
-        if sample_id in surf_dir:
-            raise Exception("sample_id already in surf_dir, check dataset")
-        surf_dir[sample_id] = each_fxn(file.path)
+        if not file.name.startswith('.'):
+            # Create a new dictionary entry for the sample, 
+            sample_id = get_digits_from_filename(file.name)
+            if sample_id in surf_dir:
+                raise Exception("sample_id already in surf_dir, check dataset")
+            surf_dir[sample_id] = each_fxn(file.path)
 
     return surf_dir
 
