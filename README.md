@@ -37,6 +37,12 @@ Use the `requirements.txt` file and pip to install required packages. From the c
 ```
 All of the packages required to run this repo should now be downloaded to your virtual environment without affecting the rest of your computer!
 
+### Deactivating the Virtual Environment
+To deactivate the virtual environment, run in the command line:
+```
+  $ deactivate
+```
+
 </details>
 
 <details>
@@ -78,7 +84,8 @@ All of the packages required to run this repo should now be downloaded to your v
 
 
 ## Running Models
-Working on a more streamlined method of running models, but currently can be run in the command line through:
+The model.py file can be run directly in Visual Studio Code, or can be run via the command line. Any time you are using the command line, first please activate the virtual environment (installation above) by running `source .venv/bin/activate`.
+
 
 **Linux**
 ```
@@ -93,6 +100,36 @@ or by opening the folder in Visual Studio Code and running `model.py`. Configura
 
 Customize the actions you want to take by commenting / uncommenting the desired lines. Current, train a model through running the optimizer. Load a model to continue training with the loading function. Evaluate a model through evaluate_directory(). Determine optimal hyperparameters (learning rate, etc.) through running the opt_hyperparameters script.
 
+## Ending Abruptly
+**IMPORTANT** If you start running the optimizer and need to end it, you can just hit Ctrl+C (Keyboard Interrupt) to end the script midway. If the script is ended during the optimizer script, you will see the following message:
+```
+[Some exception tracing message]
+KeyboardInterrupt
+Either an exception has occured, or you have chosen to terminate the program.
+Save model where it is? (y/N)
+```
+and after the first response:
+```
+Saving model
+Run evaluation? (y/N) y
+Running evaluation
+```
+These will allow for a graceful exit of the program, without losing the progress in training.
 
-**IMPORTANT** If you start running the optimizer and need to end it, you can just hit Ctrl+C (Keyboard Interrupt) to end the script midway
+## Recommended Config
+A recommended config is saved within the RECOMMENDED.json file, and the following are recommended sizes for batches and training based on available sample data:
 
+
+Sample      Training Batches    Testing Size    Testing Batches
+~100            10                  7                   2         (mini)
+~1,000          10                  100                 2
+~10,000         30                  200                 4         (large)
+~30,000         100                 600                10         (massive)
+
+If you are training and you notice that your computer is significantly struggling, or (opening System Monitor), increase the number of batches so the program is taking smaller bites of the data.
+
+## Creating a New Model
+1. Make a copy of template.py in the models folder
+2. 
+3. 
+4. At the top of `model.py`, add your import statement `from models.[your new file] import [your new model]`

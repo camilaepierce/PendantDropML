@@ -10,7 +10,7 @@ from utils.extraction import PendantDropDataset, extract_data_paths
 # from models.elastic.elasticbasic import Elastic
 # from models.elastic.Gandalf import Gandalf
 # from models.elastic.Empty import Empty
-from models.elastic.Extreme2 import Extreme
+from models.elastic.MyPrecious import MyPrecious
 from models.elastic.K_Pred_FullInput import K_Modulus_Full
 
 def toInput(npArray, run_model = None):
@@ -47,13 +47,13 @@ if __name__ == "__main__":
         model.eval() # set so predictions do not affect training
 
         # Load model (must be already created)
-        tens_model = Extreme()
-        tens_model.load_state_dict(torch.load('model_weights/HuberCleanedMassive.pth', weights_only=True))
+        tens_model = MyPrecious()
+        tens_model.load_state_dict(torch.load('model_weights/MyPrecious.pth', weights_only=True))
         tens_model.eval() # set so predictions do not affect training
     else:
         # Load model (must be already created)
-        model = Extreme()
-        model.load_state_dict(torch.load('model_weights/HuberCleanedMassive.pth', weights_only=True))
+        model = MyPrecious()
+        model.load_state_dict(torch.load('model_weights/MyPrecious.pth', weights_only=True))
         model.eval() # set so predictions do not affect training
 
         tens_model = None
@@ -66,7 +66,7 @@ if __name__ == "__main__":
 
     params, rz, images, sigmas = extract_data_paths(data_paths)
     master = PendantDropDataset(params, rz, images, sigma_dir=sigmas, 
-                                      ignore_images=settings["ignore_images"], clean_data=config["training_parameters"],
+                                      ignore_images=settings["ignore_images"], clean_data=False,
                                         select_samples=SELECT_SAMPLES)
     # has keys: {'image', 'coordinates', 'surface_tension', 'Wo_Ar', and 'sigma_tensor'}
     # drop = master["9"]
@@ -80,7 +80,13 @@ if __name__ == "__main__":
     all_all_first_rel = []
     all_all_second_rel = []
 
+    ### NOTE: To run only a few samples of the dataset, randomized, uncomment the next few lines
+    # i = 0
+
     for drop in master:
+        # i += 1
+        # if i > 4:
+        #     break
         prediction = model(toInput(drop["coordinates"], tens_model)).detach().numpy()
         all_diff = []
         all_rel = []
@@ -89,8 +95,6 @@ if __name__ == "__main__":
         all_first_rel = []
         all_second_rel = []
 
-        # if np.average(prediction) > 6 and np.average(prediction) < 10:
-        #     verbose = True
         if isKMod:
             pred = prediction
             act = drop["Wo_Ar"]["Kmod"]
@@ -102,8 +106,6 @@ if __name__ == "__main__":
             all_rel.append(rel_err)
         else:
             for pred, act in zip(prediction, drop["sigma_tensor"]):
-                # if np.any(np.less(act, 0)):
-                    # print("Negative tension", drop["sample_id"])
                 diff = pred - act
                 rel_err = abs(diff) / act
                 if extra_verbose:
@@ -115,7 +117,6 @@ if __name__ == "__main__":
                 all_second.append(diff[1])
                 all_first_rel.append(rel_err[0])
                 all_second_rel.append(rel_err[1])
-        # print(all_rel)
         this_mse = np.average(np.square(np.array(all_diff)))
         this_rel = np.average(np.array(all_rel))
 
@@ -131,8 +132,6 @@ if __name__ == "__main__":
         all_all_second.append(this_second)
         all_all_first_rel.append(this_first_rel)
         all_all_second_rel.append(this_second_rel)
-        # verbose = False
-    # print([(idx, x) for idx, x in enumerate(all_all_rel)])
     print(f"ALL SAMPLES MSE: {np.average(np.array(all_all_diff)):.4}, Percent Rel Error: {sum(all_all_rel) / len(all_all_rel):2.2%}")
     print(f"BY COLUMN: Diff [{np.average(np.array(all_all_first)):.4}, {np.average(np.array(all_all_second)):.4}] Rel [{np.average(np.array(all_all_first_rel)):.4%}, {np.average(np.array(all_all_second_rel)):.4%}]")
 

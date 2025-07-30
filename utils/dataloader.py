@@ -65,7 +65,7 @@ if __name__ == "__main__":
     import sys
     import torch
     sys.path.insert(0, '/home/camilapierce/Desktop/UNED/MLPendantDropUNED/')
-    from models.elastic.Extreme2 import Extreme
+    from models.elastic.MyPrecious import Extreme
 
     training_data = PendantDropDataset("data/elastic_mini/test_data_params", "data/elastic_mini/test_data_rz","data/elastic_mini/test_images",
                                        "data/elastic_mini/test_data_sigmas", clean_data=True, ignore_images=True)

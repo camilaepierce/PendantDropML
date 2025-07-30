@@ -49,6 +49,7 @@ def optimize_hyperparams(modelType, config):
     CHOSEN_MODEL = modelType
 
     check_config.check_all_data_paths()
+    check_config.check_hyperparams()
 
     data_paths = config["data_paths"]
     settings = config["settings"]

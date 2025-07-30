@@ -51,7 +51,7 @@ def evaluate_directory(model, config_object, visualize=True, input_type="image")
     isKMod = config_object["settings"]["calculate_kmod"]
 
     if isKMod:
-        from models.elastic.Extreme2 import Extreme
+        from models.elastic.MyPrecious import Extreme
         from torch import load
         run_model = Extreme()
         run_model.load_state_dict(load('model_weights/HuberCleanedMassive.pth', weights_only=True))

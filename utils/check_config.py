@@ -19,3 +19,9 @@ def check_all_data_paths():
     check_data_paths(config["data_paths"])
     check_data_paths(config["evaluation"]["data_paths"])
 
+
+# Running Optimizer
+
+def check_hyperparams():
+    assert(not config["training_parameters"]["visualize_training"], "Please turn off visualize_training in your config file before running hyperparameter optimization.")
+    assert(not config["save_info"]["save_model"], "Please turn off save_model in config before running hyperparameter optimization")

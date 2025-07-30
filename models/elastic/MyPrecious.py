@@ -7,7 +7,7 @@ import torch
 from torch import nn
 
 
-class Extreme(nn.Module):
+class MyPrecious(nn.Module):
     """ Works with rc coordinates 40x2, and output features 1
     
     Optimal Learning Rate: 0.1
@@ -21,7 +21,7 @@ class Extreme(nn.Module):
             nn.ReLU(),
             nn.Linear(4000, 80),
         )
-        self.name = "Five Layer CNN"
+        self.name = "My Precious"
 
     def forward(self, x):
         # x = torch.nn.functional.normalize(x)

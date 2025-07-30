@@ -2,7 +2,9 @@
 Manages model training and testing.
 Modified from PyTorch Optimization tutorial.
 
-Last modified: 6.26.2025
+Currently uses: MSE Loss, Adam Optimization
+
+Last modified: 7.30.2025
 """
 import torch
 from torch import nn
@@ -21,15 +23,10 @@ def train_loop(dataloader, model, loss_fxn, optimizer, batch_size, train_losses,
     clip = .6
     model.train()
     for batch, (X, y) in enumerate(dataloader):
-        # with open(filename, "a", encoding="utf-8") as f:
-        #     f.write(str(X))
-        # print(X[-1])
-        # exit()
         X = torch.nan_to_num(X)
         if torch.isnan(X).any():
             print("NaN found")
         pred = model(X)
-        # print("Prediction Shape", pred.shape)
         loss = loss_fxn(pred, y)
         optimizer.zero_grad()
         loss.backward()
@@ -41,7 +38,6 @@ def train_loop(dataloader, model, loss_fxn, optimizer, batch_size, train_losses,
             train_loss_avg += loss
         else:
             train_loss_avg += loss.item()
-    # print(Tensor.float())
     train_losses.append(train_loss_avg / dataloader.num_batches)
     with open(filename, "a", encoding="utf-8") as f:
         f.write(out + "\n")
@@ -58,12 +54,7 @@ def test_loop(dataloader, model, loss_fxn, num_batches, tolerance, test_losses, 
         for X, y in dataloader:
             pred = model(X)
             test_loss += loss_fxn(pred, y).item()
-            # with open(filename, "a", encoding="utf-8") as f:
-            # for (pred_val, y_val) in zip(pred, y):
-            #     f.write(f"Acutal: {y_val:3.3f} Estimate: {pred_val:3.3f} Difference: {(pred_val - y_val):3.3f}\n")
             correct += (torch.isclose(pred, y, rtol=0, atol=tolerance)).type(torch.float).sum().item()
-                # f.write(f"Actual Mean: {torch.mean(y)} Actual Std Dev: {torch.std(y)}\n")
-                # f.write(f"Prediction Mean: {torch.mean(pred)} Prediction Std Dev: {torch.std(pred)}\n")
     test_loss /= num_batches
     correct /= (len(dataloader.order) * dataloader.data.output_size) # total number of items isclose is counting
     with open(filename, "a", encoding="utf-8") as f:
