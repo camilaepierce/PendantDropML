@@ -133,3 +133,28 @@ If you are training and you notice that your computer is significantly strugglin
 2. Modify sequential layer, recommended layers include Dropout or Normalization layers (including in the forward function), and in the sequential Linear layers and ReLU or LeakyReLU activations. See a full list of layers and their descriptions here: [text](https://docs.pytorch.org/docs/stable/nn.html)
 3. Save model, make every layer's output matches the next layer's input.
 4. At the top of `model.py`, add your import statement `from models.[your new file] import [your new model]`, and update the model type in the rest of the file.
+
+
+
+<details>
+<summary> Common Errors </summary>
+
+1. IndexError: list index out of range
+```
+Traceback (most recent call last):
+  File "/home/camilapierce/Desktop/UNED/MLPendantDropUNED/model.py", line 68, in <module>
+    model = run_optimizer(config, model=model)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  [...some more of the traceback...]
+  File "/home/camilapierce/Desktop/UNED/MLPendantDropUNED/utils/extraction.py", line 98, in create_dictionary_per_file
+    sample_id = get_digits_from_filename(file.name)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/camilapierce/Desktop/UNED/MLPendantDropUNED/utils/extraction.py", line 111, in get_digits_from_filename
+    return digits[0]
+           ~~~~~~^^^
+IndexError: list index out of range
+```
+There could be an extra file that is not part of a sample in your data folders.
+
+
+

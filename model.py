@@ -23,13 +23,13 @@ import atexit
 # from models.elastic.elasticbasic import Elastic
 # from models.elastic.Gandalf import Gandalf
 # from models.elastic.Empty import Empty
-from models.elastic.MyPrecious import MyPrecious
+# from models.elastic.MyPrecious import MyPrecious
 # from models.elastic.K_Prediction import K_Modulus
 # from models.elastic.K_PredictionV2 import K_ModulusV2
 # from models.elastic.K_Pred_FullInput import K_Modulus_Full
 # from models.elastic.K_Classficiation import K_Modulus_Full
 # from models.elastic.Kratz import Kratz
-# from models.elastic.MyNewModel import NewModel
+from models.elastic.MyNewModel import NewModel
 
 if __name__ == "__main__":
 
@@ -50,7 +50,7 @@ if __name__ == "__main__":
     ###########################
 
     ### Choose model type             
-    model = MyPrecious() #NOTE this line NEVER gets deleted, only changed
+    model = NewModel() #NOTE this line NEVER gets deleted, only changed
 
     ### Load model from save, modify only the filepath: 'model_weights/[Model Name].pth'
     ### Keeping this line commented out creates a new model, and weights will be saved to config["settings"]["model_name"]

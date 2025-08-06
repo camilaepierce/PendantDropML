@@ -1,6 +1,6 @@
 {
         "settings" : { 
-            "model_name" : "MyPrecious2",
+            "model_name" : "TestingErrors",
             "ignore_images" : true,
             "is_elastic" : true,
             "calculate_kmod" : false
@@ -12,7 +12,7 @@
             "eval_folder" : "results/evaluation/"
         },
         "data_paths" : {
-            "folder" : "data/elastic_massive/",
+            "folder" : "data/elastic_mini/",
             "params" : "test_data_params", 
             "rz" : "test_data_rz", 
             "images" : "test_images",
@@ -20,7 +20,7 @@
         },
         "training_parameters" : {
             "learning_rate" : 0.5,
-            "num_batches" : 100, 
+            "num_batches" : 10, 
             "epochs" : 20,
             "testing_size" : 7, 
             "random_seed" : null,
@@ -34,7 +34,7 @@
         },
         "evaluation" : {
             "data_paths" : {
-                "folder" : "data/elastic_massive/",
+                "folder" : "data/elastic_mini/",
                 "params" : "test_data_params",
                 "rz" : "test_data_rz",
                 "images" : "test_images",
