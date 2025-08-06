@@ -13,7 +13,7 @@ import random
 import warnings
 
 
-warnings.filterwarnings("ignore")
+# warnings.filterwarnings("ignore")
 
 
 def extract_data_frame_single(file):
@@ -182,7 +182,7 @@ class PendantDropDataset(Dataset):
             Dictionary of requested sample, or Warning if idx not in the dataset. Dictionary has the keys {'image', 'coordinates', 'surface_tension', 'Wo_Ar', and 'sigma_tensor'}.
         """
         if (idx not in self.surf_tens_dict):
-            return Warning(f"The requested sample_id {idx} does not exist. Did you match the name of a sample exactly?")
+            raise Warning(f"The requested sample_id {idx} does not exist. Did you match the name of a sample exactly?")
         img_name = os.path.join(self.img_dir, f"{idx}.png")
 
         if self.ignore_images:

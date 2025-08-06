@@ -12,7 +12,7 @@ from utils.dataloader import PendantDataLoader
 from utils.extraction import PendantDropDataset, extract_data_paths
 from utils.visualize import plot_loss_evolution
 
-from models.elastic.Extreme2 import Extreme
+from models.elastic.MyPrecious import Extreme
 
 def train_loop(dataloader, model, loss_fxn, optimizer, batch_size, train_losses, filename):
     """ Training loop for optimization. """

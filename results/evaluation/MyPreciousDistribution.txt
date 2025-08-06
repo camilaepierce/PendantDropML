@@ -1,0 +1,6 @@
+Sample Distribution
+Worthington Number:: Mean: 2.8998583688098702 Std Dev: 1.0880472042749345
+Aspect Ratio:: Mean: 11.179554721450659 Std Dev: 4.913505970993233
+Stress Tensor:: Mean: 3.538157077989643 Std Dev: 2.5628356109791115
+Prediction Distribution
+Stress Tensor:: Mean: 2.6144290319078887 Std Dev: 2.1984290025026474

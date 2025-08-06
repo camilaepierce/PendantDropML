@@ -156,5 +156,28 @@ IndexError: list index out of range
 ```
 There could be an extra file that is not part of a sample in your data folders.
 
+2. Warning: sample_id X does not exist
+```
+                         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/camilapierce/Desktop/UNED/MLPendantDropUNED/utils/dataloader.py", line 43, in __iter__
+    sample = self.data[sample_id]
+             ~~~~~~~~~^^^^^^^^^^^
+  File "/home/camilapierce/Desktop/UNED/MLPendantDropUNED/utils/extraction.py", line 185, in __getitem__
+    raise Warning(f"The requested sample_id {idx} does not exist. Did you match the name of a sample exactly?")
+Warning: The requested sample_id 1 does not exist. Did you match the name of a sample exactly?
+```
+There could be a half-saved sample. Check that the given sample_id exists in all relevant folders.
 
+3. RuntimeError: Error(s) in loading state_dict for Model
 
+```
+Traceback (most recent call last):
+  File "/home/camilapierce/Desktop/UNED/MLPendantDropUNED/model.py", line 57, in <module>
+    model.load_state_dict(torch.load('model_weights/MyPrecious.pth', weights_only=True))
+  File "/home/camilapierce/.pyenv/versions/3.12.11/lib/python3.12/site-packages/torch/nn/modules/module.py", line 2593, in load_state_dict
+    raise RuntimeError(
+RuntimeError: Error(s) in loading state_dict for NewModel:
+        Missing key(s) in state_dict: "linear_relu_stack.0.weight", "linear_relu_stack.0.bias", "linear_relu_stack.2.weight", "linear_relu_stack.2.bias", "linear_relu_stack.4.weight", "linear_relu_stack.4.bias". 
+        Unexpected key(s) in state_dict: "linear_relu_stack.1.weight", "linear_relu_stack.1.bias", "linear_relu_stack.3.weight", "linear_relu_stack.3.bias". 
+```
+The shape of weights of the two models do not match. Check that you are loading the same model that you imported and are using.

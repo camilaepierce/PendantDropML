@@ -16,3 +16,9 @@ Aspect Ratio:: Mean: 10.713879583529442 Std Dev: 4.6436922070579385
 Stress Tensor:: Mean: 3.3113983673998835 Std Dev: 2.1816455119464
 Prediction Distribution
 Stress Tensor:: Mean: 1.493713140487671 Std Dev: 0.0
+Sample Distribution
+Worthington Number:: Mean: 2.9815367027004305 Std Dev: 1.1782716084382636
+Aspect Ratio:: Mean: 10.713879583529442 Std Dev: 4.6436922070579385
+Stress Tensor:: Mean: 3.311398367399883 Std Dev: 2.1816455119464
+Prediction Distribution
+Stress Tensor:: Mean: 1.4601353406906128 Std Dev: 0.0
